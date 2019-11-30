@@ -13,26 +13,26 @@
                     <div class="collapse navbar-collapse main-menu-item" id="navbarSupportedContent">
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('home') }}">Home</a>
+                                <a class="nav-link" href="{{ route('home') }}">{{ __('home.home') }}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('blog') }}">Blog</a>
+                                <a class="nav-link" href="{{ route('blog') }}">{{ __('home.blog') }}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('contact') }}">Contact</a>
+                                <a class="nav-link" href="{{ route('contact') }}">{{ __('home.contact') }}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('about') }}">About</a>
+                                <a class="nav-link" href="{{ route('about') }}">{{ __('home.about') }}</a>
                             </li>
 
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="language"
                                     role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Language
+                                    {{ __('home.language') }}
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="language">
-                                    <a class="dropdown-item" href="#"> Vietnam</a>
-                                    <a class="dropdown-item" href="#"> Enlish</a>
+                                    <a class="dropdown-item" href="{{ route('change_language', ['language' => 'vi']) }}"> {{ __('home.vi') }}</a>
+                                    <a class="dropdown-item" href="{{ route('change_language', ['language' => 'en']) }}"> {{ __('home.en') }}</a>
                                     
                                 </div>
                             </li>

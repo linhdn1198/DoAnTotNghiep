@@ -4,7 +4,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>winter</title>
+    <title>{{ __('home.title') }}</title>
     <link rel="icon" href="/client/img/favicon.png">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="/client/css/bootstrap.min.css">
