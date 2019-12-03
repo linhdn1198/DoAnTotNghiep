@@ -12,4 +12,13 @@ return [
     'category' => 'Danh mục sản phẩm',
     'all' => 'Tất cả sản phẩm',
     'search' => 'Tìm kiếm ở đây.',
+    'simple_product' => 'Chi tiết sản phẩm',
+    'category' => 'Category',
+    'add_to_cart' => 'Thêm vào giỏ hàng',
+    'description' => 'Mô tả',
+    'comments' => 'Bình luận',
+    'product_relation' => 'Sản phẩm liên quan',
+    'post_a_comment' => 'Gửi bình luận',
+    'message' => 'Bình luận...',
+    'submit' => 'Gửi',
 ];

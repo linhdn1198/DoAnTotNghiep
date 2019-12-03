@@ -11,4 +11,9 @@ class CommentProduct extends Model
         'product_id',
         'content',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

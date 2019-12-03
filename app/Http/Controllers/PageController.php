@@ -46,6 +46,13 @@ class PageController extends Controller
     }
     public function simpleProduct($slug)
     {
-        return view('clients.simple_product');
+        $product = Product::with('productCategory', 'comments', 'comments.user')
+            ->where('slug', $slug)
+            ->firstOrFail();
+        $productRelation = Product::where('product_category_id', $product->product_category_id)
+            ->orderBy('created_at', 'DESC')
+            ->get();
+
+        return view('clients.simple_product', compact('product', 'productRelation'));
     }
 }

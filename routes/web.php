@@ -6,6 +6,8 @@ Route::group(['middleware' => 'locale'], function() {
     Route::get('categories/{slug}', 'PageController@displayProductByCategory')->name('display');
 
     Route::get('search', 'PageController@searchProduct')->name('search_product');
+
+    Route::get('simple-product/{slug}', 'PageController@simpleProduct')->name('simple_product');
     
     Route::get('/shopping-cart', function () {
         return view('clients.shopping_cart');
