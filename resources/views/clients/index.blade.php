@@ -1,11 +1,11 @@
 @extends('clients.master')
 
 @section('style')
-    
+
 @endsection
 @section('content')
 <!-- banner part start-->
-<section class="banner_part">
+<section class="banner_part" style="background-image:url({{ $banner->image }})">
     <div class="container">
         <div class="row align-items-center">
             <div class="col-lg-7">
@@ -15,7 +15,7 @@
                             <div class="banner_text_iner">
                                 <h5>Winter Fasion</h5>
                                 <h1>Fashion Collection 2019</h1>
-                                <a href="#" class="btn_1">shop now</a>
+                                <a href="#products" class="btn_1">shop now</a>
                             </div>
                         </div>
                     </div>
@@ -26,60 +26,30 @@
 </section>
 <!-- banner part start-->
 <!--================Category Product Area =================-->
-<section class="cat_product_area section_padding border_top">
-    <div class="container">
+<section class="cat_product_area section_padding border_top" id="products">
+    <div class="container" v-if="data">
         <div class="row">
             <div class="col-lg-3">
                 <div class="left_sidebar_area">
                     <aside class="left_widgets p_filter_widgets sidebar_box_shadow">
                         <div class="l_w_title">
-                            <h3>Browse Categories</h3>
+                            <h3>{{ __('home.category') }}</h3>
                         </div>
                         <div class="widgets_inner">
                             <ul class="list">
                                 <li>
-                                    <a href="#">Fruits and Vegetables</a>
-                                </li>
-                                <li class="sub-menu">
-                                    <a href="#Electronics" class=" d-flex justify-content-between">
-                                        Electronics
-                                        <div class="right ti-plus"></div>
-                                    </a>
-                                    <ul>
-                                        <li>
-                                            <a href="#Electronics">Home Appliances</a>
-                                        </li>
-                                        <li>
-                                            <a href="#Electronics">Smartphones</a>
-                                        </li>
-                                        <li>
-                                            <a href="#Electronics">Kitchen Appliances</a>
-                                        </li>
-                                        <li>
-                                            <a href="#Electronics">Computer Accessories</a>
-                                        </li>
-                                        <li>
-                                            <a href="#Electronics">Meat Alternatives</a>
-                                        </li>
-                                        <li>
-                                            <a href="#Electronics">Appliances</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="#">Cooking</a>
-                                </li>
-                                <li>
-                                    <a href="#">Beverages</a>
-                                </li>
-                                <li>
-                                    <a href="#">Home and Cleaning</a>
-                                </li>
+                                    <a href="{{ route('home') }}">{{ __('home.all') }}</a>
+                                </li>  
+                                @foreach ($productCategories as $productCategory)
+                                    <li>
+                                        <a href="{{ route('display', $productCategory->slug) }}">{{ $productCategory->name }}</a>
+                                    </li>  
+                                @endforeach
                             </ul>
                         </div>
                     </aside>
 
-                    <aside class="left_widgets p_filter_widgets sidebar_box_shadow">
+                    {{-- <aside class="left_widgets p_filter_widgets sidebar_box_shadow">
                         <div class="l_w_title">
                             <h3>Product filters</h3>
                         </div>
@@ -131,7 +101,7 @@
                                 </li>
                             </ul>
                         </div>
-                    </aside>
+                    </aside> --}}
 
                     <aside class="left_widgets p_filter_widgets price_rangs_aside sidebar_box_shadow">
                         <div class="l_w_title">
@@ -161,7 +131,14 @@
                     <div class="col-lg-12">
                         <div class="product_top_bar d-flex justify-content-between align-items-center">
                             <div class="single_product_menu product_bar_item">
-                                <h2>Womans (12)</h2>
+                                <h2>
+                                    @if(empty($category))
+                                    {{ __('home.all') }}
+                                    @else
+                                        {{ $category->name }}
+                                    @endif
+                                    ({{ count($products) }})
+                                </h2>
                             </div>
                             <div class="product_top_bar_iner product_bar_item d-flex">
                                 <div class="product_bar_single">
@@ -182,210 +159,25 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-sm-6">
-                        <div class="single_category_product">
-                            <div class="single_category_img">
-                                <img src="/client/img/category/category_1.png" alt="">
-                                <div class="category_social_icon">
-                                    <ul>
-                                        <li><a href="#"><i class="ti-heart"></i></a></li>
-                                        <li><a href="#"><i class="ti-bag"></i></a></li>
-                                    </ul>
-                                </div>
-                                <div class="category_product_text">
-                                    <a href="single-product.html"><h5>Long Sleeve TShirt</h5></a>
-                                    <p>$150.00</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-sm-6">
-                        <div class="single_category_product">
-                            <div class="single_category_img">
-                                <img src="/client/img/category/category_2.png" alt="">
-                                <div class="category_social_icon">
-                                    <ul>
-                                        <li><a href="#"><i class="ti-heart"></i></a></li>
-                                        <li><a href="#"><i class="ti-bag"></i></a></li>
-                                    </ul>
-                                </div>
-                                <div class="category_product_text">
-                                    <a href="single-product.html"><h5>Long Sleeve TShirt</h5></a>
-                                    <p>$150.00</p>
+                    @foreach ($products as $product)         
+                        <div class="col-lg-4 col-sm-6" v-for="product in products">
+                            <div class="single_category_product">
+                                <div class="single_category_img">
+                                    <img src="/client/img/category/category_2.png" alt="">
+                                    <div class="category_social_icon">
+                                        <ul>
+                                            <li><a href="#"><i class="ti-bag"></i></a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="category_product_text">
+                                        <a href="#"><h5>{{ $product->name }}</h5></a>
+                                        <p>{{ $product->price }}</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-lg-4 col-sm-6">
-                        <div class="single_category_product">
-                            <div class="single_category_img">
-                                <img src="/client/img/category/category_3.png" alt="">
-                                <div class="category_social_icon">
-                                    <ul>
-                                        <li><a href="#"><i class="ti-heart"></i></a></li>
-                                        <li><a href="#"><i class="ti-bag"></i></a></li>
-                                    </ul>
-                                </div>
-                                <div class="category_product_text">
-                                    <a href="single-product.html"><h5>Long Sleeve TShirt</h5></a>
-                                    <p>$150.00</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-sm-6">
-                        <div class="single_category_product">
-                            <div class="single_category_img">
-                                <img src="/client/img/category/category_4.png" alt="">
-                                <div class="category_social_icon">
-                                    <ul>
-                                        <li><a href="#"><i class="ti-heart"></i></a></li>
-                                        <li><a href="#"><i class="ti-bag"></i></a></li>
-                                    </ul>
-                                </div>
-                                <div class="category_product_text">
-                                    <a href="single-product.html"><h5>Long Sleeve TShirt</h5></a>
-                                    <p>$150.00</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-sm-6">
-                        <div class="single_category_product">
-                            <div class="single_category_img">
-                                <img src="/client/img/category/category_5.png" alt="">
-                                <div class="category_social_icon">
-                                    <ul>
-                                        <li><a href="#"><i class="ti-heart"></i></a></li>
-                                        <li><a href="#"><i class="ti-bag"></i></a></li>
-                                    </ul>
-                                </div>
-                                <div class="category_product_text">
-                                    <a href="single-product.html"><h5>Long Sleeve TShirt</h5></a>
-                                    <p>$150.00</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-sm-6">
-                        <div class="single_category_product">
-                            <div class="single_category_img">
-                                <img src="/client/img/category/category_6.png" alt="">
-                                <div class="category_social_icon">
-                                    <ul>
-                                        <li><a href="#"><i class="ti-heart"></i></a></li>
-                                        <li><a href="#"><i class="ti-bag"></i></a></li>
-                                    </ul>
-                                </div>
-                                <div class="category_product_text">
-                                    <a href="single-product.html"><a href="single-product.html"><h5>Long Sleeve TShirt</h5></a></a>
-                                    <p>$150.00</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-sm-6">
-                        <div class="single_category_product">
-                            <div class="single_category_img">
-                                <img src="/client/img/category/category_7.png" alt="">
-                                <div class="category_social_icon">
-                                    <ul>
-                                        <li><a href="#"><i class="ti-heart"></i></a></li>
-                                        <li><a href="#"><i class="ti-bag"></i></a></li>
-                                    </ul>
-                                </div>
-                                <div class="category_product_text">
-                                    <a href="single-product.html"><h5>Long Sleeve TShirt</h5></a>
-                                    <p>$150.00</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-sm-6">
-                        <div class="single_category_product">
-                            <div class="single_category_img">
-                                <img src="/client/img/category/category_8.png" alt="">
-                                <div class="category_social_icon">
-                                    <ul>
-                                        <li><a href="#"><i class="ti-heart"></i></a></li>
-                                        <li><a href="#"><i class="ti-bag"></i></a></li>
-                                    </ul>
-                                </div>
-                                <div class="category_product_text">
-                                    <a href="single-product.html"><h5>Long Sleeve TShirt</h5></a>
-                                    <p>$150.00</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div> 
-                    <div class="col-lg-4 col-sm-6">
-                        <div class="single_category_product">
-                            <div class="single_category_img">
-                                <img src="/client/img/category/category_9.png" alt="">
-                                <div class="category_social_icon">
-                                    <ul>
-                                        <li><a href="#"><i class="ti-heart"></i></a></li>
-                                        <li><a href="#"><i class="ti-bag"></i></a></li>
-                                    </ul>
-                                </div>
-                                <div class="category_product_text">
-                                    <a href="single-product.html"><h5>Long Sleeve TShirt</h5></a>
-                                    <p>$150.00</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div> 
-                    <div class="col-lg-4 col-sm-6">
-                        <div class="single_category_product">
-                            <div class="single_category_img">
-                                <img src="/client/img/category/category_10.png" alt="">
-                                <div class="category_social_icon">
-                                    <ul>
-                                        <li><a href="#"><i class="ti-heart"></i></a></li>
-                                        <li><a href="#"><i class="ti-bag"></i></a></li>
-                                    </ul>
-                                </div>
-                                <div class="category_product_text">
-                                    <a href="single-product.html"><h5>Long Sleeve TShirt</h5></a>
-                                    <p>$150.00</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div> 
-                    <div class="col-lg-4 col-sm-6">
-                        <div class="single_category_product">
-                            <div class="single_category_img">
-                                <img src="/client/img/category/category_11.png" alt="">
-                                <div class="category_social_icon">
-                                    <ul>
-                                        <li><a href="#"><i class="ti-heart"></i></a></li>
-                                        <li><a href="#"><i class="ti-bag"></i></a></li>
-                                    </ul>
-                                </div>
-                                <div class="category_product_text">
-                                    <a href="single-product.html"><h5>Long Sleeve TShirt</h5></a>
-                                    <p>$150.00</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div> 
-                    <div class="col-lg-4 col-sm-6">
-                        <div class="single_category_product">
-                            <div class="single_category_img">
-                                <img src="/client/img/category/category_12.png" alt="">
-                                <div class="category_social_icon">
-                                    <ul>
-                                        <li><a href="#"><i class="ti-heart"></i></a></li>
-                                        <li><a href="#"><i class="ti-bag"></i></a></li>
-                                    </ul>
-                                </div>
-                                <div class="category_product_text">
-                                    <a href="single-product.html"><h5>Long Sleeve TShirt</h5></a>
-                                    <p>$150.00</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
+
                     <div class="col-lg-12 text-center">
                         <a href="#" class="btn_2">More Items</a>
                     </div>
@@ -397,5 +189,6 @@
 <!--================End Category Product Area =================-->
 @endsection
 @section('script')
-    
+<script>
+</script>
 @endsection

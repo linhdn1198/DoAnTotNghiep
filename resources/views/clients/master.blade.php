@@ -75,7 +75,6 @@
     <!--::footer_part start::-->
     @include('clients.modules.footer')
     <!--::footer_part end::-->
-
     <!-- jquery plugins here-->
     <script src="/client/js/jquery-1.12.1.min.js"></script>
     <!-- popper jclient/s -->
@@ -103,9 +102,10 @@
     <script src="/client/js/jquery.form.js"></script>
     <script src="/client/js/jquery.validate.min.js"></script>
     <script src="/client/js/mail-script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.js"></script>
     <!-- custom js -->
     <script src="/client/js/custom.js"></script>
     @yield('script')
 </body>
-
 </html>

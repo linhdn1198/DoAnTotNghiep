@@ -7,6 +7,9 @@ return [
     'contact' => 'Contact',
     'about' => 'About',
     'language' => 'Language',
-    'vi' => 'Vietnames',
+    'vi' => 'Vietnamese',
     'en' => 'English',
+    'category' => 'Browse Categories',
+    'all' => 'All',
+    'search' => 'Search here.',
 ];

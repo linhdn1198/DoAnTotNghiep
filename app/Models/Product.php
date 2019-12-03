@@ -20,7 +20,7 @@ class Product extends Model
         return $this->belongsToMany(Order::class, 'order_details');
     }
 
-    public function product_category()
+    public function productCategory()
     {
         return $this->belongsTo(ProductCategory::class);
     }
