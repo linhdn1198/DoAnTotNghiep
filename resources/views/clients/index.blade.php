@@ -170,7 +170,7 @@
                                         </ul>
                                     </div>
                                     <div class="category_product_text">
-                                        <a href="#"><h5>{{ $product->name }}</h5></a>
+                                        <a href="{{ route('simple_product', $product->slug) }}"><h5>{{ $product->name }}</h5></a>
                                         <p>{{ $product->price }}</p>
                                     </div>
                                 </div>
