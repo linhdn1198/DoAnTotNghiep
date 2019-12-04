@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Product;
 use App\Models\Banner;
+use App\Models\Tag;
+use App\Models\Post;
+use App\Models\Product;
+use App\Models\PostCategory;
 use App\Models\ProductCategory;
 use Illuminate\Http\Request;
 
@@ -54,5 +57,38 @@ class PageController extends Controller
             ->get();
 
         return view('clients.simple_product', compact('product', 'productRelation'));
+    }
+
+    public function post()
+    {
+        $posts = Post::with('user', 'comments')->get();
+        $postCategories = PostCategory::all();
+        $postRecentes = Post::orderBy('created_at', 'DESC')->get();
+        $tags = Tag::all();
+
+        return view('clients.blog', compact('posts', 'postCategories', 'tags', 'postRecentes'));
+    }
+
+    public function postSearch(Request $request)
+    {
+        $keyword = $request->search;
+
+        $posts = Post::where('title', 'like', '%' . $keyword . '%')->with('user', 'comments')->get();
+        $postCategories = PostCategory::all();
+        $postRecentes = Post::orderBy('created_at', 'DESC')->get();
+        $tags = Tag::all();
+
+        return view('clients.blog', compact('posts', 'postCategories', 'tags', 'postRecentes'));
+    }
+
+    public function displayPostByCategory($slug)
+    {
+        $category = PostCategory::where('slug', $slug)->first();
+        $posts = Post::where('post_category_id', $category->id)->with('user', 'comments')->get();
+        $postCategories = PostCategory::all();
+        $postRecentes = Post::orderBy('created_at', 'DESC')->get();
+        $tags = Tag::all();
+
+        return view('clients.blog', compact('posts', 'postCategories', 'tags', 'postRecentes'));
     }
 }
