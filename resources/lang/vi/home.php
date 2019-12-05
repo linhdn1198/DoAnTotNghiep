@@ -9,6 +9,8 @@ return [
     'language' => 'Ngôn ngữ',
     'vi' => 'Tiếng việt',
     'en' => 'Tiếng anh',
+    'login' => 'Đăng nhập',
+    'register' => 'Đăng ký',
     'category' => 'Danh mục sản phẩm',
     'all' => 'Tất cả sản phẩm',
     'search' => 'Tìm kiếm ở đây.',
@@ -27,5 +29,8 @@ return [
     'recent_post' => 'Bài viết gần đây',
     'address' => 'Địa chỉ',
     'phone' => 'Số điện thoại',
-    'email' => 'Địac chỉ email',
+    'email' => 'Địa chỉ email',
+    'store' => 'Cửa hàng',
+    'copyright' => 'Bản quyền',
+    'all_right' => 'tất của thuộc về LinhDuong',
 ];

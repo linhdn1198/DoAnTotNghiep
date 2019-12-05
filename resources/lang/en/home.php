@@ -9,6 +9,8 @@ return [
     'language' => 'Language',
     'vi' => 'Vietnamese',
     'en' => 'English',
+    'login' => 'Login',
+    'register' => 'Register',
     'category' => 'Browse Categories',
     'all' => 'All',
     'search' => 'Search here.',
@@ -28,4 +30,7 @@ return [
     'address' => 'Address',
     'phone' => 'Phone',
     'email' => 'E-mail',
+    'store' => 'Store',
+    'copyright' => 'Copyright',
+    'all_right' => 'All rights reserved LinhDuong',
 ];
