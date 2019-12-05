@@ -28,9 +28,7 @@ Route::group(['middleware' => 'locale'], function() {
     Route::get('/post-categories/{slug}', 'PageController@displayPostByCategory')->name('display_post');
     Route::get('/tag/{slug}', 'PageController@displayPostByTag')->name('tag');
     
-    Route::get('/simple-blog', function () {
-        return view('clients.simple_blog');
-    })->name('simple_blog');
+    Route::get('/simple-blog/{slug}', 'PageController@simpleBlog')->name('simple_blog');
     
     Route::get('/about', 'PageController@about')->name('about');
     
