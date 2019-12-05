@@ -179,7 +179,9 @@
                     @endforeach
 
                     <div class="col-lg-12 text-center">
-                        <a href="#" class="btn_2">More Items</a>
+                        <nav class="blog-pagination justify-content-center d-flex">
+                            {{ $products->links() }}
+                        </nav>
                     </div>
                 </div>
             </div>

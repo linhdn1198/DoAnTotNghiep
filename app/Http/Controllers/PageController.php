@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Banner;
 use App\Models\Tag;
 use App\Models\Post;
+use App\Models\About;
+use App\Models\Contact;
 use App\Models\Product;
 use App\Models\PostCategory;
 use App\Models\ProductCategory;
@@ -22,7 +24,7 @@ class PageController extends Controller
     public function index(Request $request)
     {
         $banner = Banner::first();
-        $products = Product::all();
+        $products = Product::paginate(6);
         $productCategories = ProductCategory::all();
 
         return view('clients.index', compact('products', 'productCategories', 'banner'));
@@ -32,7 +34,7 @@ class PageController extends Controller
     {
         $banner = Banner::first();
         $category = ProductCategory::where('slug', $slug)->first();
-        $products = Product::where('product_category_id', $category->id)->get();
+        $products = Product::where('product_category_id', $category->id)->paginate(6);
         $productCategories = ProductCategory::all();
 
         return view('clients.index', compact('products', 'productCategories', 'category', 'banner'));
@@ -42,7 +44,7 @@ class PageController extends Controller
     {
         $banner = Banner::first();
         $keyword = $request->search;
-        $products = Product::where('name', 'like', '%' . $keyword . '%')->get();
+        $products = Product::where('name', 'like', '%' . $keyword . '%')->paginate(6);
         $productCategories = ProductCategory::all();
 
         return view('clients.index', compact('products', 'productCategories', 'banner'));
@@ -61,7 +63,7 @@ class PageController extends Controller
 
     public function post()
     {
-        $posts = Post::with('user', 'comments')->get();
+        $posts = Post::with('user', 'comments')->paginate(1);
         $postCategories = PostCategory::all();
         $postRecentes = Post::orderBy('created_at', 'DESC')->get();
         $tags = Tag::all();
@@ -73,7 +75,7 @@ class PageController extends Controller
     {
         $keyword = $request->search;
 
-        $posts = Post::where('title', 'like', '%' . $keyword . '%')->with('user', 'comments')->get();
+        $posts = Post::where('title', 'like', '%' . $keyword . '%')->with('user', 'comments')->paginate(1);
         $postCategories = PostCategory::all();
         $postRecentes = Post::orderBy('created_at', 'DESC')->get();
         $tags = Tag::all();
@@ -84,11 +86,25 @@ class PageController extends Controller
     public function displayPostByCategory($slug)
     {
         $category = PostCategory::where('slug', $slug)->first();
-        $posts = Post::where('post_category_id', $category->id)->with('user', 'comments')->get();
+        $posts = Post::where('post_category_id', $category->id)->with('user', 'comments')->paginate(1);
         $postCategories = PostCategory::all();
         $postRecentes = Post::orderBy('created_at', 'DESC')->get();
         $tags = Tag::all();
 
         return view('clients.blog', compact('posts', 'postCategories', 'tags', 'postRecentes'));
+    }
+
+    public function about()
+    {
+        $about = About::first();
+
+        return view('clients.about', compact('about'));
+    }
+
+    public function contact()
+    {
+        $contact = Contact::first();
+
+        return view('clients.contact', compact('contact'));
     }
 }
