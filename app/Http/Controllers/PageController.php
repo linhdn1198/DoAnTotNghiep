@@ -14,6 +14,14 @@ use Illuminate\Http\Request;
 
 class PageController extends Controller
 {
+    public function __construct()
+    {
+        $contact = Contact::first();
+        $productCategories = ProductCategory::all();
+        view()->share('contact', $contact);
+        view()->share('productCategories', $productCategories);
+    }
+
     public function changeLanguage($language)
     {
         \Session::put('language', $language);
@@ -106,5 +114,15 @@ class PageController extends Controller
         $contact = Contact::first();
 
         return view('clients.contact', compact('contact'));
+    }
+
+    public function login()
+    {
+        return view('clients.login');
+    }
+
+    public function register()
+    {
+        return view('clients.register');
     }
 }

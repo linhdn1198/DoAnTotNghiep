@@ -36,13 +36,9 @@ Route::group(['middleware' => 'locale'], function() {
     
     Route::get('/contact', 'PageController@contact')->name('contact');
     
-    Route::get('/login', function () {
-        return view('clients.login');
-    })->name('login');
+    Route::get('/login', 'PageController@login')->name('login');
     
-    Route::get('/register', function () {
-        return view('clients.register');
-    })->name('register');
+    Route::get('/register', 'PageController@register')->name('register');
 
     Route::group(['prefix' => 'admin', 'as' => 'admin.'], function() {
         Route::auth();

@@ -33,8 +33,13 @@
                                 <div class="dropdown-menu" aria-labelledby="language">
                                     <a class="dropdown-item" href="{{ route('change_language', ['language' => 'vi']) }}"> {{ __('home.vi') }}</a>
                                     <a class="dropdown-item" href="{{ route('change_language', ['language' => 'en']) }}"> {{ __('home.en') }}</a>
-                                    
                                 </div>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('login') }}">{{ __('home.login') }}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('register') }}">{{ __('home.register') }}</a>
                             </li>
                         </ul>
                     </div>
