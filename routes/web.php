@@ -3,7 +3,7 @@
 Route::group(['middleware' => 'locale'], function() {
     Route::get('/', 'PageController@index')->name('home');
     
-    Route::get('categories/{slug}', 'PageController@displayProductByCategory')->name('display');
+    Route::get('product-categories/{slug}', 'PageController@displayProductByCategory')->name('display_product');
 
     Route::get('search', 'PageController@searchProduct')->name('search_product');
 
@@ -21,9 +21,12 @@ Route::group(['middleware' => 'locale'], function() {
         return view('clients.confirmation');
     })->name('confirmation');
     
-    Route::get('/blog', function () {
-        return view('clients.blog');
-    })->name('blog');
+    Route::get('/blog', 'PageController@post')->name('post');
+
+    Route::get('/blog-search', 'PageController@postSearch')->name('post_search');
+
+    Route::get('/post-categories/{slug}', 'PageController@displayPostByCategory')->name('display_post');
+    Route::get('/tag/{slug}', 'PageController@displayPostByTag')->name('tag');
     
     Route::get('/simple-blog', function () {
         return view('clients.simple_blog');

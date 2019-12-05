@@ -12,8 +12,9 @@ return [
     'category' => 'Danh mục sản phẩm',
     'all' => 'Tất cả sản phẩm',
     'search' => 'Tìm kiếm ở đây.',
+    'search_button' => 'Tìm kiếm',
     'simple_product' => 'Chi tiết sản phẩm',
-    'category' => 'Category',
+    'category_post' => 'Danh mục bài viết',
     'add_to_cart' => 'Thêm vào giỏ hàng',
     'description' => 'Mô tả',
     'comments' => 'Bình luận',
@@ -21,4 +22,7 @@ return [
     'post_a_comment' => 'Gửi bình luận',
     'message' => 'Bình luận...',
     'submit' => 'Gửi',
+    'blog' => 'Bài viết',
+    'tag' => 'Thẻ',
+    'recent_post' => 'Bài viết gần đây',
 ];

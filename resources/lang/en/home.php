@@ -12,8 +12,9 @@ return [
     'category' => 'Browse Categories',
     'all' => 'All',
     'search' => 'Search here.',
+    'search_button' => 'Search',
     'simple_product' => 'Simple product',
-    'category' => 'Category',
+    'category_post' => 'Category',
     'add_to_cart' => 'Add to cart',
     'description' => 'Description',
     'comments' => 'Comments',
@@ -21,4 +22,7 @@ return [
     'post_a_comment' => 'Post a comment',
     'message' => 'Message...',
     'submit' => 'Submit',
+    'blog' => 'Blog',
+    'tag' => 'Tag Clouds',
+    'recent_post' => 'Recent Post',
 ];

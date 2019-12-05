@@ -42,7 +42,7 @@
                                 </li>  
                                 @foreach ($productCategories as $productCategory)
                                     <li>
-                                        <a href="{{ route('display', $productCategory->slug) }}">{{ $productCategory->name }}</a>
+                                        <a href="{{ route('display_product', $productCategory->slug) }}">{{ $productCategory->name }}</a>
                                     </li>  
                                 @endforeach
                             </ul>
