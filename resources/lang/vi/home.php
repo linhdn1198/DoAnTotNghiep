@@ -25,4 +25,7 @@ return [
     'blog' => 'Bài viết',
     'tag' => 'Thẻ',
     'recent_post' => 'Bài viết gần đây',
+    'address' => 'Địa chỉ',
+    'phone' => 'Số điện thoại',
+    'email' => 'Địac chỉ email',
 ];

@@ -32,13 +32,9 @@ Route::group(['middleware' => 'locale'], function() {
         return view('clients.simple_blog');
     })->name('simple_blog');
     
-    Route::get('/about', function () {
-        return view('clients.about');
-    })->name('about');
+    Route::get('/about', 'PageController@about')->name('about');
     
-    Route::get('/contact', function () {
-        return view('clients.contact');
-    })->name('contact');
+    Route::get('/contact', 'PageController@contact')->name('contact');
     
     Route::get('/login', function () {
         return view('clients.login');

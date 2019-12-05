@@ -25,4 +25,7 @@ return [
     'blog' => 'Blog',
     'tag' => 'Tag Clouds',
     'recent_post' => 'Recent Post',
+    'address' => 'Address',
+    'phone' => 'Phone',
+    'email' => 'E-mail',
 ];
