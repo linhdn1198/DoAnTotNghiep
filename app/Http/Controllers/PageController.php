@@ -102,6 +102,16 @@ class PageController extends Controller
         return view('clients.blog', compact('posts', 'postCategories', 'tags', 'postRecentes'));
     }
 
+    public function simpleBlog($slug)
+    {
+        $post = Post::with('user', 'comments', 'comments.user')->where('slug', $slug)->firstOrFail();
+        $postCategories = PostCategory::all();
+        $postRecentes = Post::orderBy('created_at', 'DESC')->get();
+        $tags = Tag::all();
+
+        return view('clients.simple_blog', compact('post', 'postCategories', 'tags', 'postRecentes'));
+    }
+
     public function about()
     {
         $about = About::first();

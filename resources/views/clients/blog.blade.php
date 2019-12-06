@@ -29,15 +29,15 @@
                             @foreach ($posts as $post)
                                 <article class="blog_item">
                                     <div class="blog_item_img">
-                                        <img class="card-img rounded-0" src="/client/img/blog/single_blog_1.png" alt="">
-                                        <a href="#" class="blog_item_date">
+                                        <img class="card-img rounded-0" src="/client/img/blog/single_blog_1.png" alt="{{ $post->title }}">
+                                        <a href="{{ route('simple_blog', $post->slug) }}" class="blog_item_date">
                                             <h3>{{ date_format(new DateTime($post->created_at), 'd') }}</h3>
                                             <p>{{ date_format(new DateTime($post->created_at), 'm-Y') }}</p>
                                         </a>
                                     </div>
         
                                     <div class="blog_details">
-                                        <a class="d-inline-block" href="single-blog.html">
+                                        <a class="d-inline-block" href="{{ route('simple_blog', $post->slug) }}">
                                             <h2>{{ $post->title }}</h2>
                                         </a>
                                         <p>
@@ -94,7 +94,7 @@
                                     <div class="media post_item">
                                         <img src="/client/img/post/post_1.png" alt="post">
                                         <div class="media-body">
-                                            <a href="single-blog.html">
+                                            <a href="{{ route('simple_blog', $postRecent->slug) }}">
                                                 <h3>{{ $postRecent->title }}</h3>
                                             </a>
                                             <p>{{ $postRecent->created_at->diffForHumans() }}</p>
