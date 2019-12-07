@@ -29,7 +29,7 @@
                     <div class="login_part_text_iner">
                         <h2>{{ __('home.new_to_our_shop') }}</h2>
                         <p>{{ __('home.text_page_login') }}</p>
-                        <a href="{{ route('register') }}" class="btn_3">{{ __('home.create_an_account') }}</a>
+                        <a href="{{ route('show_form_register') }}" class="btn_3">{{ __('home.create_an_account') }}</a>
                     </div>
                 </div>
             </div>
