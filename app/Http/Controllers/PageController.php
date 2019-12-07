@@ -11,14 +11,22 @@ use App\Models\Product;
 use App\Models\PostCategory;
 use App\Models\ProductCategory;
 use Illuminate\Http\Request;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class PageController extends Controller
 {
+    use AuthenticatesUsers;
+
+    protected $redirectTo = '/';
+
     public function __construct()
     {
+        $banner = Banner::first();
         $contact = Contact::first();
         $productCategories = ProductCategory::all();
+
         view()->share('contact', $contact);
+        view()->share('banner', $banner);
         view()->share('productCategories', $productCategories);
     }
 
@@ -31,31 +39,27 @@ class PageController extends Controller
 
     public function index(Request $request)
     {
-        $banner = Banner::first();
         $products = Product::paginate(6);
-        $productCategories = ProductCategory::all();
 
-        return view('clients.index', compact('products', 'productCategories', 'banner'));
+        return view('clients.index', compact('products',));
     }
 
     public function displayProductByCategory($slug)
     {
-        $banner = Banner::first();
         $category = ProductCategory::where('slug', $slug)->first();
         $products = Product::where('product_category_id', $category->id)->paginate(6);
         $productCategories = ProductCategory::all();
 
-        return view('clients.index', compact('products', 'productCategories', 'category', 'banner'));
+        return view('clients.index', compact('products', 'productCategories', 'category'));
     }
     
     public function searchProduct(Request $request)
     {
-        $banner = Banner::first();
         $keyword = $request->search;
         $products = Product::where('name', 'like', '%' . $keyword . '%')->paginate(6);
         $productCategories = ProductCategory::all();
 
-        return view('clients.index', compact('products', 'productCategories', 'banner'));
+        return view('clients.index', compact('products', 'productCategories'));
     }
     public function simpleProduct($slug)
     {
@@ -126,7 +130,7 @@ class PageController extends Controller
         return view('clients.contact', compact('contact'));
     }
 
-    public function login()
+    public function showLoginForm()
     {
         return view('clients.login');
     }

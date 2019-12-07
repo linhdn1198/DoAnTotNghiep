@@ -11,7 +11,7 @@
             <div class="col-lg-12">
                 <div class="breadcrumb_iner">
                     <div class="breadcrumb_iner_item">
-                        <p>Home / Login</p>
+                        <p>{{ __('home.home') }} / {{ __('home.login') }}</p>
                     </div>
                 </div>
             </div>
@@ -27,36 +27,43 @@
             <div class="col-lg-6 col-md-6">
                 <div class="login_part_text text-center">
                     <div class="login_part_text_iner">
-                        <h2>New to our Shop?</h2>
-                        <p>There are advances being made in science and technology
-                            everyday, and a good example of this is the</p>
-                        <a href="#" class="btn_3">Create an Account</a>
+                        <h2>{{ __('home.new_to_our_shop') }}</h2>
+                        <p>{{ __('home.text_page_login') }}</p>
+                        <a href="{{ route('register') }}" class="btn_3">{{ __('home.create_an_account') }}</a>
                     </div>
                 </div>
             </div>
             <div class="col-lg-6 col-md-6">
                 <div class="login_part_form">
                     <div class="login_part_form_iner">
-                        <h3>Welcome Back ! <br>
-                            Please Sign in now</h3>
-                        <form class="row contact_form" action="#" method="post" novalidate="novalidate">
+                        <h3>{{ __('home.welcome_back') }}<br>
+                            {{ __('home.please_sign') }}</h3>
+                        <form class="row contact_form" action="{{ route('login') }}" method="post" novalidate="novalidate">
+                            @csrf
                             <div class="col-md-12 form-group p_star">
-                                <input type="text" class="form-control" id="name" name="name" value=""
-                                    placeholder="Username">
+                                <input type="email" class="form-control @error('email') is-invalid @enderror" name="email"
+                                value="{{ old('email') }}" required autocomplete="email" autofocus
+                                placeholder="{{ __('home.email') }}">
+                                @error('email')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                             <div class="col-md-12 form-group p_star">
-                                <input type="password" class="form-control" id="password" name="password" value=""
-                                    placeholder="Password">
+                                <input type="password" class="form-control @error('password') is-invalid @enderror" name="password"
+                                required autocomplete="current-password"
+                                placeholder="{{ __('home.password') }}">
+                                @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                             <div class="col-md-12 form-group">
-                                <div class="creat_account d-flex align-items-center">
-                                    <input type="checkbox" id="f-option" name="selector">
-                                    <label for="f-option">Remember me</label>
-                                </div>
                                 <button type="submit" value="submit" class="btn_3">
-                                    log in
+                                    {{ __('home.login') }}
                                 </button>
-                                <a class="lost_pass" href="#">forget password?</a>
                             </div>
                         </form>
                     </div>

@@ -36,7 +36,11 @@
                                 </div>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('home.login') }}</a>
+                                @if (Auth::user())
+                                    <a class="nav-link" href="#">{{ Auth::user()->name }}</a>
+                                @else
+                                    <a class="nav-link" href="{{ route('login') }}">{{ __('home.login') }}</a>
+                                @endif
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('register') }}">{{ __('home.register') }}</a>
