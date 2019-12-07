@@ -27,6 +27,7 @@
     <link rel="stylesheet" href="/client/css/price_rangs.css">
     <!-- style CSS -->
     <link rel="stylesheet" href="/client/css/style.css">
+    <link rel="stylesheet" href="{{ mix('css/client.css') }}">
     @yield('style')
 </head>
 <body>
@@ -34,44 +35,6 @@
     @include('clients.modules.header')
     <!-- Header part end-->
     @yield('content')
-
-    <!-- free shipping here -->
-    {{-- <section class="shipping_details section_padding">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3 col-sm-6">
-                    <div class="single_shopping_details">
-                        <img src="img/icon/icon_1.png" alt="">
-                        <h4>Free shipping</h4>
-                        <p>Divided face for bearing the divide unto seed winged divided light Forth.</p>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="single_shopping_details">
-                        <img src="img/icon/icon_2.png" alt="">
-                        <h4>Free shipping</h4>
-                        <p>Divided face for bearing the divide unto seed winged divided light Forth.</p>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="single_shopping_details">
-                        <img src="img/icon/icon_3.png" alt="">
-                        <h4>Free shipping</h4>
-                        <p>Divided face for bearing the divide unto seed winged divided light Forth.</p>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="single_shopping_details">
-                        <img src="img/icon/icon_4.png" alt="">
-                        <h4>Free shipping</h4>
-                        <p>Divided face for bearing the divide unto seed winged divided light Forth.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section> --}}
-    <!-- free shipping end -->
-
     <!--::footer_part start::-->
     @include('clients.modules.footer')
     <!--::footer_part end::-->
@@ -102,10 +65,9 @@
     <script src="/client/js/jquery.form.js"></script>
     <script src="/client/js/jquery.validate.min.js"></script>
     <script src="/client/js/mail-script.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.js"></script>
     <!-- custom js -->
     <script src="/client/js/custom.js"></script>
+    <script src="{{ mix('js/client.js') }}"></script>
     @yield('script')
 </body>
 </html>

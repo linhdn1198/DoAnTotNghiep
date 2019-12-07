@@ -43,7 +43,7 @@
                                 @endif
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('register') }}">{{ __('home.register') }}</a>
+                                <a class="nav-link" href="{{ route('show_form_register') }}">{{ __('home.register') }}</a>
                             </li>
                         </ul>
                     </div>
@@ -52,11 +52,6 @@
                             <a class="dropdown-toggle" href="{{ route('shopping_cart') }}">
                                 <i class="ti-bag"></i>
                             </a>
-                            {{-- <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <div class="single_product">
-
-                                </div>
-                            </div> --}}
                         </div>
                         <a id="search_1" href="javascript:void(0)"><i class="ti-search"></i></a>
                     </div>

@@ -5,19 +5,55 @@ namespace App\Http\Controllers;
 use App\Models\Banner;
 use App\Models\Tag;
 use App\Models\Post;
+use App\Models\User;
 use App\Models\About;
 use App\Models\Contact;
 use App\Models\Product;
+use Illuminate\Http\Request;
 use App\Models\PostCategory;
 use App\Models\ProductCategory;
-use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class PageController extends Controller
 {
-    use AuthenticatesUsers;
+    use AuthenticatesUsers, RegistersUsers {
+        AuthenticatesUsers::redirectPath insteadof RegistersUsers;
+        AuthenticatesUsers::guard insteadof RegistersUsers;
+    }
 
     protected $redirectTo = '/';
+
+    protected function validator(array $data)
+    {
+        return Validator::make($data, [
+            'name' => ['required', 'string', 'max:255'],
+            'dateOfBirth' => ['required', 'date'],
+            'gender' => ['required'],
+            'address' => ['required', 'string', 'max:255'],
+            'phone' => ['required', 'string', 'min:10', 'max:13'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+        ]);
+    }
+
+    protected function create(array $data)
+    {
+        return User::create([
+            'name' => $data['name'],
+            'dateOfBirth' => $data['dateOfBirth'],
+            'gender' => $data['gender'],
+            'address' => $data['address'],
+            'phone' => $data['phone'],
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']),
+            'role' => 0,
+            'image' => 'user.png',
+        ]);
+    }
 
     public function __construct()
     {
@@ -37,6 +73,16 @@ class PageController extends Controller
         return redirect()->back();
     }
 
+    public function showLoginForm()
+    {
+        return view('clients.login');
+    }
+
+    public function showRegisterForm()
+    {
+        return view('clients.register');
+    }
+    
     public function index(Request $request)
     {
         $products = Product::paginate(6);
@@ -128,15 +174,5 @@ class PageController extends Controller
         $contact = Contact::first();
 
         return view('clients.contact', compact('contact'));
-    }
-
-    public function showLoginForm()
-    {
-        return view('clients.login');
-    }
-
-    public function register()
-    {
-        return view('clients.register');
     }
 }

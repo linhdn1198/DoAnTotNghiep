@@ -37,7 +37,9 @@ Route::group(['middleware' => 'locale'], function() {
     Route::get('/login', 'PageController@showLoginForm')->name('show_form_login');
     Route::post('/login', 'PageController@login')->name('login');
     
-    Route::get('/register', 'PageController@register')->name('register');
+    Route::get('/register', 'PageController@showRegisterForm')->name('show_form_register');
+
+    Route::post('/register', 'PageController@register')->name('register');
 
     Route::group(['prefix' => 'admin', 'as' => 'admin.'], function() {
         Auth::routes();
