@@ -33,4 +33,11 @@ return [
     'store' => 'Cửa hàng',
     'copyright' => 'Bản quyền',
     'all_right' => 'tất của thuộc về LinhDuong',
+    'create_an_account' => 'Đăng ký tài khoản',
+    'new_to_our_shop' => 'Lần đầu đến cửa hàng chúng tôi?',
+    'text_page_login' => 'Chúng tôi chuyên cung cấp các loại đồng hồ thông minh mới nhất trên thị trường',
+    'welcome_back' => 'Chào mừng quay lại ! ',
+    'log_in' => 'Login',
+    'password' => 'Mật khẩu',
+    'please_sign' => 'Vui lòng đăng nhập ở đây',
 ];

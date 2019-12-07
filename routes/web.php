@@ -34,12 +34,12 @@ Route::group(['middleware' => 'locale'], function() {
     
     Route::get('/contact', 'PageController@contact')->name('contact');
     
-    Route::get('/login', 'PageController@login')->name('login');
+    Route::get('/login', 'PageController@showLoginForm')->name('show_form_login');
+    Route::post('/login', 'PageController@login')->name('login');
     
     Route::get('/register', 'PageController@register')->name('register');
 
     Route::group(['prefix' => 'admin', 'as' => 'admin.'], function() {
-        Route::auth();
         Auth::routes();
         Route::get('/home', 'HomeController@index')->name('home');
     });

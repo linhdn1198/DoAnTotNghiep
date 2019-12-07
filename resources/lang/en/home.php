@@ -33,4 +33,12 @@ return [
     'store' => 'Store',
     'copyright' => 'Copyright',
     'all_right' => 'All rights reserved LinhDuong',
+    'create_an_account' => 'Create an Account',
+    'new_to_our_shop' => 'New to our Shop?',
+    'text_page_login' => 'We specialize in providing the latest smart watches on the market',
+    'welcome_back' => 'Welcome Back ! ',
+    'log_in' => 'Đăng nhập',
+    'username' => 'Username',
+    'password' => 'Password',
+    'please_sign' => 'Please Sign in now',
 ];
