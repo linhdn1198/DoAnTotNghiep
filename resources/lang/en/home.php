@@ -52,4 +52,6 @@ return [
     'confirm_password' => 'Enter confirm password',
     'gender_male' => 'Male',
     'gender_female' => 'Female',
+    'load_more' => 'Load more',
+    'message_require' => 'The message field is required.',
 ];

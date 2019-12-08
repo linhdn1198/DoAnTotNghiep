@@ -1,7 +1,11 @@
 @extends('clients.master')
 
 @section('style')
-    
+<style>
+#message {
+  resize: none;
+}
+</style>
 @endsection
 @section('content')
   <!-- breadcrumb start-->
@@ -48,7 +52,7 @@
             <h2>{{ $product->price }}</h2>
             <ul class="list">
                 <li>
-                <a class="active" href="{{ route('display', $product->productCategory->slug) }}">
+                <a class="active" href="{{ route('display_product', $product->productCategory->slug) }}">
                     <span>{{ __('home.category') }}</span>{{ $product->productCategory->name }}</a>
                 </li>
             </ul>
@@ -87,7 +91,7 @@
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact"
+        <a class="nav-link" id="comment-tab" data-toggle="tab" href="#comment" role="tab" aria-controls="comment"
           aria-selected="false">{{ __('home.comments') }}</a>
       </li>
 
@@ -98,46 +102,48 @@
             {{ $product->description }}
         </p>
       </div>
-      <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+      <div class="tab-pane fade" id="comment" role="tabpanel" aria-labelledby="comment-tab">
         <div class="row">
           <div class="col-lg-6">
             <div class="comment_list">
-                @foreach ($product->comments as $comment)
-                    <div class="review_item">
-                        <div class="media">
-                          <div class="d-flex">
-                            <img src="/client/img/product/single-product/review-1.png" alt="" />
-                          </div>
-                          <div class="media-body">
-                            <h4>{{ $comment->user->name }}</h4>
-                            <h5>{{ $comment->created_at->diffForHumans() }}</h5>
-                          </div>
-                        </div>
-                        <p>
-                            {{ $comment->content }}
-                        </p>
+                <div class="review_item" v-for="(comment, index) in commentss">
+                    <div class="media">
+                      <div class="d-flex">
+                        <img src="/client/img/product/single-product/review-1.png" alt="" />
+                      </div>
+                      <div class="media-body">
+                        <h4>@{{ comment.user.name }}</h4>
+                        <h5>@{{ comment.created_at }}</h5>
+                      </div>
                     </div>
-                @endforeach
+                    <p>
+                        @{{ comment.content }}
+                    </p>
+                </div>
+                <button class="genric-btn primary-border circle" @click="loadMore()">{{ __('home.load_more') }}</button>
             </div>
           </div>
           <div class="col-lg-6">
             <div class="review_box">
               <h4>{{ __('home.post_a_comment') }}</h4>
-              <form class="row contact_form" action="#" method="post" id="contactForm"
-                novalidate="novalidate">
-                <div class="col-md-12">
-                    <div class="form-group">
-                        <textarea class="form-control" name="message" id="message" rows="1"
-                        placeholder="{{ __('home.message') }}"></textarea>
-                    </div>
-                </div>
-                <div class="col-md-12 text-right">
-                    <button type="submit" value="submit" class="btn_3">
-                        {{ __('home.submit') }}
-                    </button>
-                </div>
-              </form>
             </div>
+            <form v-on:submit.prevent class="row contact_form">
+              <div class="col-md-12">
+                <div class="form-group">
+                    <input type="hidden" ref="product_id" value="{{ $product->id }}">
+                    <textarea class="form-control" :class="{ 'is-invalid' : isInvalid }" v-model="comment.content" ref="message" id="message" rows="8"
+                    placeholder="{{ __('home.message') }}"></textarea>
+                    <span class="invalid-feedback" role="alert" v-if="isInvalid">
+                      <strong>{{ __('home.message_require') }}</strong>
+                    </span>
+                </div>
+              </div>
+              <div class="col-md-12 text-right">
+                  <button value="submit" class="btn_3" @click="submitComment()">
+                      {{ __('home.submit') }}
+                  </button>
+              </div>
+            </form>
           </div>
         </div>
       </div>
@@ -157,7 +163,7 @@
       </div>
     </div>
     <div class="row">
-        @foreach ($productRelation as $product)
+        @foreach ($productRelations as $productRelation)
             <div class="col-lg-3 col-sm-6">
                 <div class="single_category_product">
                     <div class="single_category_img">
@@ -169,8 +175,8 @@
                             </ul>
                         </div>
                         <div class="category_product_text">
-                            <a href="single-product.html"><h5>{{ $product->name }}</h5></a>
-                            <p>{{ $product->price }}</p>
+                            <a href="single-product.html"><h5>{{ $productRelation->name }}</h5></a>
+                            <p>{{ $productRelation->price }}</p>
                         </div>
                     </div>
                 </div>
@@ -182,5 +188,5 @@
 <!-- product_list part end-->
 @endsection
 @section('script')
-    
+<script src="{{ mix('js/simple_product.js') }}"></script>
 @endsection

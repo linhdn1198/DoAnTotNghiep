@@ -2,12 +2,11 @@
 
 Route::group(['middleware' => 'locale'], function() {
     Route::get('/', 'PageController@index')->name('home');
-    
     Route::get('product-categories/{slug}', 'PageController@displayProductByCategory')->name('display_product');
-
     Route::get('search', 'PageController@searchProduct')->name('search_product');
-
     Route::get('simple-product/{slug}', 'PageController@simpleProduct')->name('simple_product');
+    Route::get('comment-product/{product_id}', 'PageController@getCommentProduct')->name('comment_product');
+    Route::post('comment-product', 'PageController@storeCommentProduct')->name('store_comment_product')->middleware('checklogin');
     
     Route::get('/shopping-cart', function () {
         return view('clients.shopping_cart');
@@ -31,14 +30,12 @@ Route::group(['middleware' => 'locale'], function() {
     Route::get('/simple-blog/{slug}', 'PageController@simpleBlog')->name('simple_blog');
     
     Route::get('/about', 'PageController@about')->name('about');
-    
     Route::get('/contact', 'PageController@contact')->name('contact');
     
     Route::get('/login', 'PageController@showLoginForm')->name('show_form_login');
     Route::post('/login', 'PageController@login')->name('login');
     
     Route::get('/register', 'PageController@showRegisterForm')->name('show_form_register');
-
     Route::post('/register', 'PageController@register')->name('register');
 
     Route::group(['prefix' => 'admin', 'as' => 'admin.'], function() {
@@ -48,3 +45,7 @@ Route::group(['middleware' => 'locale'], function() {
 });
 
 Route::get('change-language/{language}', 'PageController@changeLanguage')->name('change_language');
+
+Route::get('test', function () {
+    return App\Models\CommentProduct::find(1);
+});
