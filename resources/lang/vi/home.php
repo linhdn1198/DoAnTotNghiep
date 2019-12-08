@@ -51,4 +51,6 @@ return [
     'confirm_password' => 'Xác nhận mật khẩu',
     'gender_male' => 'Nam',
     'gender_female' => 'Nữ',
+    'load_more' => 'Xem thêm',
+    'message_require' => 'Nội dung bình luận là bắt buộc',
 ];

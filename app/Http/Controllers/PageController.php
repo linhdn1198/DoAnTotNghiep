@@ -2,15 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Banner;
+use Auth;
 use App\Models\Tag;
 use App\Models\Post;
 use App\Models\User;
 use App\Models\About;
+use App\Models\Banner;
 use App\Models\Contact;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Models\PostCategory;
+use App\Models\CommentProduct;
 use App\Models\ProductCategory;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
@@ -112,11 +114,32 @@ class PageController extends Controller
         $product = Product::with('productCategory', 'comments', 'comments.user')
             ->where('slug', $slug)
             ->firstOrFail();
-        $productRelation = Product::where('product_category_id', $product->product_category_id)
+        $productRelations = Product::where('product_category_id', $product->product_category_id)
             ->orderBy('created_at', 'DESC')
             ->get();
 
-        return view('clients.simple_product', compact('product', 'productRelation'));
+        return view('clients.simple_product', compact('product', 'productRelations'));
+    }
+
+    public function getCommentProduct($product_id)
+    {
+        $comments = Product::with('comments', 'comments.user')
+                    ->where('id', $product_id)
+                    ->firstOrFail()->comments;
+
+        return response()->json($comments);
+    }
+
+    public function storeCommentProduct(Request $request)
+    {
+        $commentProduct = CommentProduct::create([
+            'user_id' => Auth::id(),
+            'product_id' => $request->product_id,
+            'content' => $request->content,
+        ]);
+        $comment = CommentProduct::with('user')->where('id', $commentProduct->id)->firstOrFail();
+
+        return response()->json(['message' => 'success', 'comment' => $comment]);
     }
 
     public function post()

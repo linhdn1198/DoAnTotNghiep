@@ -129,8 +129,6 @@
 @endsection
 @section('script')
 <script>
-$(document).ready(function () {
-    toastr.success('any');
-});
+
 </script>
 @endsection
