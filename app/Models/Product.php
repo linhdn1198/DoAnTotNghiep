@@ -32,6 +32,6 @@ class Product extends Model
 
     public function comments()
     {
-        return $this->hasMany(CommentProduct::class);
+        return $this->hasMany(CommentProduct::class)->orderBy('created_at', 'DESC');
     }
 }

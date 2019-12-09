@@ -16,4 +16,9 @@ class CommentPost extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function getCreatedAtAttribute($val)
+    {
+        return \Carbon\Carbon::parse($val)->diffForHumans();
+    }
 }

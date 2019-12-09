@@ -32,9 +32,7 @@
                     <h2>{{ $post->title }}</h2>
                     <ul class="blog-info-link mt-3 mb-4">
                     <li><a href="#"><i class="far fa-user"></i>
-                        @foreach ($post->tags as $tag)
-                            {{ $tag->name }}
-                        @endforeach
+                        {{ $post->user->name }}
                     </a></li>
                     <li><a href="#"><i class="far fa-comments"></i> {{ count($post->comments) }} {{ __('home.comments') }}</a></li>
                     </ul>
@@ -56,10 +54,10 @@
                     </div>
                 </div>
             </div>
+            <div id="comment">
             <div class="comments-area">
-                <h4>{{ count($post->comments) }} {{ __('home.comments') }}</h4>
-                @foreach ($post->comments as $comment)
-                <div class="comment-list">
+                <h4>@{{ comments.length }} {{ __('home.comments') }}</h4>
+                <div class="comment-list" v-for="(comment, index) in commentss">
                     <div class="single-comment justify-content-between d-flex">
                         <div class="user justify-content-between d-flex">
                             <div class="thumb">
@@ -67,37 +65,42 @@
                             </div>
                             <div class="desc">
                                 <p class="comment">
-                                    {{ $comment->content }}
+                                   @{{ comment.content }}
                                 </p>
                                 <div class="d-flex justify-content-between">
                                     <div class="d-flex align-items-center">
                                     <h5>
-                                        <a href="#">{{ $comment->user->name }}</a>
+                                        <a href="#">@{{ comment.user.name }}</a>
                                     </h5>
-                                    <p class="date">{{ $comment->created_at->diffForHumans() }}</p>
+                                    <p class="date">@{{ comment.created_at }}</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                @endforeach
+                <button class="genric-btn primary-border circle" @click="loadMore()">{{ __('home.load_more') }}</button>
             </div>
             <div class="comment-form">
                 <h4>{{ __('home.comments') }}</h4>
-                <form class="form-contact comment_form" action="#" id="commentForm">
+                <form class="form-contact comment_form" v-on:submit.prevent>
                     <div class="row">
                     <div class="col-12">
                         <div class="form-group">
-                            <textarea class="form-control w-100" name="comment" id="comment" cols="30" rows="9"
+                            <input type="hidden" ref="post_id" value="{{ $post->id }}">
+                            <textarea class="form-control w-100" :class="{ 'is-invalid' : isInvalid }" v-model="comment.content" ref="message" cols="30" rows="9"
                                 placeholder="{{ __('home.message') }}"></textarea>
+                            <span class="invalid-feedback" role="alert" v-if="isInvalid">
+                                <strong>{{ __('home.message_require') }}</strong>
+                            </span>
                         </div>
                     </div>
                     </div>
                     <div class="form-group mt-3">
-                    <a href="#" class="btn_3 button-contactForm">{{ __('home.submit') }}</a>
+                    <button class="btn_3 button-contactForm" @click="submitComment()">{{ __('home.submit') }}</button>
                     </div>
                 </form>
+            </div>
             </div>
         </div>
         <div class="col-lg-4">
@@ -164,5 +167,5 @@
 <!--================Blog Area end =================-->
 @endsection
 @section('script')
-    
+<script src="{{ mix('js/simple_post.js') }}"></script>
 @endsection

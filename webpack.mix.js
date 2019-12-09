@@ -14,6 +14,7 @@ const mix = require('laravel-mix');
 mix.js('resources/js/app.js', 'public/js')
    .js('resources/js/client.js', 'public/js')
    .js('resources/js/simple_product.js', 'public/js')
+   .js('resources/js/simple_post.js', 'public/js')
    .sass('resources/sass/app.scss', 'public/css')
    .sass('resources/sass/client.scss', 'public/css')
    .copyDirectory('resources/client', 'public/client')
