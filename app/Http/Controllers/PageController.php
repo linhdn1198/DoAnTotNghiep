@@ -11,6 +11,7 @@ use App\Models\Banner;
 use App\Models\Contact;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use App\Models\CommentPost;
 use App\Models\PostCategory;
 use App\Models\CommentProduct;
 use App\Models\ProductCategory;
@@ -183,6 +184,27 @@ class PageController extends Controller
         $tags = Tag::all();
 
         return view('clients.simple_blog', compact('post', 'postCategories', 'tags', 'postRecentes'));
+    }
+
+    public function getCommentBlog($post_id)
+    {
+        $comments = Post::with('comments', 'comments.user')
+            ->where('id', $post_id)
+            ->firstOrFail()->comments;
+
+        return response()->json($comments);
+    }
+
+    public function storeCommentBlog(Request $request)
+    {
+        $commentPost = CommentPost::create([
+            'user_id' => Auth::id(),
+            'post_id' => $request->post_id,
+            'content' => $request->content,
+        ]);
+        $comment = CommentPost::with('user')->where('id', $commentPost->id)->firstOrFail();
+
+        return response()->json(['message' => 'success', 'comment' => $comment]);
     }
 
     public function about()

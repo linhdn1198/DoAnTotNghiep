@@ -26,9 +26,10 @@ Route::group(['middleware' => 'locale'], function() {
 
     Route::get('/post-categories/{slug}', 'PageController@displayPostByCategory')->name('display_post');
     Route::get('/tag/{slug}', 'PageController@displayPostByTag')->name('tag');
-    
     Route::get('/simple-blog/{slug}', 'PageController@simpleBlog')->name('simple_blog');
-    
+    Route::get('/comment-blog/{slug}', 'PageController@getCommentBlog')->name('comment_blog');
+    Route::post('comment-blog', 'PageController@storeCommentBlog')->name('store_comment_blog')->middleware('checklogin');
+
     Route::get('/about', 'PageController@about')->name('about');
     Route::get('/contact', 'PageController@contact')->name('contact');
     
@@ -45,7 +46,3 @@ Route::group(['middleware' => 'locale'], function() {
 });
 
 Route::get('change-language/{language}', 'PageController@changeLanguage')->name('change_language');
-
-Route::get('test', function () {
-    return App\Models\CommentProduct::find(1);
-});

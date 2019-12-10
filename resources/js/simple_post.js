@@ -4,7 +4,7 @@ new Vue({
       return {
         comments: [],
         comment: {
-          product_id: null,
+          post_id: null,
           content: '',
         },
         count: 2,
@@ -12,8 +12,8 @@ new Vue({
       }
     },
     mounted() {
-        this.comment.product_id = parseInt(this.$refs.product_id.value);
-        axios.get('/comment-product/' + this.comment.product_id)
+        this.comment.post_id = parseInt(this.$refs.post_id.value);
+        axios.get('/comment-blog/' + this.comment.post_id)
             .then(response => (this.comments = response.data))
             .catch(error => {
                 toastr.error(error.response.data.message);
@@ -36,7 +36,7 @@ new Vue({
     methods: {
         submitComment() {
             if (this.comment.content !== '') {
-                axios.post('/comment-product', this.comment)
+                axios.post('/comment-blog', this.comment)
                 .then(response => {
                     this.comments.unshift(response.data.comment);
                     this.comment.content = '';
