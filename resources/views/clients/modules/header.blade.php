@@ -69,3 +69,8 @@
         </div>
     </div>
 </header>
+<style>
+.main_menu .cart i:after {
+    content: "{{ Cart::getTotalQuantity() }}";
+}
+</style>

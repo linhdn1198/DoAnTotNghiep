@@ -60,14 +60,18 @@
                 {{ $product->description }}
             </p>
             <div class="card_area">
-                <div class="product_count d-inline-block">
-                <span class="inumber-decrement"> <i class="ti-minus"></i></span>
-                <input class="input-number" type="text" value="1" min="0" max="10">
-                <span class="number-increment"> <i class="ti-plus"></i></span>
-                </div>
-                <div class="add_to_cart">
-                    <a href="#" class="btn_3">{{ __('home.add_to_cart') }}</a>
-                </div>
+                <form action="{{ route('add_to_cart') }}" method="post">
+                  @csrf
+                  <input type="hidden" name="product_id" value="{{ $product->id }}">
+                  <div class="product_count d-inline-block">
+                  <span class="inumber-decrement"> <i class="ti-minus"></i></span>
+                  <input class="input-number" name="quantity" type="text" value="1" min="0" max="10">
+                  <span class="number-increment"> <i class="ti-plus"></i></span>
+                  </div>
+                  <div class="add_to_cart">
+                      <button type="submit" class="btn_3">{{ __('home.add_to_cart') }}</button>
+                  </div>
+                </form>
                 <div class="social_icon">
                     <a href="#" class="fb"><i class="ti-facebook"></i></a>
                     <a href="#" class="tw"><i class="ti-twitter-alt"></i></a>
@@ -189,4 +193,21 @@
 @endsection
 @section('script')
 <script src="{{ mix('js/simple_product.js') }}"></script>
+<script>
+    @if(Session::has('warning'))
+        toastr.warning("{{ Session::get('warning') }}")
+    @endif
+
+    @if(Session::has('info'))
+        toastr.info("{{ Session::get('info') }}")
+    @endif
+
+    @if(Session::has('success'))
+        toastr.success("{{ Session::get('success') }}")
+    @endif
+
+    @if(Session::has('error'))
+        toastr.error("{{ Session::get('error') }}")
+    @endif
+</script>
 @endsection

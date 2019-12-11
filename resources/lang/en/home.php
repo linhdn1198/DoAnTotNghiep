@@ -11,7 +11,7 @@ return [
     'en' => 'English',
     'login' => 'Login',
     'register' => 'Register',
-    'category' => 'Browse Categories',
+    'category' => 'Categories',
     'all' => 'All',
     'search' => 'Search here.',
     'search_button' => 'Search',
@@ -54,4 +54,5 @@ return [
     'gender_female' => 'Female',
     'load_more' => 'Load more',
     'message_require' => 'The message field is required.',
+    'cart_list' => 'Cart list',
 ];

@@ -11,7 +11,7 @@ return [
     'en' => 'Tiếng anh',
     'login' => 'Đăng nhập',
     'register' => 'Đăng ký',
-    'category' => 'Danh mục sản phẩm',
+    'category' => 'Danh mục',
     'all' => 'Tất cả sản phẩm',
     'search' => 'Tìm kiếm ở đây.',
     'search_button' => 'Tìm kiếm',
@@ -53,4 +53,5 @@ return [
     'gender_female' => 'Nữ',
     'load_more' => 'Xem thêm',
     'message_require' => 'Nội dung bình luận là bắt buộc',
+    'cart_list' => 'Danh sách giỏ hàng',
 ];
