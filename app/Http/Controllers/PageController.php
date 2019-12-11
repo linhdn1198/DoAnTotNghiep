@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Cart;
 use Auth;
 use App\Models\Tag;
 use App\Models\Post;
@@ -110,6 +111,7 @@ class PageController extends Controller
 
         return view('clients.index', compact('products', 'productCategories'));
     }
+
     public function simpleProduct($slug)
     {
         $product = Product::with('productCategory', 'comments', 'comments.user')
@@ -120,6 +122,30 @@ class PageController extends Controller
             ->get();
 
         return view('clients.simple_product', compact('product', 'productRelations'));
+    }
+
+    public function shoppingCart()
+    {
+        return view('clients.shopping_cart');
+    }
+
+    public function addToCart(Request $request)
+    {
+        $product = Product::where('quantity', '>=', $request->quantity)
+            ->where('id', $request->product_id)
+            ->firstOrFail();
+        if ($product) {
+            Cart::add([
+                'id' => $product->slug,
+                'name' => $product->name,
+                'price' => $product->price,
+                'quantity' => $request->quantity,
+            ]);
+            $request->session()->flash('success', 'Success');
+            return redirect()->back();
+        } else {
+
+        }
     }
 
     public function getCommentProduct($product_id)

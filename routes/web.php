@@ -8,9 +8,9 @@ Route::group(['middleware' => 'locale'], function() {
     Route::get('comment-product/{product_id}', 'PageController@getCommentProduct')->name('comment_product');
     Route::post('comment-product', 'PageController@storeCommentProduct')->name('store_comment_product')->middleware('checklogin');
     
-    Route::get('/shopping-cart', function () {
-        return view('clients.shopping_cart');
-    })->name('shopping_cart');
+    Route::post('/add-to-cart', 'PageController@addToCart')->name('add_to_cart');
+
+    Route::get('/shopping-cart', 'PageController@shoppingCart')->name('shopping_cart');
     
     Route::get('/checkout', function () {
         return view('clients.checkout');
