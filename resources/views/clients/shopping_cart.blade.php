@@ -24,63 +24,70 @@
 <section class="cart_area section_padding">
   <div class="container">
     <div class="cart_inner">
-      <div class="table-responsive">
-        <table class="table">
-          <thead>
-            <tr>
-              <th scope="col">Product</th>
-              <th scope="col">Price</th>
-              <th scope="col">Quantity</th>
-              <th scope="col">Total</th>
-            </tr>
-          </thead>
-          <tbody>
-            @foreach (Cart::getContent() as $item)
-              <tr>
-                <td>
-                  <div class="media">
-                    <div class="d-flex">
-                      <img src="/client/img/arrivel/arrivel_1.png" alt="" />
+      @if (Cart::isEmpty())
+        <h3 class="title">{{ __('home.message_cart_empty') }}</h3>
+      @else
+        <form action="{{ route('update_cart') }}" method="POST">
+          @csrf
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">{{ __('home.product') }}</th>
+                  <th scope="col">{{ __('home.price') }}</th>
+                  <th scope="col">{{ __('home.quantity') }}</th>
+                  <th scope="col">{{ __('home.total') }}</th>
+                  <th scope="col">{{ __('home.action') }}</th>
+                </tr>
+              </thead>
+              <tbody>
+                @foreach (Cart::getContent() as $item)
+                  <tr>
+                    <td>
+                      <div class="media">
+                        <div class="d-flex">
+                          <img src="/client/img/arrivel/arrivel_1.png" alt="" />
+                        </div>
+                        <div class="media-body">
+                          <p>{{ $item->name }}</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <h5>{{ $item->price }}</h5>
+                    </td>
+                    <td>
+                      <div class="product_count">
+                        <input type="text" name="ids[]" value="{{ $item->id }}" hidden>
+                        <span class="input-number-decrement"> <i class="ti-minus"></i></span>
+                        <input class="input-number" type="text" name="quantities[]" value="{{ $item->quantity }}" min="1" max="99">
+                        <span class="input-number-increment"> <i class="ti-plus"></i></span>
+                      </div>
+                    </td>
+                    <td>
+                      <h5>{{ $item->price * $item->quantity }}</h5>
+                    </td>
+                    <td>
+                      <a href="{{ route('remove_item_cart', $item->id) }}" class="genric-btn danger">{{ __('home.remove') }}</a>
+                    </td>
+                  </tr>
+                @endforeach
+                <tr class="bottom_button">
+                  <td>
+                    <button class="btn_1" type="submit">{{ __('home.update_cart') }}</button>
+                  </td>
+                  <td colspan="4">
+                    <div class="checkout_btn_inner float-right">
+                      <a class="btn_1" href="#">Continue Shopping</a>
+                      <a class="btn_1 checkout_btn_1" href="#">Proceed to checkout</a>
                     </div>
-                    <div class="media-body">
-                      <p>{{ $item->name }}</p>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  <h5>{{ $item->price }}</h5>
-                </td>
-                <td>
-                  <div class="product_count">
-                    <span class="input-number-decrement"> <i class="ti-minus"></i></span>
-                    <input class="input-number" type="text" value="{{ $item->quantity }}" min="1" max="99">
-                    <span class="input-number-increment"> <i class="ti-plus"></i></span>
-                  </div>
-                </td>
-                <td>
-                  <h5>{{ $item->price * $item->quantity }}</h5>
-                </td>
-              </tr>
-            @endforeach
-            <tr class="bottom_button">
-              <td>
-                <a class="btn_1" href="#">Update Cart</a>
-              </td>
-              <td></td>
-              <td></td>
-              <td>
-                <div class="cupon_text float-right">
-                  <a class="btn_1" href="#">Close Coupon</a>
-                </div>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        <div class="checkout_btn_inner float-right">
-          <a class="btn_1" href="#">Continue Shopping</a>
-          <a class="btn_1 checkout_btn_1" href="#">Proceed to checkout</a>
-        </div>
-      </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </form>
+      @endif
     </div>
 </section>
 <!--================End Cart Area =================-->
