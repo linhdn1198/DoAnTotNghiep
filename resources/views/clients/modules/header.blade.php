@@ -60,7 +60,7 @@
         </div>
     </div>
     <div class="search_input" id="search_input_box">
-        <div class="container ">
+        <div class="container">
             <form class="d-flex justify-content-between search-inner" action="{{ route('search_product') }}" method="GET">
                 <input type="text" class="form-control" id="search" name="search" placeholder="{{ __('home.search') }}">
                 <button type="submit" class="btn"></button>

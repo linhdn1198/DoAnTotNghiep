@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Cart;
 use Auth;
+use Session;
 use App\Models\Tag;
 use App\Models\Post;
 use App\Models\User;
@@ -141,11 +142,35 @@ class PageController extends Controller
                 'price' => $product->price,
                 'quantity' => $request->quantity,
             ]);
-            $request->session()->flash('success', 'Success');
+            Session::flash('success', '');
             return redirect()->back();
         } else {
 
         }
+    }
+
+    public function updateCart(Request $request)
+    {
+        $ids = $request->ids;
+        $quantities = $request->quantities;
+
+        foreach ($ids as $index => $id) {
+            Cart::update($id, [
+                'quantity' => [
+                    'relative' => false,
+                    'value' => $quantities[$index],
+                ],
+            ]);
+        }
+        Session::flash('success',  __('home.update_cart_success'));
+
+        return redirect()->route('shopping_cart');
+    }
+
+    public function removeItemCart($id){
+        Cart::remove($id);
+        Session::flash('success', __('home.success_deleted_product'));
+        return redirect()->route('shopping_cart');
     }
 
     public function getCommentProduct($product_id)
