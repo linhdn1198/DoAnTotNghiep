@@ -8,17 +8,21 @@ use Session;
 use App\Models\Tag;
 use App\Models\Post;
 use App\Models\User;
+use App\Models\Order;
 use App\Models\About;
 use App\Models\Banner;
 use App\Models\Contact;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Models\CommentPost;
+use App\Models\OrderDetail;
 use App\Models\PostCategory;
 use App\Models\CommentProduct;
 use App\Models\ProductCategory;
-use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
+use App\Notifications\InvoicePaid;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -141,11 +145,16 @@ class PageController extends Controller
                 'name' => $product->name,
                 'price' => $product->price,
                 'quantity' => $request->quantity,
+                'attributes' => [
+                    'product_id' => $product->id,
+                ]
             ]);
-            Session::flash('success', '');
+
+            Session::flash('success', __('home.add_to_cart_success'));
             return redirect()->back();
         } else {
-
+            Session::flash('success', __('home.add_to_cart_errror'));
+            return redirect()->back();
         }
     }
 
@@ -171,6 +180,54 @@ class PageController extends Controller
         Cart::remove($id);
         Session::flash('success', __('home.success_deleted_product'));
         return redirect()->route('shopping_cart');
+    }
+
+    public function checkout()
+    {
+        if (!Cart::isEmpty()) {
+            try {
+                DB::beginTransaction();
+                $order = Order::create([
+                    'user_id' => Auth::id(),
+                    'total' => Cart::getTotal(),
+                    'status' => 0,
+                ]);
+                foreach (Cart::getContent() as $item) {
+                    OrderDetail::create([
+                        'order_id' => $order->id,
+                        'product_id' => $item->attributes->product_id,
+                        'qty' => $item->quantity,
+                        'price' => $item->price,
+                    ]);
+                }
+                DB::commit();
+                Cart::clear();
+                Auth::user()->notify(new InvoicePaid($order));
+                Session::flash('success', __('home.checkout_success'));
+
+                return redirect()->back();
+            } catch (\Exception $ex) {
+                DB::rollback();
+                \Log::error($ex);
+                Session::flash('error', __('home.checkout_error'));
+
+                return redirect()->back();
+            }
+        }
+    }
+
+    public function confirmation($id)
+    {
+        $order = Order::where('id', $id)->update(['status' => 1]);
+        if ($order) {
+            $orderDetails = Order::with('orderDetails', 'orderDetails.product', 'user')
+                ->where('id', $id)
+                ->firstOrFail();
+
+            return view('clients.confirmation', compact('orderDetails'));
+        }
+
+        \abort(404);
     }
 
     public function getCommentProduct($product_id)

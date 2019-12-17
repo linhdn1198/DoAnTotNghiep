@@ -7,20 +7,15 @@ Route::group(['middleware' => 'locale'], function() {
     Route::get('simple-product/{slug}', 'PageController@simpleProduct')->name('simple_product');
     Route::get('comment-product/{product_id}', 'PageController@getCommentProduct')->name('comment_product');
     Route::post('comment-product', 'PageController@storeCommentProduct')->name('store_comment_product')->middleware('checklogin');
-    
     Route::post('/add-to-cart', 'PageController@addToCart')->name('add_to_cart');
-
     Route::get('/shopping-cart', 'PageController@shoppingCart')->name('shopping_cart');
     Route::post('/update-cart', 'PageController@updateCart')->name('update_cart');
     Route::get('/remove-item-cart/{id}', 'PageController@removeItemCart')->name('remove_item_cart');
-    
-    Route::get('/checkout', function () {
-        return view('clients.checkout');
-    })->name('checkout');
-    
-    Route::get('/confirmation', function () {
-        return view('clients.confirmation');
-    })->name('confirmation');
+    Route::get('/checkout', 'PageController@checkout')->name('checkout')->middleware('checklogin');
+    Route::get('/confirmation/{id}', 'PageController@confirmation')->name('confirmation');
+    // Route::get('/confirmation', function () {
+    //     return view('clients.confirmation');
+    // })->name('confirmation');
     
     Route::get('/blog', 'PageController@post')->name('post');
 
