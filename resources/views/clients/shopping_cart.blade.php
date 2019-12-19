@@ -78,8 +78,8 @@
                   </td>
                   <td colspan="4">
                     <div class="checkout_btn_inner float-right">
-                      <a class="btn_1" href="#">Continue Shopping</a>
-                      <a class="btn_1 checkout_btn_1" href="#">Proceed to checkout</a>
+                      <a class="btn_1" href="{{ route('home') }}">{{ __('home.continue_shopping') }}</a>
+                      <a class="btn_1 checkout_btn_1" href="{{ route('checkout') }}">{{ __('home.proceed_to_checkout') }}</a>
                     </div>
                   </td>
                 </tr>
