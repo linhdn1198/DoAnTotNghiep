@@ -70,6 +70,7 @@ return [
     'proceed_to_checkout' => 'Tiến hành thanh toán',
     'comfirmation' => 'Xác nhận',
     'thank_you' => 'Cảm ơn bạn. Đơn đặt hàng của bạn đã được nhận.',
+    'thank_you_purchase' => 'Cảm ơn bạn đã mua hàng tại cửa hàng chúng tôi ',
     'order_info' => 'Thông tin đặt hàng',
     'order_number' => 'Số hóa đơn',
     'date' => 'Ngày',
@@ -82,4 +83,10 @@ return [
     'quantity' => 'Số lượng',
     'price' => 'Giá',
     'product' => 'Sản phẩm',
+    'purchase_history' => 'Lịch sử mua hàng',
+    'user' => 'Người dùng',
+    'status' => 'Trạng thái',
+    'date_of_purchase' => 'Ngày mua hàng',
+    'details' => 'Chi tiết',
+    'purchase_history_detail' => 'Chi tiết lịch sử mua hàng'
 ];

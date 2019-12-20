@@ -230,6 +230,24 @@ class PageController extends Controller
         \abort(404);
     }
 
+    public function purchaseHistory()
+    {
+        $orders = Order::with('user')
+            ->where('user_id', Auth::id())
+            ->get();
+
+        return view('clients.purchase_history', compact('orders'));
+    }
+
+    public function purchaseHistoryDetail($id)
+    {
+        $orderDetails = Order::with('orderDetails', 'orderDetails.product', 'user')
+                ->where('id', $id)
+                ->firstOrFail();
+
+        return view('clients.purchase_history_detail', compact('orderDetails'));
+    }
+
     public function getCommentProduct($product_id)
     {
         $comments = Product::with('comments', 'comments.user')

@@ -13,14 +13,11 @@ Route::group(['middleware' => 'locale'], function() {
     Route::get('/remove-item-cart/{id}', 'PageController@removeItemCart')->name('remove_item_cart');
     Route::get('/checkout', 'PageController@checkout')->name('checkout')->middleware('checklogin');
     Route::get('/confirmation/{id}', 'PageController@confirmation')->name('confirmation');
-    // Route::get('/confirmation', function () {
-    //     return view('clients.confirmation');
-    // })->name('confirmation');
+    Route::get('/purchase-history', 'PageController@purchaseHistory')->name('purchase_history')->middleware('checklogin');
+    Route::get('/purchase-history-detail/{id}', 'PageController@purchaseHistoryDetail')->name('purchase_history_detail')->middleware('checklogin');
     
     Route::get('/blog', 'PageController@post')->name('post');
-
     Route::get('/blog-search', 'PageController@postSearch')->name('post_search');
-
     Route::get('/post-categories/{slug}', 'PageController@displayPostByCategory')->name('display_post');
     Route::get('/tag/{slug}', 'PageController@displayPostByTag')->name('tag');
     Route::get('/simple-blog/{slug}', 'PageController@simpleBlog')->name('simple_blog');
@@ -29,13 +26,10 @@ Route::group(['middleware' => 'locale'], function() {
 
     Route::get('/about', 'PageController@about')->name('about');
     Route::get('/contact', 'PageController@contact')->name('contact');
-    
     Route::get('/login', 'PageController@showLoginForm')->name('show_form_login');
     Route::post('/login', 'PageController@login')->name('login');
-    
     Route::get('/register', 'PageController@showRegisterForm')->name('show_form_register');
     Route::post('/register', 'PageController@register')->name('register');
-
     Route::group(['prefix' => 'admin', 'as' => 'admin.'], function() {
         Auth::routes();
         Route::get('/home', 'HomeController@index')->name('home');
