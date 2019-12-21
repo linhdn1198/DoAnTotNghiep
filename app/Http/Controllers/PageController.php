@@ -13,8 +13,8 @@ use App\Models\About;
 use App\Models\Banner;
 use App\Models\Contact;
 use App\Models\Product;
-use Illuminate\Http\Request;
 use App\Models\CommentPost;
+use Illuminate\Http\Request;
 use App\Models\OrderDetail;
 use App\Models\PostCategory;
 use App\Models\CommentProduct;
@@ -25,6 +25,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use App\Http\Requests\User\ChangePasswordRequest;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class PageController extends Controller
@@ -246,6 +247,26 @@ class PageController extends Controller
                 ->firstOrFail();
 
         return view('clients.purchase_history_detail', compact('orderDetails'));
+    }
+
+    public function showFormChangePassword()
+    {
+        return view('clients.change_password');
+    }
+
+    public function updatePassword(ChangePasswordRequest $request)
+    {
+        $user = User::where('id', Auth::id())
+            ->update(['password' => $request->password]);
+        if ($user) {
+            Session::flash('success', __('home.change_password_success'));
+
+            return redirect()->back();
+        } else {
+            Session::flash('warning', __('home.change_password_fail'));
+
+            return redirect()->back();
+        }
     }
 
     public function getCommentProduct($product_id)
