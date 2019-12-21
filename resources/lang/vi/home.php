@@ -88,11 +88,14 @@ return [
     'status' => 'Trạng thái',
     'date_of_purchase' => 'Ngày mua hàng',
     'details' => 'Chi tiết',
-    'purchase_history_detail' => 'Chi tiết lịch sử mua hàng'
+    'purchase_history_detail' => 'Chi tiết lịch sử mua hàng',
     'old_password' => 'Nhập mật khẩu cũ',
     'change_password' => 'Thay đổi mật khẩu',
     'title_change_password' => 'Thay đổi mật khẩu tại đây',
     'old_password_not_valid' => 'Mật khẩu cũ không hợp lệ',
     'change_password_success' => 'Thay đổi mật khẩu thành công',
     'change_password_fail' => 'Thay đổi mật khẩu thất bại',
+    'title_update_profille' => 'Cập nhật thông tin cá nhân',
+    'profille' => 'Thông tin cá nhân',
+    'change_profile' => 'Cập nhật',
 ];

@@ -25,6 +25,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use App\Http\Requests\User\UpdateProfileRequest;
 use App\Http\Requests\User\ChangePasswordRequest;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
@@ -257,13 +258,43 @@ class PageController extends Controller
     public function updatePassword(ChangePasswordRequest $request)
     {
         $user = User::where('id', Auth::id())
-            ->update(['password' => $request->password]);
+            ->update(['password' => Hash::make($request->password)]);
         if ($user) {
             Session::flash('success', __('home.change_password_success'));
 
             return redirect()->back();
         } else {
             Session::flash('warning', __('home.change_password_fail'));
+
+            return redirect()->back();
+        }
+    }
+
+    public function showFormChangeProfile()
+    {
+        $user = User::where('id', Auth::id())
+            ->firstOrFail();
+
+        return view('clients.change_profile', compact('user'));
+    }
+
+    public function updateProfile(UpdateProfileRequest $request)
+    {
+        $user = User::where('id', Auth::id())
+            ->update([
+                'email' => $request->email,
+                'dateOfBirth' => $request->dateOfBirth,
+                'gender' => $request->gender,
+                'address' => $request->address,
+                'phone' => $request->phone,
+                'email' => $request->email,
+                ]);
+        if ($user) {
+            Session::flash('success', __('home.change_profile_success'));
+
+            return redirect()->back();
+        } else {
+            Session::flash('warning', __('home.change_profile_fail'));
 
             return redirect()->back();
         }

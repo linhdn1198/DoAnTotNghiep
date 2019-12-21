@@ -17,8 +17,9 @@ Route::group(['middleware' => 'locale'], function() {
     Route::get('/purchase-history-detail/{id}', 'PageController@purchaseHistoryDetail')->name('purchase_history_detail')->middleware('checklogin');
     Route::get('/change-password', 'PageController@showFormChangePassword')->name('form_change_password');
     Route::post('/change-password', 'PageController@updatePassword')->name('update_password');
+    Route::get('/change-profile', 'PageController@showFormChangeProfile')->name('form_change_profile');
+    Route::post('/change-profile', 'PageController@updateProfile')->name('update_profile');
 
-    
     Route::get('/blog', 'PageController@post')->name('post');
     Route::get('/blog-search', 'PageController@postSearch')->name('post_search');
     Route::get('/post-categories/{slug}', 'PageController@displayPostByCategory')->name('display_post');
