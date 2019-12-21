@@ -52,7 +52,7 @@
     <script src="/client/js/mixitup.min.js"></script>
     <!-- swiper js -->
     <script src="/client/js/lightslider.min.js"></script>
-    <script src="/client/js/price_rangs.js"></script>
+    {{-- <script src="/client/js/price_rangs.js"></script> --}}
     <!-- particleclient/s js -->
     <script src="/client/js/owl.carousel.min.js"></script>
     <script src="/client/js/jquery.nice-select.min.js"></script>

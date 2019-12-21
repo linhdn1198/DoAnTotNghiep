@@ -71,6 +71,7 @@ return [
     'proceed_to_checkout' => 'Proceed to checkout',
     'comfirmation' => 'Comfirmation',
     'thank_you' => 'Thank you. Your order has been received.',
+    'thank_you_purchase' => 'Thank you for making a purchase at our store',
     'order_info' => 'Order info',
     'order_number' => 'Order Number',
     'date' => 'Date',
@@ -83,4 +84,10 @@ return [
     'quantity' => 'Quantity',
     'price' => 'Price',
     'product' => 'Product',
+    'purchase_history' => 'Purchase history',
+    'user' => 'User',
+    'status' => 'Status',
+    'date_of_purchase' => 'Date of purchase',
+    'details' => 'Details',
+    'purchase_history_detail' => 'Purchase history details'
 ];
