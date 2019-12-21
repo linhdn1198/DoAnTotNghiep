@@ -90,4 +90,10 @@ return [
     'date_of_purchase' => 'Date of purchase',
     'details' => 'Details',
     'purchase_history_detail' => 'Purchase history details'
+    'old_password' => 'Enter the old password',
+    'change_password' => 'Change password',
+    'title_change_password' => 'Change password here',
+    'old_password_not_valid' => 'Old password not valid',
+    'change_password_success' => 'Password changed successfully',
+    'change_password_fail' => 'Password change failed',
 ];

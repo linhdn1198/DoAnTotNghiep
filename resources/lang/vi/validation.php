@@ -173,5 +173,6 @@ return [
         'message'               => 'lời nhắn',
         'available'             => 'có sẵn',
         'size'                  => 'kích thước',
+        'old_password'          => 'mật khẩu cũ',
     ],
 ];
