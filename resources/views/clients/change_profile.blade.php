@@ -15,7 +15,7 @@
             <div class="col-lg-12">
                 <div class="breadcrumb_iner">
                     <div class="breadcrumb_iner_item">
-                        <p>{{ __('home.home') }} / {{ __('home.title_update_profille') }}</p>
+                        <p>{{ __('home.home') }} / {{ __('home.update_profille') }}</p>
                     </div>
                 </div>
             </div>
@@ -33,12 +33,12 @@
             <div class="col-lg-8 col-md-2">
                 <div class="login_part_form">
                     <div class="login_part_form_iner">
-                        <h3>{{ __('home.please_register') }}</h3>
-                        <form class="row contact_form" action="{{ route('register') }}" method="post" novalidate="novalidate">
+                        <h3>{{ __('home.title_update_profille') }}</h3>
+                        <form class="row contact_form" action="{{ route('update_profile') }}" method="post" novalidate="novalidate">
                             @csrf
                             <div class="col-md-12 form-group p_star">
                                 <input type="text" class="form-control @error('name') is-invalid @enderror" name="name"
-                                value="{{ old('name') }}" required autocomplete="name" autofocus
+                                value="{{ $user->name }}" required autocomplete="name" autofocus
                                 placeholder="{{ __('home.name') }}">
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
@@ -48,7 +48,7 @@
                             </div>
                             <div class="col-md-12 form-group p_star">
                                 <input type="date" class="form-control @error('dateOfBirth') is-invalid @enderror" name="dateOfBirth"
-                                value="{{ old('dateOfBirth') }}" required autocomplete="dateOfBirth" autofocus
+                                value="{{ $user->dateOfBirth }}" required autocomplete="dateOfBirth" autofocus
                                 placeholder="{{ __('home.dateOfBirth') }}">
                                 @error('dateOfBirth')
                                     <span class="invalid-feedback" role="alert">
@@ -58,7 +58,7 @@
                             </div>
                             <div class="col-md-12 form-group p_star">
                                 <select type="date" class="form-control @error('gender') is-invalid @enderror" name="gender"
-                                value="{{ old('gender') }}" required autocomplete="gender" autofocus>
+                                value="{{ $user->gender }}" required autocomplete="gender" autofocus>
                                     <option value="1">{{ __('home.gender_male') }}</option>
                                     <option value="0">{{ __('home.gender_female') }}</option>
                                 </select>
@@ -71,7 +71,7 @@
                             <div class="col-md-12 form-group p_star">
                                 <textarea type="text" class="form-control @error('address') is-invalid @enderror" id="address" name="address"
                                 required autocomplete="address" autofocus rows="5"
-                                placeholder="{{ __('home.address') }}"></textarea>
+                                placeholder="{{ __('home.address') }}">{{ $user->address }}</textarea>
                                 @error('address')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -80,7 +80,7 @@
                             </div>
                             <div class="col-md-12 form-group p_star">
                                 <input type="number" class="form-control @error('phone') is-invalid @enderror" name="phone"
-                                value="{{ old('phone') }}" required autocomplete="phone" autofocus
+                                value="{{ $user->phone }}" required autocomplete="phone" autofocus
                                 placeholder="{{ __('home.phone') }}">
                                 @error('phone')
                                     <span class="invalid-feedback" role="alert">
@@ -90,7 +90,7 @@
                             </div>
                             <div class="col-md-12 form-group p_star">
                                 <input type="email" class="form-control @error('email') is-invalid @enderror" name="email"
-                                value="{{ old('email') }}" required autocomplete="email" autofocus
+                                value="{{ $user->email }}" required autocomplete="email" autofocus
                                 placeholder="{{ __('home.email') }}">
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
@@ -98,24 +98,9 @@
                                     </span>
                                 @enderror
                             </div>
-                            <div class="col-md-12 form-group p_star">
-                                <input type="password" class="form-control @error('password') is-invalid @enderror" name="password"
-                                required autocomplete="password" autofocus
-                                placeholder="{{ __('home.password') }}">
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                            <div class="col-md-12 form-group p_star">
-                            <input type="password" class="form-control" name="password_confirmation"
-                                required autocomplete="new-password" autofocus
-                                placeholder="{{ __('home.confirm_password') }}">
-                            </div>
                             <div class="col-md-12 form-group">
                                 <button type="submit" value="submit" class="btn_3">
-                                    {{ __('home.register') }}
+                                    {{ __('home.change_profile') }}
                                 </button>
                             </div>
                         </form>
