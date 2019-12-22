@@ -11,7 +11,7 @@
                     <div class="col-lg-12">
                         <div class="breadcrumb_iner">
                             <div class="breadcrumb_iner_item">
-                                <p>{{ __('home.home') }}/{{ __('home.blog') }}</p>
+                                <p>{{ __('home.home') }} / {{ __('home.blog') }}</p>
                             </div>
                         </div>
                     </div>
@@ -31,8 +31,8 @@
                                     <div class="blog_item_img">
                                         <img class="card-img rounded-0" src="/client/img/blog/single_blog_1.png" alt="{{ $post->title }}">
                                         <a href="{{ route('simple_blog', $post->slug) }}" class="blog_item_date">
-                                            <h3>{{ date_format(new DateTime($post->created_at), 'd') }}</h3>
-                                            <p>{{ date_format(new DateTime($post->created_at), 'm-Y') }}</p>
+                                            <h3>{{ formatDay($post->created_at) }}</h3>
+                                            <p>{{ formatMonthYear($post->created_at) }}</p>
                                         </a>
                                     </div>
         

@@ -151,11 +151,37 @@ class PageController extends Controller
                     'product_id' => $product->id,
                 ]
             ]);
-
             Session::flash('success', __('home.add_to_cart_success'));
+
             return redirect()->back();
         } else {
             Session::flash('success', __('home.add_to_cart_errror'));
+
+            return redirect()->back();
+        }
+    }
+
+    public function addToCartDefault($slug)
+    {
+        $product = Product::where('quantity', '>=', Product::QUANTITY_DEFAULT)
+            ->where('slug', $slug)
+            ->firstOrFail();
+        if ($product) {
+            Cart::add([
+                'id' => $product->slug,
+                'name' => $product->name,
+                'price' => $product->price,
+                'quantity' => Product::QUANTITY_DEFAULT,
+                'attributes' => [
+                    'product_id' => $product->id,
+                ]
+            ]);
+            Session::flash('success', __('home.add_to_cart_success'));
+
+            return redirect()->back();
+        } else {
+            Session::flash('success', __('home.add_to_cart_errror'));
+
             return redirect()->back();
         }
     }
@@ -397,5 +423,14 @@ class PageController extends Controller
         $contact = Contact::first();
 
         return view('clients.contact', compact('contact'));
+    }
+
+    public function logout(Request $request)
+    {
+        $this->guard()->logout();
+
+        $request->session()->invalidate();
+
+        return $this->loggedOut($request) ?: redirect('/');
     }
 }

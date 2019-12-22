@@ -1,6 +1,7 @@
 @extends('clients.master')
 
 @section('style')
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css">
 @endsection
 @section('content')
   <!-- breadcrumb start-->
@@ -54,10 +55,10 @@
                     </h5>
                   </td>
                   <td>
-                    <h5>{{ $order->total }}</h5>
+                    <h5>{{ formatCurrency($order->total) }} {{ __('home.vnd') }}</h5>
                   </td>
                   <td>
-                    <h5>{{ $order->created_at }}</h5>
+                    <h5>{{ formatDateDDMMYY($order->created_at) }}</h5>
                   </td>
                   <td>
                     <a href="{{ route('purchase_history_detail', $order->id) }}" class="genric-btn info">{{ __('home.details') }}</a>
@@ -84,4 +85,11 @@
 <!--================End Cart Area =================-->
 @endsection
 @section('script')
+<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+<script>
+  $(document).ready(function () {
+    $('#purchase-history').dataTable();
+  });
+</script>
 @endsection

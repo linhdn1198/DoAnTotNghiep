@@ -1,15 +1,17 @@
 <?php
 
 return [
-    'title' => 'Smart Watch',
+    'title' => config('app.name'),
     'home' => 'Home',
     'blog' => 'Blog',
+    'simple_blog' => 'Blog Details',
     'contact' => 'Contact',
     'about' => 'About',
     'language' => 'Language',
     'vi' => 'Vietnamese',
     'en' => 'English',
     'login' => 'Login',
+    'logout' => 'Logout',
     'register' => 'Register',
     'category' => 'Categories',
     'all' => 'All',
@@ -57,6 +59,7 @@ return [
     'cart_list' => 'Cart list',
     'product' => 'Product',
     'price' => 'Price',
+    'vnd' => 'VNĐ',
     'quantity' => 'Quantity',
     'total' => 'Total',
     'update_cart' => 'Update Cart',
@@ -69,6 +72,7 @@ return [
     'message_cart_empty' => 'You have no items in your shopping cart',
     'continue_shopping' => 'Continue Shopping',
     'proceed_to_checkout' => 'Proceed to checkout',
+    'checkout_success' => 'Checkout successfully! Please check your mail to confirm your order.',
     'comfirmation' => 'Comfirmation',
     'thank_you' => 'Thank you. Your order has been received.',
     'thank_you_purchase' => 'Thank you for making a purchase at our store',
@@ -97,6 +101,6 @@ return [
     'change_password_success' => 'Password changed successfully',
     'change_password_fail' => 'Password change failed',
     'title_update_profille' => 'Update personal information',
-    'profille' => 'Profile',
+    'profile' => 'Profile',
     'change_profile' => 'Update',
 ];

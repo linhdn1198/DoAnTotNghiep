@@ -1,15 +1,17 @@
 <?php
 
 return [
-    'title' => 'Đồng hồ thông minh',
+    'title' => config('app.name'),
     'home' => 'Trang chủ',
     'blog' => 'Bài viết',
+    'simple_blog' => 'Chi tiết bài viết',
     'contact' => 'Liên hệ',
     'about' => 'Giới thiệu',
     'language' => 'Ngôn ngữ',
     'vi' => 'Tiếng việt',
     'en' => 'Tiếng anh',
     'login' => 'Đăng nhập',
+    'logout' => 'Đăng xuất',
     'register' => 'Đăng ký',
     'category' => 'Danh mục',
     'all' => 'Tất cả sản phẩm',
@@ -68,6 +70,7 @@ return [
     'message_cart_empty' => 'Không có sản phẩm nào trong giỏ hàng',
     'continue_shopping' => 'Tiếp tục mua hàng',
     'proceed_to_checkout' => 'Tiến hành thanh toán',
+    'checkout_success' => 'Thanh toán thành công! Vui lòng kiểm tra mail để xác nhận đơn hàng.',
     'comfirmation' => 'Xác nhận',
     'thank_you' => 'Cảm ơn bạn. Đơn đặt hàng của bạn đã được nhận.',
     'thank_you_purchase' => 'Cảm ơn bạn đã mua hàng tại cửa hàng chúng tôi ',
@@ -82,6 +85,7 @@ return [
     'order_details' => 'Chi tiết hóa đơn',
     'quantity' => 'Số lượng',
     'price' => 'Giá',
+    'vnd' => 'VNĐ',
     'product' => 'Sản phẩm',
     'purchase_history' => 'Lịch sử mua hàng',
     'user' => 'Người dùng',
@@ -96,6 +100,6 @@ return [
     'change_password_success' => 'Thay đổi mật khẩu thành công',
     'change_password_fail' => 'Thay đổi mật khẩu thất bại',
     'title_update_profille' => 'Cập nhật thông tin cá nhân',
-    'profille' => 'Thông tin cá nhân',
+    'profile' => 'Thông tin cá nhân',
     'change_profile' => 'Cập nhật',
 ];

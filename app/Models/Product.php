@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
+    const QUANTITY_DEFAULT = 1;
+
     protected $fillable = [
         'product_category_id',
         'name',
