@@ -52,7 +52,7 @@
     <script src="/client/js/mixitup.min.js"></script>
     <!-- swiper js -->
     <script src="/client/js/lightslider.min.js"></script>
-    {{-- <script src="/client/js/price_rangs.js"></script> --}}
+    <script src="/client/js/price_rangs.js"></script>
     <!-- particleclient/s js -->
     <script src="/client/js/owl.carousel.min.js"></script>
     <script src="/client/js/jquery.nice-select.min.js"></script>
@@ -60,7 +60,6 @@
     <script src="/client/js/slick.min.js"></script>
     <script src="/client/js/jquery.counterup.min.js"></script>
     <script src="/client/js/waypoints.min.js"></script>
-    <script src="/client/js/contact.js"></script>
     <script src="/client/js/jquery.ajaxchimp.min.js"></script>
     <script src="/client/js/jquery.form.js"></script>
     <script src="/client/js/jquery.validate.min.js"></script>

@@ -11,7 +11,7 @@
             <div class="col-lg-12">
                 <div class="breadcrumb_iner">
                     <div class="breadcrumb_iner_item">
-                        <p>Home / Single Blog</p>
+                        <p>{{ __('home.home') }} / {{ __('home.simple_blog') }}</p>
                     </div>
                 </div>
             </div>

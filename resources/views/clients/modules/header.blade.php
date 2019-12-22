@@ -3,7 +3,7 @@
         <div class="row align-items-center justify-content-center">
             <div class="col-lg-11">
                 <nav class="navbar navbar-expand-lg navbar-light">
-                    <a class="navbar-brand" href="{{ route('home') }}"> <img src="/client/img/logo.png" alt="logo"> </a>
+                    <a class="navbar-brand" href="{{ route('home') }}"> <img src="/client/img/logo.png" alt="LD Store" width="140" height="40"></a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse"
                         data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -24,7 +24,6 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('about') }}">{{ __('home.about') }}</a>
                             </li>
-
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="language"
                                     role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -35,16 +34,36 @@
                                     <a class="dropdown-item" href="{{ route('change_language', ['language' => 'en']) }}"> {{ __('home.en') }}</a>
                                 </div>
                             </li>
-                            <li class="nav-item">
-                                @if (Auth::user())
-                                    <a class="nav-link" href="#">{{ Auth::user()->name }}</a>
-                                @else
+                            @if (Auth::user())
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="user"
+                                        role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        {{ Auth::user()->name }}
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="user">
+                                        <a class="dropdown-item" href="{{ route('purchase_history') }}">{{ __('home.purchase_history') }}</a>
+                                        <a class="dropdown-item" href="{{ route('form_change_password') }}">{{ __('home.change_password') }}</a>
+                                        <a class="dropdown-item" href="{{ route('form_change_profile') }}">{{ __('home.profile') }}</a>
+                                    </div>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
+                                                    document.getElementById('logout-form').submit();">
+                                        {{ __('home.logout') }}
+                                    </a>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
+                                </li>
+                            @else
+                                <li class="nav-item">
                                     <a class="nav-link" href="{{ route('login') }}">{{ __('home.login') }}</a>
-                                @endif
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('show_form_register') }}">{{ __('home.register') }}</a>
-                            </li>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('show_form_register') }}">{{ __('home.register') }}</a>
+                                </li>
+                            @endif
                         </ul>
                     </div>
                     <div class="hearer_icon d-flex">

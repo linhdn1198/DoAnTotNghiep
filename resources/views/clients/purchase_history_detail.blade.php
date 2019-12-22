@@ -52,15 +52,15 @@
                     <tr>
                       <th colspan="2"><span>{{ $orderDetail->product->name }}</span></th>
                       <th>x{{ $orderDetail->qty }}</th>
-                      <th>{{ $orderDetail->price }}</th>
-                      <th><span>{{ $orderDetail->price * $orderDetail->qty }}</span></th>
+                      <th>{{ formatCurrency($orderDetail->price) }} {{ __('home.vnd') }}</th>
+                      <th><span>{{ formatCurrency($orderDetail->price * $orderDetail->qty) }} {{ __('home.vnd') }}</span></th>
                     </tr>
                   @endforeach
                 </tbody>
                 <tfoot>
                   <tr>
                     <th scope="col" colspan="4"></th>
-                    <th scope="col">{{ __('home.total') }}: {{ $orderDetails->total }}</th>
+                    <th scope="col">{{ __('home.total') }}: {{ formatCurrency($orderDetails->total) }} {{ __('home.vnd') }}</th>
                   </tr>
                 </tfoot>
               </table>

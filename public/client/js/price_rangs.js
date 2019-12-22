@@ -1489,7 +1489,7 @@
                 } else {
                     this.$cache.from[0].style.visibility = "visible";
                     this.$cache.to[0].style.visibility = "visible";
-                    this.$cache.single[0].style.visibility = "hidden";
+                    // this.$cache.single[0].style.visibility = "hidden";
                 }
 
                 if (min < this.labels.p_min + 1) {
@@ -2378,7 +2378,7 @@ var $range = $(".js-range-slider"),
     $inputTo = $(".js-input-to"),
     instance,
     min = 0,
-    max = 1000,
+    max = 20000000,
     from = 10,
     to = 100;
 
@@ -2386,18 +2386,15 @@ $range.ionRangeSlider({
     type: "double",
     min: min,
     max: max,
-    from: 0,
-    to: 500,
-  prefix: 'tk. ',
+    from: 1000000,
+    to: 3000000,
     onStart: updateInputs,
     onChange: updateInputs,
-    step: 1,
+    step: 10000,
     prettify_enabled: true,
     prettify_separator: ".",
-  values_separator: " - ",
-  force_edges: true
-  
-
+    values_separator: " - ",
+    force_edges: true
 });
 
 instance = $range.data("ionRangeSlider");
@@ -2405,7 +2402,6 @@ instance = $range.data("ionRangeSlider");
 function updateInputs (data) {
     from = data.from;
     to = data.to;
-    
     $inputFrom.prop("value", from);
     $inputTo.prop("value", to); 
 }
@@ -2439,5 +2435,4 @@ $inputTo.on("input", function () {
         to: val
     });
 });
-
-    });
+});

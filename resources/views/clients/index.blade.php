@@ -1,11 +1,18 @@
 @extends('clients.master')
 
 @section('style')
-
+<style>
+.btn_1 {
+    background-color: #f44a40;
+}
+.price_value input {
+    max-width: 65px;
+}
+</style>
 @endsection
 @section('content')
 <!-- banner part start-->
-<section class="banner_part" style="background-image:url({{ $banner->image }})">
+<section class="banner_part" style="background-image:url({{ asset($banner->image) }})">
     <div class="container">
         <div class="row align-items-center">
             <div class="col-lg-7">
@@ -13,8 +20,8 @@
                     <div class="single_banner_slider">
                         <div class="banner_text">
                             <div class="banner_text_iner">
-                                <h5>Winter Fasion</h5>
-                                <h1>Fashion Collection 2019</h1>
+                                <h5 class="text-white">LD Store</h5>
+                                <h2 class="text-white">Smart watch</h2>
                                 <a href="#products" class="btn_1">shop now</a>
                             </div>
                         </div>
@@ -27,7 +34,7 @@
 <!-- banner part start-->
 <!--================Category Product Area =================-->
 <section class="cat_product_area section_padding border_top" id="products">
-    <div class="container" v-if="data">
+    <div class="container">
         <div class="row">
             <div class="col-lg-3">
                 <div class="left_sidebar_area">
@@ -109,16 +116,15 @@
                         </div>
                         <div class="widgets_inner">
                             <div class="range_item">
-                                <!-- <div id="slider-range"></div> -->
                                 <input type="text" class="js-range-slider" value="" />
                                 <div class="d-flex align-items-center">
                                     <div class="price_text">
                                         <p>Price :</p>
                                     </div>
                                     <div class="price_value d-flex justify-content-center">
-                                        <input type="text" class="js-input-from" id="amount" readonly />
+                                        <input type="text" class="js-input-from" v-model="from_amount" id="from_amount" readonly />
                                         <span>to</span>
-                                        <input type="text" class="js-input-to" id="amount" readonly />
+                                        <input type="text" class="js-input-to" v-model="to_amount" id="to_amount" readonly />
                                     </div>
                                 </div>
                             </div>
@@ -160,18 +166,18 @@
                         </div>
                     </div>
                     @foreach ($products as $product)         
-                        <div class="col-lg-4 col-sm-6" v-for="product in products">
+                        <div class="col-lg-4 col-sm-6">
                             <div class="single_category_product">
                                 <div class="single_category_img">
-                                    <img src="/client/img/category/category_2.png" alt="">
+                                    <img src="/client/img/product/apple-watch-1.jpg" alt="{{ $product->name }}">
                                     <div class="category_social_icon">
                                         <ul>
-                                            <li><a href="#"><i class="ti-bag"></i></a></li>
+                                            <li><a href="{{ route('add_to_cart_default', $product->slug) }}"><i class="ti-bag"></i></a></li>
                                         </ul>
                                     </div>
                                     <div class="category_product_text">
                                         <a href="{{ route('simple_product', $product->slug) }}"><h5>{{ $product->name }}</h5></a>
-                                        <p>{{ $product->price }}</p>
+                                        <p>{{ formatCurrency($product->price) }} {{ __('home.vnd') }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -192,5 +198,14 @@
 @endsection
 @section('script')
 <script>
+    new Vue({
+        el: '#products',
+        data() {
+            return {
+                from_amount: 0,
+                to_amount: 0,
+            }
+        },
+    })
 </script>
 @endsection

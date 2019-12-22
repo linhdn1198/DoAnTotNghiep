@@ -11,7 +11,7 @@
             <div class="col-lg-12">
                 <div class="breadcrumb_iner">
                     <div class="breadcrumb_iner_item">
-                        <p>{{ __('home.home') }}/{{ __('home.cart_list') }}</p>
+                        <p>{{ __('home.home') }} / {{ __('home.cart_list') }}</p>
                     </div>
                 </div>
             </div>
@@ -46,7 +46,7 @@
                     <td>
                       <div class="media">
                         <div class="d-flex">
-                          <img src="/client/img/arrivel/arrivel_1.png" alt="" />
+                          <img src="/client/img/product/apple-watch-1.jpg" alt="{{ $item->name }}" />
                         </div>
                         <div class="media-body">
                           <p>{{ $item->name }}</p>
@@ -54,7 +54,7 @@
                       </div>
                     </td>
                     <td>
-                      <h5>{{ $item->price }}</h5>
+                      <h5>{{ formatCurrency($item->price) }} {{ __('home.vnd') }}</h5>
                     </td>
                     <td>
                       <div class="product_count">
@@ -65,7 +65,7 @@
                       </div>
                     </td>
                     <td>
-                      <h5>{{ $item->price * $item->quantity }}</h5>
+                      <h5>{{ formatCurrency($item->price * $item->quantity) }} {{ __('home.vnd') }}</h5>
                     </td>
                     <td>
                       <a href="{{ route('remove_item_cart', $item->id) }}" class="genric-btn danger">{{ __('home.remove') }}</a>
