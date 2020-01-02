@@ -13,6 +13,7 @@ try {
     window.sweetalert2 = require('sweetalert2');
 
     require('bootstrap');
+    require('admin-lte');
 } catch (e) {}
 
 /**
