@@ -18,4 +18,6 @@ mix.js('resources/js/app.js', 'public/js')
    .sass('resources/sass/app.scss', 'public/css')
    .sass('resources/sass/client.scss', 'public/css')
    .copyDirectory('resources/client', 'public/client')
+   .copyDirectory('node_modules/admin-lte/dist', 'public/dist')
+   .copyDirectory('node_modules/admin-lte/plugins', 'public/plugins')
    .version();

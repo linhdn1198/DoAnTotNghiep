@@ -45,7 +45,7 @@ Route::group(['middleware' => 'locale'], function() {
     });
 });
 
-Route::group(['prefix' => 'admin'], function () {
+Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
     Route::get('/dashboard', function () {
         return view('admin.dashboard.dashboard');
     });
@@ -53,6 +53,9 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('/login', function () {
         return view('admin.login.login');
     });
+
+    Route::resource('products', 'ProductController');
+    Route::resource('product-category', 'ProductCategoryController');
 });
 
 Route::get('change-language/{language}', 'PageController@changeLanguage')->name('change_language');

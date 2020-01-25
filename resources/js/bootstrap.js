@@ -8,11 +8,11 @@ window._ = require('lodash');
 
 try {
     window.Popper = require('popper.js').default;
-    window.$ = window.jQuery = require('jquery');
+    // window.$ = window.jQuery = require('jquery');
     window.toastr = require('toastr');
     window.sweetalert2 = require('sweetalert2');
 
-    require('bootstrap');
+    // require('bootstrap');
     require('admin-lte');
 } catch (e) {}
 
