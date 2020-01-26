@@ -14,6 +14,12 @@
         'edit_product_category' => 'Edit product category',
         // Order
         'show_order' => 'Show order',
+        // Comment product
+        'comment_product' => 'Comment product',
+        'management_comment_product' => 'Management comment product',
+        'list_comment_product' => 'List comment product',
+        'created_at' => 'Created at',
+        'content' => 'Content',
         'stt' => 'STT',
         'save' => 'Save',
         'back' => 'Back',

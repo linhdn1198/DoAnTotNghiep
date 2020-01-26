@@ -17,6 +17,11 @@ class CommentProduct extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
+    }
+
     public function getCreatedAtAttribute($val)
     {
         return \Carbon\Carbon::parse($val)->diffForHumans();
