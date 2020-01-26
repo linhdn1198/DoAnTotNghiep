@@ -20,6 +20,12 @@
         'list_comment_product' => 'List comment product',
         'created_at' => 'Created at',
         'content' => 'Content',
+        // Comment post
+        'comment_post' => 'Comment post',
+        'management_comment_post' => 'Management comment post',
+        'list_comment_post' => 'List comment post',
+        'post' => 'Post',
+        // 
         'stt' => 'STT',
         'save' => 'Save',
         'back' => 'Back',

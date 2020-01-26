@@ -11,11 +11,11 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">{{ __('admin.management_comment_product') }}</h1>
+                    <h1 class="m-0 text-dark">{{ __('admin.management_comment_post') }}</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item active">{{ __('admin.management_comment_product') }}</li>
+                        <li class="breadcrumb-item active">{{ __('admin.management_comment_post') }}</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -30,7 +30,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">{{ __('admin.list_comment_product') }}</h3>
+                            <h3 class="card-title">{{ __('admin.list_comment_post') }}</h3>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
@@ -46,7 +46,7 @@
                                             <tr role="row">
                                                 <th>{{ __('admin.stt') }}</th>
                                                 <th>{{ __('admin.username') }}</th>
-                                                <th>{{ __('admin.product') }}</th>
+                                                <th>{{ __('admin.post') }}</th>
                                                 <th>{{ __('admin.content') }}</th>
                                                 <th>{{ __('admin.created_at') }}</th>
                                                 <th>{{ __('admin.action') }}</th>
@@ -57,12 +57,12 @@
                                                 <tr>
                                                     <td>{{ $index + 1 }}</td>
                                                     <td>{{ $comment->user->name }}</td>
-                                                    <td>{{ $comment->product->name }}</td>
+                                                    <td>{{ $comment->post->title }}</td>
                                                     <td>{{ $comment->content }}</td>
                                                     <td>{{ $comment->created_at }}</td>
                                                     <td>
 
-                                                        <form class="d-inline" action="{{ route('comment-product.destroy', $comment->id) }}" method="post">
+                                                        <form class="d-inline" action="{{ route('comment-post.destroy', $comment->id) }}" method="post">
                                                             @csrf
                                                             @method('DELETE')
                                                             <button class="btn btn-sm btn-outline-danger"><i class="fas fa-trash"></i></button>
@@ -75,7 +75,7 @@
                                             <tr role="row">
                                                 <th>{{ __('admin.stt') }}</th>
                                                 <th>{{ __('admin.username') }}</th>
-                                                <th>{{ __('admin.product') }}</th>
+                                                <th>{{ __('admin.post') }}</th>
                                                 <th>{{ __('admin.content') }}</th>
                                                 <th>{{ __('admin.created_at') }}</th>
                                                 <th>{{ __('admin.action') }}</th>
