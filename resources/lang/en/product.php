@@ -5,7 +5,6 @@
         'name' => 'Name',
         'slug' => 'Slug',
         'description' => 'Description',
-        'description' => 'Description',
         'quantity' => 'Quantity',
         'price' => 'Price',
         'images' => 'Images',

@@ -38,27 +38,27 @@
                             <!-- /.card-header -->
                             <div class="card-body">
                                 <div class="form-group">
-                                    <label>{{ __('product.category') }}</label>
+                                    <label>{{ __('admin.category') }}</label>
                                     <p>{{ $product->productCategory->name }}</p>
                                 </div>
                                 <div class="form-group">
-                                    <label>{{ __('product.name') }}</label>
+                                    <label>{{ __('admin.name') }}</label>
                                     <p>{{ $product->name }}</p>
                                 </div>
                                 <div class="form-group">
-                                    <label>{{ __('product.description') }}</label>
+                                    <label>{{ __('admin.description') }}</label>
                                     <p>{!! $product->description !!}</p>
                                 </div>
                                 <div class="form-group">
-                                    <label>{{ __('product.quantity') }}</label>
+                                    <label>{{ __('admin.quantity') }}</label>
                                     <p>{{ $product->quantity }}</p>
                                 </div>
                                 <div class="form-group">
-                                    <label>{{ __('product.price') }}</label>
+                                    <label>{{ __('admin.price') }}</label>
                                     <p>{{ formatCurrency($product->price) }}</p>
                                 </div>
                                 <div class="form-group">
-                                    <label>{{ __('product.images') }}</label>
+                                    <label>{{ __('admin.images') }}</label>
                                     <p>
                                     @isset($product->image)
                                         @foreach (json_decode($product->image, true) as $image)

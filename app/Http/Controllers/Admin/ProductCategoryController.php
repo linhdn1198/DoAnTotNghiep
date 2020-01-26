@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Str;
+use Session;
 use Illuminate\Http\Request;
 use App\Models\ProductCategory;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ProductCategory\ProductCategoryRequest;
 
 class ProductCategoryController extends Controller
 {
@@ -15,10 +18,9 @@ class ProductCategoryController extends Controller
      */
     public function index(Request $request)
     {
-        if ($request->ajax()) {
-            $productCategory = ProductCategory::all();
-            return response()->json($productCategory);
-        }
+        $productCategories = ProductCategory::orderBy('created_at', 'DESC')->get();
+
+        return view('admin.product_category.index', compact('productCategories'));
     }
 
     /**
@@ -28,7 +30,7 @@ class ProductCategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.product_category.create');
     }
 
     /**
@@ -37,20 +39,23 @@ class ProductCategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProductCategoryRequest $request)
     {
-        //
-    }
+        try {
+            ProductCategory::create(
+                [
+                    'name' => $request->name,
+                    'slug' => Str::slug($request->name),
+                ]
+            );
+            Session::flash('success', __('admin.add_success_message'));
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+            return redirect()->route('product-category.index');
+        } catch (\Exception $ex) {
+            Session::flash('danger', __('admin.add_fail_message'));
+
+            return redirect()->back();
+        }
     }
 
     /**
@@ -61,7 +66,9 @@ class ProductCategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $productCategory = ProductCategory::where('id', $id)->firstOrFail();
+
+        return view('admin.product_category.edit', compact('productCategory'));
     }
 
     /**
@@ -71,9 +78,26 @@ class ProductCategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ProductCategoryRequest $request, $id)
     {
-        //
+        try {
+            ProductCategory::updateOrCreate(
+                [
+                    'id' => $id,
+                ],
+                [
+                    'name' => $request->name,
+                    'slug' => Str::slug($request->name),
+                ]
+            );
+            Session::flash('success', __('admin.edit_success_message'));
+
+            return redirect()->route('product-category.index');
+        } catch (\Exception $ex) {
+            Session::flash('danger', __('admin.edit_fail_message'));
+
+            return redirect()->back();
+        }
     }
 
     /**
@@ -84,6 +108,9 @@ class ProductCategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $productCategory = ProductCategory::where('id', $id)->firstOrFail();
+        Session::flash('success', __('admin.delete_success_message'));
+
+        return redirect()->route('product-category.index');
     }
 }

@@ -21,25 +21,36 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-                <li class="nav-item has-treeview menu-open">
-                    <a href="#" class="nav-link active">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
+               <li class="nav-item has-treeview menu-open">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>  
                         <p>
-                            Starter Pages
+                            {{ __('admin.dashboard') }}
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item has-treeview @if (request()->is('admin/products*')) menu-open @endif">
+                    <a href="#" class="nav-link @if (request()->is('admin/products*')) active @endif">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>  
+                        <p>
+                            {{ __('admin.management_product') }}
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{ route('products.index') }}" class="nav-link active">
+                            <a href="{{ route('product-category.index') }}"
+                                class="nav-link @if (request()->is('admin/product-category')) active @endif">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>{{ __('product.management') }}</p>
+                                <p>{{ __('admin.product_category') }}</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('products.index') }}"
+                                class="nav-link @if (request()->is('admin/products')) active @endif">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Inactive Page</p>
+                                <p>{{ __('admin.product') }}</p>
                             </a>
                         </li>
                     </ul>
