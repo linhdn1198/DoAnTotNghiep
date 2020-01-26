@@ -72,7 +72,7 @@ class ProductController extends Controller
             return redirect()->route('products.index');
         } catch (\Exception $ex) {
             DB::rollback();
-            Session::flash('success', __('admin.add_fail_message'));
+            Session::flash('danger', __('admin.add_fail_message'));
 
             return redirect()->back();
         }
@@ -128,15 +128,20 @@ class ProductController extends Controller
                 array_push($images, ['name' => $storage]);
             }
 
-            $product = Product::updateOrCreate([
-                'product_category_id' => $request->product_category_id,
-                'name' => $request->name,
-                'slug' => Str::slug($request->name),
-                'description' => $request->description,
-                'quantity' => $request->quantity,
-                'price' => $request->price,
-                'image' => json_encode($images),
-            ]);
+            $product = Product::updateOrCreate(
+                [
+                    'id' => $id,
+                ],
+                [
+                    'product_category_id' => $request->product_category_id,
+                    'name' => $request->name,
+                    'slug' => Str::slug($request->name),
+                    'description' => $request->description,
+                    'quantity' => $request->quantity,
+                    'price' => $request->price,
+                    'image' => json_encode($images),
+                ]
+            );
 
             DB::commit();
             Session::flash('success', __('admin.update_success_message'));
@@ -144,7 +149,7 @@ class ProductController extends Controller
             return redirect()->route('products.index');
         } catch (\Exception $ex) {
             DB::rollback();
-            Session::flash('success', __('admin.update_fail_message'));
+            Session::flash('danger', __('admin.update_fail_message'));
 
             return redirect()->back();
         }
@@ -171,7 +176,7 @@ class ProductController extends Controller
             return redirect()->route('products.index');
         } catch (\Exception $ex) {
             DB::rollback();
-            Session::flash('success', __('admin.delete_fail_message'));
+            Session::flash('danger', __('admin.delete_fail_message'));
 
             return redirect()->back();
         }
