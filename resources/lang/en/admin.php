@@ -12,7 +12,8 @@
         'list_product_category' => 'List product category',
         'add_product_category' => 'Add product category',
         'edit_product_category' => 'Edit product category',
-        // 
+        // Order
+        'show_order' => 'Show order',
         'stt' => 'STT',
         'save' => 'Save',
         'back' => 'Back',
@@ -44,4 +45,21 @@
         'chose_file' => 'Chose file images',
         // Product category
         'product_category' => 'Product category',
+        // Order
+        'management_order' => 'Management order',
+        'list_order' => 'List order',
+        'order' => 'Order',
+        'image' => 'Image',
+        'date_of_birth' => 'Date of birth',
+        'gender' => 'Gender',
+        'phone' => 'Phone',
+        'email' => 'Email',
+        'order_detail' => 'Order detail',
+        'male' => 'Male',
+        'female' => 'Female',
+        'username' => 'Username',
+        'address' => 'Adress',
+        'status' => 'Status',
+        'total' => 'Total',
+        'change_status' => 'Change status',
     ];

@@ -56,6 +56,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
 
     Route::resource('products', 'ProductController');
     Route::resource('product-category', 'ProductCategoryController')->except('show');
+    Route::resource('orders', 'OrderController')->except('create', 'store', 'edit');
 });
 
 Route::get('change-language/{language}', 'PageController@changeLanguage')->name('change_language');

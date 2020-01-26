@@ -52,7 +52,7 @@ class ProductCategoryController extends Controller
 
             return redirect()->route('product-category.index');
         } catch (\Exception $ex) {
-            Session::flash('danger', __('admin.add_fail_message'));
+            Session::flash('error', __('admin.add_fail_message'));
 
             return redirect()->back();
         }
@@ -94,7 +94,7 @@ class ProductCategoryController extends Controller
 
             return redirect()->route('product-category.index');
         } catch (\Exception $ex) {
-            Session::flash('danger', __('admin.edit_fail_message'));
+            Session::flash('error', __('admin.edit_fail_message'));
 
             return redirect()->back();
         }
@@ -109,6 +109,7 @@ class ProductCategoryController extends Controller
     public function destroy($id)
     {
         $productCategory = ProductCategory::where('id', $id)->firstOrFail();
+        $productCategory->delete();
         Session::flash('success', __('admin.delete_success_message'));
 
         return redirect()->route('product-category.index');

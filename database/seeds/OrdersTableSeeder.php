@@ -59,7 +59,7 @@ class OrdersTableSeeder extends Seeder
                 'id' => 8,
                 'user_id' => rand(1, 10),
                 'total' => 8000000,
-                'status' => 8,
+                'status' => 0,
             ],
             [
                 'id' => 9,

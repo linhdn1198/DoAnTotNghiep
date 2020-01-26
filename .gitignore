@@ -13,3 +13,5 @@ yarn-error.log
 /public/css
 /public/js
 /public/client
+/public/dist
+/public/plugins
