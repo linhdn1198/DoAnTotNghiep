@@ -15,7 +15,6 @@
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">{{ __('admin.dashboard') }}</a></li>
                         <li class="breadcrumb-item"><a href="{{ route('products.index') }}">{{ __('admin.management_product') }}</a></li>
                         <li class="breadcrumb-item active">{{ __('admin.btn_add') }}</li>
                     </ol>
