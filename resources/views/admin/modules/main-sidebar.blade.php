@@ -67,6 +67,13 @@
                                 <p>{{ __('admin.comment_product') }}</p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{ route('comment-post.index') }}"
+                                class="nav-link @if (request()->is('admin/comment-post')) active @endif">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>{{ __('admin.comment_post') }}</p>
+                            </a>
+                        </li>
                     </ul>
                 </li>
                 <li class="nav-item">
