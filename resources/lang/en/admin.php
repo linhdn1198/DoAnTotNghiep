@@ -3,28 +3,6 @@
         'dashboard' => 'Dashboard',
         'management_product' => 'Management products',
         'management_product_category' => 'Management product category',
-        // Product
-        'list_product' => 'List product',
-        'add_product' => 'Add product',
-        'show_product' => 'Show product',
-        'edit_product' => 'Edit product',
-        // Product category
-        'list_product_category' => 'List product category',
-        'add_product_category' => 'Add product category',
-        'edit_product_category' => 'Edit product category',
-        // Order
-        'show_order' => 'Show order',
-        // Comment product
-        'comment_product' => 'Comment product',
-        'management_comment_product' => 'Management comment product',
-        'list_comment_product' => 'List comment product',
-        'created_at' => 'Created at',
-        'content' => 'Content',
-        // Comment post
-        'comment_post' => 'Comment post',
-        'management_comment_post' => 'Management comment post',
-        'list_comment_post' => 'List comment post',
-        'post' => 'Post',
         // 
         'stt' => 'STT',
         'save' => 'Save',
@@ -45,6 +23,10 @@
         // Dashboard
         'dashboard' => 'Dashboard',
         // Product
+        'list_product' => 'List product',
+        'add_product' => 'Add product',
+        'show_product' => 'Show product',
+        'edit_product' => 'Edit product',
         'product' => 'Product',
         'management_product' => 'Management product',
         'category' => 'Category',
@@ -56,8 +38,12 @@
         'images' => 'Images',
         'chose_file' => 'Chose file images',
         // Product category
+        'list_product_category' => 'List product category',
+        'add_product_category' => 'Add product category',
+        'edit_product_category' => 'Edit product category',
         'product_category' => 'Product category',
         // Order
+        'show_order' => 'Show order',
         'management_order' => 'Management order',
         'list_order' => 'List order',
         'order' => 'Order',
@@ -74,4 +60,21 @@
         'status' => 'Status',
         'total' => 'Total',
         'change_status' => 'Change status',
+        // Comment product
+        'comment_product' => 'Comment product',
+        'management_comment_product' => 'Management comment product',
+        'list_comment_product' => 'List comment product',
+        'created_at' => 'Created at',
+        'content' => 'Content',
+        // Comment post
+        'comment_post' => 'Comment post',
+        'management_comment_post' => 'Management comment post',
+        'list_comment_post' => 'List comment post',
+        'post' => 'Post',
+        // Post category
+        'management_post_category' => 'Management post category',
+        'post_category' => 'Post category',
+        'list_post_category' => 'List post category',
+        'add_post_category' => 'Add post category',
+        'edit_post_category' => 'Edit post category',
     ];
