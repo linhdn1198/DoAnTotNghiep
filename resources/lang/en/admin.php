@@ -14,6 +14,8 @@
         'btn_show' => 'Show',
         'btn_edit' => 'Edit',
         'btn_delete' => 'Delete',
+        'created_at' => 'Created at',
+        'updated_at' => 'Updated at',
         'add_success_message' => 'Add successfully!',
         'add_fail_message' => 'Add fail!',
         'edit_success_message' => 'Edit successfully!',
@@ -64,7 +66,6 @@
         'comment_product' => 'Comment product',
         'management_comment_product' => 'Management comment product',
         'list_comment_product' => 'List comment product',
-        'created_at' => 'Created at',
         'content' => 'Content',
         // Comment post
         'comment_post' => 'Comment post',
@@ -77,4 +78,10 @@
         'list_post_category' => 'List post category',
         'add_post_category' => 'Add post category',
         'edit_post_category' => 'Edit post category',
+        // Tag
+        'management_tag' => 'Management tag',
+        'tag' => 'Tag',
+        'list_tag' => 'List tag',
+        'add_tag' => 'Add tag',
+        'edit_tag' => 'Edit tag',
     ];
