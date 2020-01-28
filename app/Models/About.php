@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class About extends Model
 {
-    protected $fillbale = [
+    protected $fillable = [
         'title',
         'content',
     ];

@@ -104,4 +104,19 @@
         'role' => 'Role',
         'admin' => 'Admin',
         'member' => 'Member',
+        // Banner
+        'management_banner' => 'Management banner',
+        'show_banner' => 'Show banner',
+        'edit_banner' => 'Edit banner',
+        'banner' => 'Banner',
+        // About
+        'management_about' => 'Management about',
+        'show_about' => 'Show about',
+        'edit_about' => 'Edit about',
+        'about' => 'About',
+        // Contact
+        'management_contact' => 'Management contact',
+        'show_contact' => 'Show contact',
+        'edit_contact' => 'Edit contact',
+        'contact' => 'Contact',
     ];
