@@ -47,7 +47,7 @@
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2">{{ __('admin.date_of_birth') }} :</label>
-                                <p class="col-sm-4">{{ $order->user->dateOfBirth }}</p>
+                                <p class="col-sm-4">{{ formatDateDDMMYY($order->user->dateOfBirth) }}</p>
                                 <label class="col-sm-2">{{ __('admin.phone') }} :</label>
                                 <p class="col-sm-4">{{ $order->user->phone }}</p>
                             </div>

@@ -58,6 +58,11 @@
     <link rel="stylesheet" href="/plugins/toastr/toastr.min.js">
     <!-- Select2 -->
     <script src="/plugins/select2/js/select2.full.min.js"></script>
+    <!-- InputMask -->
+    <script src="/plugins/moment/moment.min.js"></script>
+    <script src="/plugins/inputmask/min/jquery.inputmask.bundle.min.js"></script>
+    <!-- iCheck for checkboxes and radio inputs -->
+    <link rel="stylesheet" href="/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
     <!-- AdminLTE App -->
     <script src="/dist/js/adminlte.min.js"></script>
     <script src="{{ mix('js/app.js') }}"></script>

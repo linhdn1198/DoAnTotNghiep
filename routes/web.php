@@ -62,6 +62,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
     Route::resource('post-category', 'PostCategoryController')->except('show');
     Route::resource('posts', 'PostController')->except('show');
     Route::resource('tags', 'TagController')->except('show');
+    Route::resource('users', 'UserController')->except('show');
 });
 
 Route::get('change-language/{language}', 'PageController@changeLanguage')->name('change_language');

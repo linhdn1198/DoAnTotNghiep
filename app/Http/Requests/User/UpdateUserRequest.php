@@ -2,11 +2,9 @@
 
 namespace App\Http\Requests\User;
 
-use Auth;
-use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateProfileRequest extends FormRequest
+class UpdateUserRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -28,10 +26,11 @@ class UpdateProfileRequest extends FormRequest
         return [
             'name' => ['bail', 'required', 'string', 'max:255'],
             'dateOfBirth' => ['bail', 'required', 'date'],
-            'gender' => ['required'],
+            'gender' => ['bail', 'required'],
             'address' => ['bail', 'required', 'string', 'max:255'],
-            'phone' => ['bail', 'required', 'string', 'min:10', 'max:13'],
-            'email' => ['bail', 'required', 'string', 'email', 'max:255', Rule::unique('users')->ignore(Auth::id())],
+            'phone' => ['bail', 'required', 'string', 'max:20'],
+            'email' => ['bail', 'required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['bail', 'nullable', 'string', 'min:8', 'confirmed'],
         ];
     }
 }
