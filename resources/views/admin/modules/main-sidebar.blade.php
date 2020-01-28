@@ -102,6 +102,27 @@
                                 <p>{{ __('admin.user') }}</p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{ route('banners.index') }}"
+                                class="nav-link @if (request()->is('admin/banners')) active @endif">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>{{ __('admin.banner') }}</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('abouts.index') }}"
+                                class="nav-link @if (request()->is('admin/abouts')) active @endif">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>{{ __('admin.about') }}</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('contacts.index') }}"
+                                class="nav-link @if (request()->is('admin/contacts')) active @endif">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>{{ __('admin.contact') }}</p>
+                            </a>
+                        </li>
                     </ul>
                 </li>
                 <li class="nav-item">

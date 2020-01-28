@@ -63,6 +63,9 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
     Route::resource('posts', 'PostController')->except('show');
     Route::resource('tags', 'TagController')->except('show');
     Route::resource('users', 'UserController')->except('show');
+    Route::resource('banners', 'BannerController')->only('index', 'edit', 'update');
+    Route::resource('abouts', 'AboutController')->only('index', 'edit', 'update');
+    Route::resource('contacts', 'ContactController')->only('index', 'edit', 'update');
 });
 
 Route::get('change-language/{language}', 'PageController@changeLanguage')->name('change_language');
