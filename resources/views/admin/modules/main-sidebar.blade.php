@@ -75,6 +75,13 @@
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a href="{{ route('posts.index') }}"
+                                class="nav-link @if (request()->is('admin/post')) active @endif">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>{{ __('admin.post') }}</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a href="{{ route('tags.index') }}"
                                 class="nav-link @if (request()->is('admin/tags')) active @endif">
                                 <i class="far fa-circle nav-icon"></i>

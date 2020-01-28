@@ -11,11 +11,11 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">{{ __('admin.management_product') }}</h1>
+                    <h1 class="m-0 text-dark">{{ __('admin.management_post') }}</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="{{ route('products.index') }}">{{ __('admin.management_product') }}</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('posts.index') }}">{{ __('admin.management_post') }}</a></li>
                         <li class="breadcrumb-item active">{{ __('admin.btn_add') }}</li>
                     </ol>
                 </div><!-- /.col -->
@@ -30,7 +30,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card">
-                        <form method="POST" action="{{ route('products.store') }}" role="form" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('posts.store') }}" role="form" enctype="multipart/form-data">
                             @csrf
                             <div class="card-header">
                                 <h3 class="card-title">{{ __('admin.add_product') }}</h3>
@@ -44,14 +44,14 @@
                                             <span class="input-group-text"><i class="fas fa-caret-down"></i></span>
                                         </div>
                                     <select class="form-control 
-                                        @error('product_category_id') is-invalid @enderror"
-                                        name="product_category_id" 
-                                        value="{{ old('product_category_id') }}">
-                                        @foreach ($productCategories as $productCategory)
-                                            <option value="{{ $productCategory->id }}">{{ $productCategory->name }}</option>
+                                        @error('post_category_id') is-invalid @enderror"
+                                        name="post_category_id" 
+                                        value="{{ old('post_category_id') }}">
+                                        @foreach ($postCategories as $postCategory)
+                                            <option value="{{ $postCategory->id }}">{{ $postCategory->name }}</option>
                                         @endforeach
                                     </select>
-                                    @error('product_category_id')
+                                    @error('post_category_id')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
@@ -59,14 +59,14 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label>{{ __('admin.name') }}</label>
+                                    <label>{{ __('admin.title') }}</label>
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="far fa-edit"></i></span>
                                         </div>
-                                        <input name="name" type="text" value="{{ old('name') }}"
-                                            class="form-control @error('name') is-invalid @enderror">
-                                        @error('name')
+                                        <input name="title" type="text" value="{{ old('title') }}"
+                                            class="form-control @error('title') is-invalid @enderror">
+                                        @error('title')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>
@@ -74,24 +74,28 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label>{{ __('admin.description') }}</label>
-                                    <textarea id="description" name="description"
-                                        class="form-control @error('description') is-invalid @enderror">{{ old('name') }}</textarea>
-                                    @error('description')
+                                    <label>{{ __('admin.content') }}</label>
+                                    <textarea id="content" name="content"
+                                        class="form-control @error('content') is-invalid @enderror">{{ old('content') }}</textarea>
+                                    @error('content')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label>{{ __('admin.quantity') }}</label>
+                                    <label>{{ __('admin.tag') }}</label>
                                     <div class="input-group">
                                         <div class="input-group-prepend">
-                                            <span class="input-group-text"><i class="far fa-edit"></i></span>
+                                            <span class="input-group-text"><i class="fas fa-caret-down"></i></span>
                                         </div>
-                                        <input type="number" min="0" name="quantity" value="{{ old('quantity') }}"
-                                            class="form-control @error('quantity') is-invalid @enderror">
-                                        @error('quantity')
+                                        <select class="select2bs4 form-control @error('tag') is-invalid @enderror"
+                                            name="tags[]" multiple data-placeholder="{{ __('admin.select_tag') }}">
+                                            @foreach ($tags as $tag)
+                                                <option value="{{ $tag->id }}">{{ $tag->name }}</option>
+                                            @endforeach
+                                        </select>
+                                        @error('tag')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>
@@ -99,41 +103,24 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label>{{ __('admin.price') }}</label>
+                                    <label>{{ __('admin.image') }}</label>
                                     <div class="input-group">
                                         <div class="input-group-prepend">
-                                            <span class="input-group-text"><i class="far fa-edit"></i></span>
+                                            <span class="input-group-text"><i class="fas fa-image"></i></span>
                                         </div>
-                                        <input type="number" min="0" name="price" value="{{ old('price') }}"
-                                            class="form-control @error('price') is-invalid @enderror">
-                                        @error('price')
+                                        <input class="form-control @error('image') is-invalid @enderror" type="file" name="image">
+                                        @error('image')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label>{{ __('admin.images') }}</label>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text"><i class="fas fa-images"></i></span>
-                                        </div>
-                                        <input class="form-control @error('images') is-invalid @enderror" type="file" name="images[]" multiple>
-                                        @error('images')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div class="form-group" id="list-image">
-
-                                </div>
+                                <div class="form-group" id="list-image"></div>
                             </div>
                             <!-- /.card-body -->
                             <div class="modal-footer justify-content-between">
-                                <a href="{{ route('products.index') }}" class="btn btn-outline-warning"><i class="fas fa-long-arrow-alt-left"></i>&nbsp;&nbsp; {{ __('admin.back') }}</a>
+                                <a href="{{ route('posts.index') }}" class="btn btn-outline-warning"><i class="fas fa-long-arrow-alt-left"></i>&nbsp;&nbsp; {{ __('admin.back') }}</a>
                                 <button type="submit" class="btn btn-outline-primary"><i class="fas fa-save"></i>&nbsp;&nbsp; {{ __('admin.save') }}</button>
                             </div>
                             <!-- /.card-footer -->
@@ -152,25 +139,27 @@
 @section('script')
 <script>
     $(document).ready(function () {
-        $('#description').summernote({
-            height: 120
+        $('#content').summernote({
+            height: 180
         });
 
-        $("[name='images[]']").change(function() {
+        $("[name='image']").change(function() {
             $('#list-image').html('');
             let images = this.files;
-            for (let i = 0; i < images.length; i++) {
-                let reader = new FileReader();
-                reader.onload = function(event) {
-                    $($.parseHTML('<img>'))
-                        .attr('src', event.target.result)
-                        .attr('style', 'with:150px; height:100px')
-                        .attr('class', "rounded")
-                        .appendTo('#list-image');
-                }
-                reader.readAsDataURL(images[i]);
+            let reader = new FileReader();
+            reader.onload = function(event) {
+                $($.parseHTML('<img>'))
+                    .attr('src', event.target.result)
+                    .attr('style', 'with:150px; height:100px')
+                    .attr('class', "rounded")
+                    .appendTo('#list-image');
             }
+            reader.readAsDataURL(images[0]);
         });
+
+        $('.select2bs4').select2({
+            theme: 'bootstrap4'
+        })
     });
 </script>
 @endsection

@@ -18,6 +18,9 @@
     <link rel="stylesheet" href="/plugins/summernote/summernote-bs4.css">
     <!-- Toastr -->
     <link rel="stylesheet" href="/plugins/toastr/toastr.min.css">
+    <!-- Select2 -->
+    <link rel="stylesheet" href="/plugins/select2/css/select2.min.css">
+    <link rel="stylesheet" href="/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="/dist/css/adminlte.min.css">
     <!-- Google Font: Source Sans Pro -->
@@ -53,6 +56,8 @@
     <script src="/plugins/summernote/summernote-bs4.min.js"></script>
     <!-- Toastr -->
     <link rel="stylesheet" href="/plugins/toastr/toastr.min.js">
+    <!-- Select2 -->
+    <script src="/plugins/select2/js/select2.full.min.js"></script>
     <!-- AdminLTE App -->
     <script src="/dist/js/adminlte.min.js"></script>
     <script src="{{ mix('js/app.js') }}"></script>

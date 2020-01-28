@@ -173,7 +173,7 @@
                 reader.onload = function(event) {
                     $($.parseHTML('<img>'))
                         .attr('src', event.target.result)
-                        .attr('style', 'with:30px; height:60px')
+                        .attr('style', 'with:150px; height:100px')
                         .attr('class', "rounded")
                         .appendTo('#list-image');
                 }
