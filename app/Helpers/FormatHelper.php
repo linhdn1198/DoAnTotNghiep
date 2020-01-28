@@ -7,6 +7,10 @@ function formatCurrency($price)
 
 function formatDateDDMMYY($date)
 {
+    if (is_string($date)) {
+        $date = date_create($date);
+    }
+
     return $date->format('d/m/Y');
 }
 

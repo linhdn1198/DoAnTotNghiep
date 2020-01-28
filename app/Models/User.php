@@ -9,7 +9,7 @@ use Illuminate\Notifications\Notifiable;
 class User extends Authenticatable
 {
     use Notifiable;
-
+    const IMAGE_DEFAULT = 'user.png';
     /**
      * The attributes that are mass assignable.
      *
