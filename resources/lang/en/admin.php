@@ -84,4 +84,14 @@
         'list_tag' => 'List tag',
         'add_tag' => 'Add tag',
         'edit_tag' => 'Edit tag',
+        // Post
+        'management_post' => 'Management post',
+        'list_post' => 'List post',
+        'title' => 'Title',
+        'content' => 'Content',
+        'tag' => 'Tag',
+        'list_post' => 'List post',
+        'add_post' => 'Add post',
+        'edit_post' => 'Edit post',
+        'select_tag' => 'Select tag',
     ];

@@ -72,7 +72,7 @@ class ProductController extends Controller
             return redirect()->route('products.index');
         } catch (\Exception $ex) {
             DB::rollback();
-            Session::flash('danger', __('admin.add_fail_message'));
+            Session::flash('error', __('admin.add_fail_message'));
 
             return redirect()->back();
         }
@@ -149,7 +149,7 @@ class ProductController extends Controller
             return redirect()->route('products.index');
         } catch (\Exception $ex) {
             DB::rollback();
-            Session::flash('danger', __('admin.update_fail_message'));
+            Session::flash('error', __('admin.update_fail_message'));
 
             return redirect()->back();
         }
@@ -176,7 +176,7 @@ class ProductController extends Controller
             return redirect()->route('products.index');
         } catch (\Exception $ex) {
             DB::rollback();
-            Session::flash('danger', __('admin.delete_fail_message'));
+            Session::flash('error', __('admin.delete_fail_message'));
 
             return redirect()->back();
         }

@@ -60,7 +60,7 @@
                                 <p>
                                 @isset($product->image)
                                     @foreach (json_decode($product->image, true) as $image)
-                                        <img style="with:150px; height:100px" class="rounded" src="{{ Storage::url($image['name']) }}">
+                                        <img style="with: 30px; height: 60px" class="rounded" src="{{ Storage::url($image['name']) }}">
                                     @endforeach
                                 @endisset
                                 </p>
