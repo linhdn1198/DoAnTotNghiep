@@ -12,7 +12,7 @@
 @endsection
 @section('content')
 <!-- banner part start-->
-<section class="banner_part" style="background-image:url({{ asset($banner->image) }})">
+<section class="banner_part" style="background-image:url({{ Storage::url($banner->image) }})">
     <div class="container">
         <div class="row align-items-center">
             <div class="col-lg-7">
@@ -110,7 +110,7 @@
                         </div>
                     </aside> --}}
 
-                    <aside class="left_widgets p_filter_widgets price_rangs_aside sidebar_box_shadow">
+                    {{-- <aside class="left_widgets p_filter_widgets price_rangs_aside sidebar_box_shadow">
                         <div class="l_w_title">
                             <h3>Price Filter</h3>
                         </div>
@@ -129,21 +129,22 @@
                                 </div>
                             </div>
                         </div>
-                    </aside>
+                    </aside> --}}
                 </div>
             </div>
             <div class="col-lg-9">
                 <div class="row">
-                    <div class="col-lg-12">
+                    {{-- <div class="col-lg-12">
                         <div class="product_top_bar d-flex justify-content-between align-items-center">
                             <div class="single_product_menu product_bar_item">
                                 <h2>
                                     @if(empty($category))
-                                    {{ __('home.all') }}
+                                        {{ __('home.all') }}
+                                        ({{ count($products) }})
                                     @else
                                         {{ $category->name }}
+                                        ({{ count($category->products) }})
                                     @endif
-                                    ({{ count($products) }})
                                 </h2>
                             </div>
                             <div class="product_top_bar_iner product_bar_item d-flex">
@@ -164,7 +165,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                     @foreach ($products as $product)         
                         <div class="col-lg-4 col-sm-6">
                             <div class="single_category_product">
@@ -197,15 +198,4 @@
 <!--================End Category Product Area =================-->
 @endsection
 @section('script')
-<script>
-    new Vue({
-        el: '#products',
-        data() {
-            return {
-                from_amount: 0,
-                to_amount: 0,
-            }
-        },
-    })
-</script>
 @endsection

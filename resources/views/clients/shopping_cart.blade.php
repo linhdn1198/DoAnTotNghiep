@@ -25,7 +25,8 @@
   <div class="container">
     <div class="cart_inner">
       @if (Cart::isEmpty())
-        <h3 class="title">{{ __('home.message_cart_empty') }}</h3>
+        <h3 class="title text-center">{{ __('home.message_cart_empty') }}</h3>
+        <p class="text-center"><a class="btn_1 checkout_btn_1" href="/">{{ __('home.home') }}</a></p>
       @else
         <form action="{{ route('update_cart') }}" method="POST">
           @csrf

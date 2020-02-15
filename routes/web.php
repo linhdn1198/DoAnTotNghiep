@@ -39,21 +39,21 @@ Route::group(['middleware' => 'locale'], function() {
     Route::post('/login', 'PageController@login')->name('login');
     Route::get('/register', 'PageController@showRegisterForm')->name('show_form_register');
     Route::post('/register', 'PageController@register')->name('register');
-    Route::group(['prefix' => 'admin', 'as' => 'admin.'], function() {
-        Auth::routes();
-        Route::get('/home', 'HomeController@index')->name('home');
-    });
 });
 
-Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
+Route::group(['prefix' => 'admin', 'as' => 'admin.'], function() {
+    Auth::routes();
+});
+
+Route::group([
+        'prefix' => 'admin',
+        'namespace' => 'Admin',
+        'middleware' => 'checkadminlogin',
+    ], function () {
+
     Route::get('/dashboard', function () {
         return view('admin.dashboard.dashboard');
     });
-
-    Route::get('/login', function () {
-        return view('admin.login.login');
-    });
-
     Route::resource('products', 'ProductController');
     Route::resource('product-category', 'ProductCategoryController')->except('show');
     Route::resource('orders', 'OrderController')->except('create', 'store', 'edit');

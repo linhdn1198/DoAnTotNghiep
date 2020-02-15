@@ -10,6 +10,10 @@
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="/plugins/fontawesome-free/css/all.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Tempusdominus Bbootstrap 4 -->
+    <link rel="stylesheet" href="/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
     <!-- DataTables -->
     <link rel="stylesheet" href="/plugins/datatables-bs4/css/dataTables.bootstrap4.css">
     <!-- DataTables buttons -->
@@ -55,7 +59,7 @@
     <!-- Summernote -->
     <script src="/plugins/summernote/summernote-bs4.min.js"></script>
     <!-- Toastr -->
-    <link rel="stylesheet" href="/plugins/toastr/toastr.min.js">
+    <script src="/plugins/toastr/toastr.min.js"></script>
     <!-- Select2 -->
     <script src="/plugins/select2/js/select2.full.min.js"></script>
     <!-- InputMask -->
@@ -63,9 +67,10 @@
     <script src="/plugins/inputmask/min/jquery.inputmask.bundle.min.js"></script>
     <!-- iCheck for checkboxes and radio inputs -->
     <link rel="stylesheet" href="/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <!-- ChartJS -->
+    <script src="/plugins/chart.js/Chart.min.js"></script>
     <!-- AdminLTE App -->
     <script src="/dist/js/adminlte.min.js"></script>
-    <script src="{{ mix('js/app.js') }}"></script>
     <script>
         @if(Session::has('warning'))
             toastr.warning("{{ Session::get('warning') }}")

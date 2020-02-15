@@ -3,8 +3,8 @@
 namespace App\Http\Middleware;
 
 use Auth;
-use Closure;
 use Session;
+use Closure;
 
 class CheckLogin
 {
@@ -20,7 +20,8 @@ class CheckLogin
         if (Auth::check()) {
             return $next($request);
         }
-        
-        return response()->json(['message' => 'Not allow, plase login'], 405);
+        Session::flash('error', __('admin.not_login'));
+
+        return response()->view('login');
     }
 }
