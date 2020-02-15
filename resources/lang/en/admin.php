@@ -1,5 +1,6 @@
 <?php
     return [
+        'name_store' => 'LD Store',
         'dashboard' => 'Dashboard',
         // 
         'image' => 'Image',
@@ -39,6 +40,15 @@
         'price' => 'Price',
         'images' => 'Images',
         'chose_file' => 'Chose file images',
+        // Login 
+        'sign_in' => 'Sign In',
+        'start_session' => 'Sign in to start your session',
+        'not_role' => 'Not allow, plase login with role admin',
+        'not_login' => 'Not allow, plase login',
+        'login' => 'Log in',
+        // 
+        'profile' => 'Profile',
+        'sign_out' => 'Sign out',
         // Product category
         'management_product_category' => 'Management product category',
         'list_product_category' => 'List product category',
@@ -119,4 +129,6 @@
         'show_contact' => 'Show contact',
         'edit_contact' => 'Edit contact',
         'contact' => 'Contact',
+        // System
+        'management_system' => 'Management system',
     ];

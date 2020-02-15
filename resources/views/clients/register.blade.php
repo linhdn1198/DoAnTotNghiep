@@ -15,7 +15,7 @@
             <div class="col-lg-12">
                 <div class="breadcrumb_iner">
                     <div class="breadcrumb_iner_item">
-                        <p>{{ __('home.home') }} / {{ __('home.title_update_profille') }}</p>
+                        <p>{{ __('home.home') }} / {{ __('home.register') }}</p>
                     </div>
                 </div>
             </div>
