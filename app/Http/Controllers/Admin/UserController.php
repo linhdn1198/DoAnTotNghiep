@@ -54,7 +54,7 @@ class UserController extends Controller
                     'email' => $request->email,
                     'password' => Hash::make($request->password),
                     'role' => $request->role,
-                    'image' => User::IMAGE_DEFAULT,
+                    'image' => $request->gender === 1 ? User::IMAGE_MALE : User::IMAGE_FEMALE,
                 ]
             );
             Session::flash('success', __('admin.add_success_message'));

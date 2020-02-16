@@ -18,7 +18,7 @@ class BannersTableSeeder extends Seeder
             [
                 'title' => 'Title',
                 'content' => 'Content',
-                'image' => 'banner.png',
+                'image' => 'public/uploads/banners/banner.png',
             ]
             );
     }

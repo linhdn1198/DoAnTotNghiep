@@ -23,3 +23,13 @@ function formatMonthYear($date)
 {
     return date_format(new DateTime($date), 'm-Y');
 }
+
+function firstImageWithUrlJson($url)
+{
+    return json_decode($url, true)[0]['name'];
+}
+
+function getAllImageWithUrlJson($url)
+{
+    return json_decode($url, true);
+}

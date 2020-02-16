@@ -30,7 +30,7 @@ class UpdateProfileRequest extends FormRequest
             'dateOfBirth' => ['bail', 'required', 'date'],
             'gender' => ['required'],
             'address' => ['bail', 'required', 'string', 'max:255'],
-            'phone' => ['bail', 'required', 'string', 'min:10', 'max:13'],
+            'phone' => ['bail', 'required', 'string', 'min:10', 'max:20'],
             'email' => ['bail', 'required', 'string', 'email', 'max:255', Rule::unique('users')->ignore(Auth::id())],
         ];
     }

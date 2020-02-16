@@ -9,7 +9,9 @@ use Illuminate\Notifications\Notifiable;
 class User extends Authenticatable
 {
     use Notifiable;
-    const IMAGE_DEFAULT = 'user.png';
+    const IMAGE_MALE = '/storage\/uploads\/users\/male.png';
+    const IMAGE_FEMALE = '/storage\/uploads\/users\/female.jpg';
+    const ROLE_MEMBER = 0;
     /**
      * The attributes that are mass assignable.
      *

@@ -2,6 +2,8 @@
 
 return [
     'title' => config('app.name'),
+    'shop_now' => 'Mua ngay',
+    'smart_watch' => 'Đồng hồ thông minh',
     'home' => 'Trang chủ',
     'blog' => 'Bài viết',
     'simple_blog' => 'Chi tiết bài viết',

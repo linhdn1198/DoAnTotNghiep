@@ -79,7 +79,7 @@
                                 @enderror
                             </div>
                             <div class="col-md-12 form-group p_star">
-                                <input type="number" class="form-control @error('phone') is-invalid @enderror" name="phone"
+                                <input type="text" class="form-control @error('phone') is-invalid @enderror" name="phone"
                                 value="{{ $user->phone }}" required autocomplete="phone" autofocus
                                 placeholder="{{ __('home.phone') }}">
                                 @error('phone')

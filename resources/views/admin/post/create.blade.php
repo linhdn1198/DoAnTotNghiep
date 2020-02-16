@@ -150,7 +150,7 @@
             reader.onload = function(event) {
                 $($.parseHTML('<img>'))
                     .attr('src', event.target.result)
-                    .attr('style', 'with:150px; height:100px')
+                    .attr('style', 'with:600px; height: 450px')
                     .attr('class', "rounded")
                     .appendTo('#list-image');
             }
