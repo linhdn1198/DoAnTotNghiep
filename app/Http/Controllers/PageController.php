@@ -24,6 +24,8 @@ use App\Notifications\InvoicePaid;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
+use App\Http\Requests\Page\AddToCartRequest;
+use App\Http\Requests\Page\UpdateCartRequest;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use App\Http\Requests\User\UpdateProfileRequest;
 use App\Http\Requests\User\ChangePasswordRequest;
@@ -61,8 +63,8 @@ class PageController extends Controller
             'phone' => $data['phone'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            'role' => 0,
-            'image' => 'user.png',
+            'role' => User::ROLE_MEMBER,
+            'image' => $data['gender'] === 1 ? User::IMAGE_MALE : User::IMAGE_FEMALE,
         ]);
     }
 
@@ -136,7 +138,7 @@ class PageController extends Controller
         return view('clients.shopping_cart');
     }
 
-    public function addToCart(Request $request)
+    public function addToCart(AddToCartRequest $request)
     {
         $product = Product::where('quantity', '>=', $request->quantity)
             ->where('id', $request->product_id)
@@ -149,6 +151,7 @@ class PageController extends Controller
                 'quantity' => $request->quantity,
                 'attributes' => [
                     'product_id' => $product->id,
+                    'image' => firstImageWithUrlJson($product->image),
                 ]
             ]);
             Session::flash('success', __('home.add_to_cart_success'));
@@ -174,6 +177,7 @@ class PageController extends Controller
                 'quantity' => Product::QUANTITY_DEFAULT,
                 'attributes' => [
                     'product_id' => $product->id,
+                    'image' => firstImageWithUrlJson($product->image),
                 ]
             ]);
             Session::flash('success', __('home.add_to_cart_success'));
@@ -186,7 +190,7 @@ class PageController extends Controller
         }
     }
 
-    public function updateCart(Request $request)
+    public function updateCart(UpdateCartRequest $request)
     {
         $ids = $request->ids;
         $quantities = $request->quantities;

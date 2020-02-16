@@ -174,5 +174,6 @@ return [
         'available'             => 'có sẵn',
         'size'                  => 'kích thước',
         'old_password'          => 'mật khẩu cũ',
+        'quantities.*'          => 'số lượng',
     ],
 ];

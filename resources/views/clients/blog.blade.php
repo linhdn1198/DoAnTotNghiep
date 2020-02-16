@@ -29,7 +29,7 @@
                             @foreach ($posts as $post)
                                 <article class="blog_item">
                                     <div class="blog_item_img">
-                                        <img class="card-img rounded-0" src="/client/img/blog/single_blog_1.png" alt="{{ $post->title }}">
+                                        <img class="card-img rounded-0" src="{{ Storage::url($post->image) }}" alt="{{ $post->title }}" style="with: 750px; height: 375px">
                                         <a href="{{ route('simple_blog', $post->slug) }}" class="blog_item_date">
                                             <h3>{{ formatDay($post->created_at) }}</h3>
                                             <p>{{ formatMonthYear($post->created_at) }}</p>
@@ -92,7 +92,7 @@
                                 <h3 class="widget_title">{{ __('home.recent_post') }}</h3>
                                 @foreach ($postRecentes as $postRecent)
                                     <div class="media post_item">
-                                        <img src="/client/img/post/post_1.png" alt="post">
+                                        <img src="{{ Storage::url($postRecent->image) }}" alt="post" style="with: 80px; height: 80px">
                                         <div class="media-body">
                                             <a href="{{ route('simple_blog', $postRecent->slug) }}">
                                                 <h3>{{ $postRecent->title }}</h3>
@@ -107,7 +107,7 @@
                                 <ul class="list">
                                     @foreach ($tags as $tag)
                                         <li>
-                                            <a href="{{ route('tag', $tag->name) }}">{{ $tag->name }}</a>
+                                            <a href="#">{{ $tag->name }}</a>
                                         </li>
                                     @endforeach
                                 </ul>

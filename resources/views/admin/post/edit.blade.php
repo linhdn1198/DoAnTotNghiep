@@ -125,7 +125,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group" id="list-image">
-                                    <img src="{{ Storage::url($post->image) }}" class="rounded" style="with:150px; height: 100px">
+                                    <img src="{{ Storage::url($post->image) }}" class="rounded" style="with:600px; height: 450px">
                                 </div>
                             </div>
                             <!-- /.card-body -->
@@ -160,7 +160,7 @@
             reader.onload = function(event) {
                 $($.parseHTML('<img>'))
                     .attr('src', event.target.result)
-                    .attr('style', 'with:150px; height:100px')
+                    .attr('style', 'with:600px; height: 450px')
                     .attr('class', "rounded")
                     .appendTo('#list-image');
             }

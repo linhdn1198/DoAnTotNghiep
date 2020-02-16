@@ -148,6 +148,7 @@ return [
 
     'attributes' => [
         'old_password' => 'old password',
+        'quantities.*' => 'quantity'
     ],
 
 ];

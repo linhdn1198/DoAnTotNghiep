@@ -2,6 +2,8 @@
 
 return [
     'title' => config('app.name'),
+    'shop_now' => 'Shop now',
+    'smart_watch' => 'Smart watch',
     'home' => 'Home',
     'blog' => 'Blog',
     'simple_blog' => 'Blog Details',

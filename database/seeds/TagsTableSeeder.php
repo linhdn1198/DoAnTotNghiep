@@ -40,7 +40,7 @@ class TagsTableSeeder extends Seeder
                     'id' => $tag['id'],
                 ],
                 [
-                    'name' => $tag['id'],
+                    'name' => $tag['name'],
                 ]
                 );
         }

@@ -38,11 +38,6 @@ class ProductCategoriesTableSeeder extends Seeder
                 'name' => 'Huawei Fit',
                 'slug' => 'huawei-fit',
             ],
-            [
-                'id' => 6,
-                'name' => 'LG G Watch',
-                'slug' => 'lg-g-watch',
-            ],
         ];
 
         foreach ($productCategories as $productCategorie) {

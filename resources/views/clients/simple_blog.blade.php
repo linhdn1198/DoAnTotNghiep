@@ -26,7 +26,7 @@
         <div class="col-lg-8 posts-list">
             <div class="single-post">
                 <div class="feature-img">
-                    <img class="img-fluid" src="/client/img/blog/single_blog_1.png" alt="">
+                    <img class="img-fluid" src="{{ Storage::url($post->image) }}" alt="">
                 </div>
                 <div class="blog_details">
                     <h2>{{ $post->title }}</h2>
@@ -34,7 +34,7 @@
                     <li><a href="#"><i class="far fa-user"></i>
                         {{ $post->user->name }}
                     </a></li>
-                    <li><a href="#"><i class="far fa-comments"></i> {{ count($post->comments) }} {{ __('home.comments') }}</a></li>
+                    <li><a href="#comment"><i class="far fa-comments"></i> {{ count($post->comments) }} {{ __('home.comments') }}</a></li>
                     </ul>
                     <p class="excert">
                         {{ $post->content }}
@@ -43,7 +43,7 @@
             </div>
             <div class="blog-author">
                 <div class="media align-items-center">
-                    <img src="/client/img/blog/author.png" alt="">
+                    <img src="{{ $post->user->image }}" alt="{{ $post->user->name }}">
                     <div class="media-body">
                     <a href="#">
                         <h4>{{ $post->user->name }}</h4>
@@ -61,7 +61,7 @@
                     <div class="single-comment justify-content-between d-flex">
                         <div class="user justify-content-between d-flex">
                             <div class="thumb">
-                                <img src="/client/img/comment/comment_1.png" alt="">
+                                <img :src="comment.user.image" :alt="comment.user.name ">
                             </div>
                             <div class="desc">
                                 <p class="comment">
@@ -140,7 +140,7 @@
                     <h3 class="widget_title">{{ __('home.recent_post') }}</h3>
                     @foreach ($postRecentes as $postRecent)
                         <div class="media post_item">
-                            <img src="/client/img/post/post_1.png" alt="post">
+                            <img src="{{ Storage::url($postRecent->image) }}" alt="post" style="with: 80px; height: 80px">
                             <div class="media-body">
                                 <a href="{{ route('simple_blog', $postRecent->slug) }}">
                                     <h3>{{ $postRecent->title }}</h3>
@@ -155,7 +155,7 @@
                     <ul class="list">
                         @foreach ($tags as $tag)
                             <li>
-                                <a href="{{ route('tag', $tag->name) }}">{{ $tag->name }}</a>
+                                <a href="#">{{ $tag->name }}</a>
                             </li>
                         @endforeach
                     </ul>

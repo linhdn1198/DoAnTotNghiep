@@ -6,7 +6,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <link rel="icon" href="/client/img/favicon.png">
 
-    <title>AdminLTE 3 | Starter</title>
+    <title>{{ __('admin.admin') }} | {{ __('admin.login') }}</title>
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="/plugins/fontawesome-free/css/all.min.css">

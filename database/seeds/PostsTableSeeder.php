@@ -21,7 +21,7 @@ class PostsTableSeeder extends Seeder
                 'title' => 'Hướng dẫn chuyển giao diện sang tiếng Anh cho Xiaomi Huami Amazfit Nexo Verge 2',
                 'slug' => Str::slug('Hướng dẫn chuyển giao diện sang tiếng Anh cho Xiaomi Huami Amazfit Nexo Verge 2'),
                 'content' => 'Do mới chỉ được phân phối tại thị trường nội địa Trung Quốc, Amazfit Nexo Verge 2 mặc định sử dụng ngôn ngữ Trung Quốc để hiển thị ngay khi kết nối . Tuy nhiên, chiếc smartwatch nền Android 8.1 nên có hỗ trợ ngôn ngữ tiếng Anh ẩn . Bạn đọc có thể theo dõi hướng dẫn dưới đây để có thể chuyển sang sử dụng giao diện tiếng Anh bằng cách vào Cài đặt ẩn Android trên máy .',
-                'image' => 'default.png',
+                'image' => 'public/uploads/posts/change-language-amazfit-nexo-1.jpg',
             ],
             [
                 'id' => 2,
@@ -31,7 +31,7 @@ class PostsTableSeeder extends Seeder
                 'slug' => Str::slug('Hướng dẫn fix lỗi font tiếng việt cho Huami Amazfit GTR Phiên bản Quốc Tế'),
                 'content' => 'Hiện tại do còn mới nên Huami chưa thêm ngôn ngữ tiếng việt , thư viện font tiếng việt cho Đồng hồ thông minh Huami Amazfit GTR phiên bản quốc tế. Đây là cách để hiển thị đầy đủ thông báo tiếng việt có dấu 1 cách dễ dàng cho anh em.
                 Đối với phiên bản nội địa chỉ có ngôn ngữ Trung Quốc , và lỗi thông báo tiếng việt có dấu vẫn chưa có cách fix được. Nên anh em mua thì chú ý tránh mua nhầm bản nội địa thị trường trung quốc..',
-                'image' => 'default.png',
+                'image' => 'public/uploads/posts/huongdan1.jpg',
             ],
         ];
 
