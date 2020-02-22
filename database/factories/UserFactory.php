@@ -25,7 +25,7 @@ $factory->define(User::class, function (Faker $faker) {
         'address' => $faker->address,
         'phone' => $faker->tollFreePhoneNumber,
         'email' => $faker->unique()->safeEmail,
-        'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+        'password' => Hash::make('password'), // password
         'role' => rand(0, 1),
         'image' => $gender === 1 ? User::IMAGE_MALE : User::IMAGE_FEMALE,
     ];

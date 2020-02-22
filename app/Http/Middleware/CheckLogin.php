@@ -20,8 +20,7 @@ class CheckLogin
         if (Auth::check()) {
             return $next($request);
         }
-        Session::flash('error', __('admin.not_login'));
 
-        return response()->view('login');
+        return response()->json(['message' => __('admin.not_login')], 405);
     }
 }

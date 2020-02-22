@@ -66,11 +66,6 @@
                                 <input class="input-number" name="quantity" type="text" value="1" min="1" max="99">
                                 <span class="number-increment"><i class="ti-plus"></i></span>
                             </div>
-                            {{-- @error('quantity')
-                                <span class="text-danger" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror --}}
                             <div class="add_to_cart">
                                 <button type="submit" class="btn_3">{{ __('home.add_to_cart') }}</button>
                             </div>

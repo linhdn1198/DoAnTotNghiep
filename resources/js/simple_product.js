@@ -45,6 +45,7 @@ new Vue({
                 .catch(error => {
                     if (error.response.status === 405) {
                         window.location.href = '/login';
+                        toastr.error(error.response.data.message);
                     } else {
                         toastr.error(error.response.data.message);
                     }

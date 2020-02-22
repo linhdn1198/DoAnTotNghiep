@@ -51,8 +51,8 @@
                                 <td>
                                     <div class="media">
                                         <div class="d-flex">
-                                            {{-- <img src="{{ Storage::url($item->attributes['image']) }}"
-                                                alt="{{ $item->name }}" /> --}}
+                                            <img src="{{ Storage::url($item->attributes['image']) }}"
+                                                alt="{{ $item->name }}" />
                                         </div>
                                         <div class="media-body">
                                             <p>{{ $item->name }}</p>
@@ -70,11 +70,6 @@
                                             value="{{ $item->quantity }}" min="1" max="99">
                                         <span class="input-number-increment"> <i class="ti-plus"></i></span>
                                     </div>
-                                    @error('quantities.*')
-                                        <span class="text-danger" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
                                 </td>
                                 <td>
                                     <h5>{{ formatCurrency($item->price * $item->quantity) }} {{ __('home.vnd') }}</h5>
