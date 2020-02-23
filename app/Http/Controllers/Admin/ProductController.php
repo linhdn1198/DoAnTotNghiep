@@ -62,6 +62,7 @@ class ProductController extends Controller
                 'slug' => Str::slug($request->name),
                 'description' => $request->description,
                 'quantity' => $request->quantity,
+                'input_price' => $request->input_price,
                 'price' => $request->price,
                 'image' => json_encode($images),
             ]);
@@ -138,6 +139,7 @@ class ProductController extends Controller
                     'slug' => Str::slug($request->name),
                     'description' => $request->description,
                     'quantity' => $request->quantity,
+                    'input_price' => $request->input_price,
                     'price' => $request->price,
                     'image' => json_encode($images),
                 ]

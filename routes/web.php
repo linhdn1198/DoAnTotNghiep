@@ -51,9 +51,8 @@ Route::group([
         'middleware' => 'checkadminlogin',
     ], function () {
 
-    Route::get('/dashboard', function () {
-        return view('admin.dashboard.dashboard');
-    });
+    Route::resource('dashboard', 'DashboardController')->only('index');
+    Route::get('statistic-revenue', 'DashboardController@statisticRevenueAjax')->name('revenue');
     Route::resource('products', 'ProductController');
     Route::resource('product-category', 'ProductCategoryController')->except('show');
     Route::resource('orders', 'OrderController')->except('create', 'store', 'edit');
