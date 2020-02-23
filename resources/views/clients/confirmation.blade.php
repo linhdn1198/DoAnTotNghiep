@@ -40,7 +40,7 @@
                   <p>{{ __('home.date') }}</p><span>: {{ $orderDetails->created_at }}</span>
                 </li>
                 <li>
-                  <p>{{ __('home.total') }}</p><span>: {{ $orderDetails->total }}</span>
+                  <p>{{ __('home.total') }}</p><span>: {{ formatCurrency($orderDetails->total) }}</span>
                 </li>
               </ul>
             </div>
@@ -79,9 +79,9 @@
                   @foreach ($orderDetails->orderDetails as $orderDetail)
                     <tr>
                       <th colspan="2"><span>{{ $orderDetail->product->name }}</span></th>
-                      <th>x{{ $orderDetail->qty }}</th>
-                      <th>{{ $orderDetail->price }}</th>
-                      <th><span>{{ $orderDetail->price * $orderDetail->qty }}</span></th>
+                      <th>x{{ $orderDetail->quantity }}</th>
+                      <th>{{ formatCurrency($orderDetail->price) }}</th>
+                      <th><span>{{ formatCurrency($orderDetail->price * $orderDetail->quantity) }}</span></th>
                     </tr>
                   @endforeach
                 </tbody>

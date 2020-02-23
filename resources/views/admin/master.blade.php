@@ -25,6 +25,10 @@
     <!-- Select2 -->
     <link rel="stylesheet" href="/plugins/select2/css/select2.min.css">
     <link rel="stylesheet" href="/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+    <!-- iCheck for checkboxes and radio inputs -->
+    <link rel="stylesheet" href="/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <!-- daterange picker -->
+    <link rel="stylesheet" href="/plugins/daterangepicker/daterangepicker.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="/dist/css/adminlte.min.css">
     <!-- Google Font: Source Sans Pro -->
@@ -65,12 +69,14 @@
     <!-- InputMask -->
     <script src="/plugins/moment/moment.min.js"></script>
     <script src="/plugins/inputmask/min/jquery.inputmask.bundle.min.js"></script>
-    <!-- iCheck for checkboxes and radio inputs -->
-    <link rel="stylesheet" href="/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <!-- date-range-picker -->
+    <script src="/plugins/daterangepicker/daterangepicker.js"></script>
     <!-- ChartJS -->
     <script src="/plugins/chart.js/Chart.min.js"></script>
     <!-- AdminLTE App -->
     <script src="/dist/js/adminlte.min.js"></script>
+    <!-- App -->
+    <script src="{{ mix('js/app.js') }}"></script>
     <script>
         @if(Session::has('warning'))
             toastr.warning("{{ Session::get('warning') }}")

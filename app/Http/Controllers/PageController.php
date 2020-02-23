@@ -24,6 +24,7 @@ use App\Notifications\InvoicePaid;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
+use App\Http\Requests\Page\CheckOutRequest;
 use App\Http\Requests\Page\AddToCartRequest;
 use App\Http\Requests\Page\UpdateCartRequest;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -214,13 +215,34 @@ class PageController extends Controller
         return redirect()->route('shopping_cart');
     }
 
-    public function checkout()
+    public function checkout(CheckOutRequest $request)
     {
         if (!Cart::isEmpty()) {
             try {
                 DB::beginTransaction();
+                $user = null;
+                if (Auth::check()) {
+                    $user = Auth::user();
+                } else {
+                    $user = User::updateOrCreate(
+                        [
+                            'email' => $request->email,
+                        ],
+                        [
+                            'name' => $request->name,
+                            'dateOfBirth' => date_create('1990-01-01'),
+                            'gender' => 1,
+                            'password' => Hash::make($request->phone),
+                            'email' => $request->email,
+                            'phone' => $request->phone,
+                            'address' => $request->address,
+                            'role' => User::ROLE_MEMBER,
+                            'image' => User::IMAGE_MALE,
+                        ]
+                    );
+                }
                 $order = Order::create([
-                    'user_id' => Auth::id(),
+                    'user_id' => $user->id,
                     'total' => Cart::getTotal(),
                     'status' => 0,
                 ]);
@@ -228,13 +250,13 @@ class PageController extends Controller
                     OrderDetail::create([
                         'order_id' => $order->id,
                         'product_id' => $item->attributes->product_id,
-                        'qty' => $item->quantity,
+                        'quantity' => $item->quantity,
                         'price' => $item->price,
                     ]);
                 }
+                $user->notify(new InvoicePaid($order));
                 DB::commit();
                 Cart::clear();
-                Auth::user()->notify(new InvoicePaid($order));
                 Session::flash('success', __('home.checkout_success'));
 
                 return redirect()->back();
@@ -436,5 +458,20 @@ class PageController extends Controller
         $request->session()->invalidate();
 
         return $this->loggedOut($request) ?: redirect('/');
+    }
+
+    public function handleUpdateOrder($orderId)
+    {
+        $products = OrderDetail::where('order_id', $orderId)->get()->pluck('product_id', 'quantity');
+        foreach ($product as $product) {
+            Product::update(
+                [
+                    'id' => $product->id
+                ],
+                [
+                    'quantity' => $product->quantity,
+                ],
+            );
+        }
     }
 }

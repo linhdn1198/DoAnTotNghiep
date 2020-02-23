@@ -51,9 +51,9 @@
                   @foreach ($orderDetails->orderDetails as $orderDetail)
                     <tr>
                       <th colspan="2"><span>{{ $orderDetail->product->name }}</span></th>
-                      <th>x{{ $orderDetail->qty }}</th>
+                      <th>x{{ $orderDetail->quantity }}</th>
                       <th>{{ formatCurrency($orderDetail->price) }} {{ __('home.vnd') }}</th>
-                      <th><span>{{ formatCurrency($orderDetail->price * $orderDetail->qty) }} {{ __('home.vnd') }}</span></th>
+                      <th><span>{{ formatCurrency($orderDetail->price * $orderDetail->quantity) }} {{ __('home.vnd') }}</span></th>
                     </tr>
                   @endforeach
                 </tbody>

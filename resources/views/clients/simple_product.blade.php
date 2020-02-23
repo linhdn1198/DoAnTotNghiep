@@ -111,11 +111,11 @@
                             <div class="review_item" v-for="(comment, index) in commentss">
                                 <div class="media">
                                     <div class="d-flex">
-                                        <img :src="comment.user.image"
-                                            :alt="comment.user.name" />
+                                        <img :src="comment.user !== null ? comment.user.image : '/storage\/uploads\/users\/incognito.png'"
+                                            :alt="comment.user !== null ? comment.user.name : 'Ẩn danh'" />
                                     </div>
                                     <div class="media-body">
-                                        <h4>@{{ comment.user.name }}</h4>
+                                        <h4>@{{ comment.user !== null ? comment.user.name : 'Ẩn danh' }}</h4>
                                         <h5>@{{ comment.created_at }}</h5>
                                     </div>
                                 </div>
