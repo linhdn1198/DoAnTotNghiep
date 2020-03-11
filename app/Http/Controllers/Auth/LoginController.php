@@ -28,6 +28,13 @@ class LoginController extends Controller
      */
     protected $redirectTo = '/admin/dashboard';
 
+    protected function validateLogin(Request $request)
+    {
+        $request->validate([
+            $this->username() => 'required|string|email',
+            'password' => 'required|string',
+        ]);
+    }
     /**
      * Show the application's login form.
      *

@@ -87,5 +87,7 @@ class OrdersTableSeeder extends Seeder
                 ]
                 );
         }
+
+        factory(App\Models\Order::class, 200)->create();
     }
 }

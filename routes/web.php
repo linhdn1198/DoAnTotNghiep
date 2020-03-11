@@ -11,20 +11,21 @@ Route::group(['middleware' => 'locale'], function() {
     Route::get('/shopping-cart', 'PageController@shoppingCart')->name('shopping_cart');
     Route::post('/update-cart', 'PageController@updateCart')->name('update_cart');
     Route::get('/remove-item-cart/{id}', 'PageController@removeItemCart')->name('remove_item_cart');
-    Route::get('/checkout', 'PageController@checkout')->name('checkout')->middleware('checklogin');
+
 
     Route::group(['middleware' => ['checklogin']], function () {
-        Route::get('/confirmation/{id}', 'PageController@confirmation')->name('confirmation');
         Route::get('/purchase-history', 'PageController@purchaseHistory')->name('purchase_history');
         Route::get('/purchase-history-detail/{id}', 'PageController@purchaseHistoryDetail')->name('purchase_history_detail');
         Route::get('/change-password', 'PageController@showFormChangePassword')->name('form_change_password');
         Route::post('/change-password', 'PageController@updatePassword')->name('update_password');
         Route::get('/change-profile', 'PageController@showFormChangeProfile')->name('form_change_profile');
         Route::post('/change-profile', 'PageController@updateProfile')->name('update_profile');
-        Route::post('/comment-product', 'PageController@storeCommentProduct')->name('store_comment_product');
-        Route::post('/comment-blog', 'PageController@storeCommentBlog')->name('store_comment_blog');
         Route::post('/logout', 'PageController@logout')->name('logout');
     });
+    Route::post('/comment-product', 'PageController@storeCommentProduct')->name('store_comment_product');
+    Route::post('/comment-blog', 'PageController@storeCommentBlog')->name('store_comment_blog');
+    Route::get('/confirmation/{id}', 'PageController@confirmation')->name('confirmation');
+    Route::post('/checkout', 'PageController@checkout')->name('checkout');
 
     Route::get('/blog', 'PageController@post')->name('post');
     Route::get('/blog-search', 'PageController@postSearch')->name('post_search');
@@ -51,9 +52,10 @@ Route::group([
         'middleware' => 'checkadminlogin',
     ], function () {
 
-    Route::get('/dashboard', function () {
-        return view('admin.dashboard.dashboard');
-    });
+    Route::resource('dashboard', 'DashboardController')->only('index');
+    Route::get('statistic-revenue', 'DashboardController@statisticRevenueAjax')->name('revenue');
+    Route::get('statistic-order', 'DashboardController@statisticOrderAjax')->name('revenue-order');
+    Route::get('statistic-user', 'DashboardController@statisticUserAjax')->name('revenue-user');
     Route::resource('products', 'ProductController');
     Route::resource('product-category', 'ProductCategoryController')->except('show');
     Route::resource('orders', 'OrderController')->except('create', 'store', 'edit');

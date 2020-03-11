@@ -81,15 +81,72 @@
                             </tr>
                             @endforeach
                             <tr class="bottom_button">
-                                <td>
+                                <td colspan="5">
                                     <button class="btn_1" type="submit">{{ __('home.update_cart') }}</button>
                                 </td>
-                                <td colspan="4">
+                            </tr>
+                        </form>
+                        <form action="{{ route('checkout') }}" method="POST">
+                            @csrf
+                            @if (!Auth::check())
+                                <tr>
+                                    <td colspan="5">
+                                        <h3>{{ __('home.customer_info') }} {{ Auth::user() }}</h3>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        <div class="col-md-12 form-group">
+                                            <input type="text" class="form-control @error('name') is-invalid @enderror"
+                                            name="name" placeholder="{{ __('home.name') }}">
+                                            @error('name')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="col-md-12 form-group">
+                                            <input type="text" class="form-control @error('email') is-invalid @enderror" 
+                                            name="email" placeholder="{{ __('home.email') }}">
+                                            @error('email')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="col-md-12 form-group">
+                                            <input type="text" class="form-control @error('phone') is-invalid @enderror"
+                                            name="phone" placeholder="{{ __('home.phone') }}">
+                                            @error('phone')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="col-md-12 form-group">
+                                            <input type="text" class="form-control @error('address') is-invalid @enderror"
+                                            name="address" placeholder="{{ __('home.address') }}">
+                                            @error('address')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                    </td>
+                                </tr>                
+                            @endif
+                            <tr class="bottom_button">
+                                <td colspan="5">
                                     <div class="checkout_btn_inner float-right">
                                         <a class="btn_1"
                                             href="{{ route('home') }}">{{ __('home.continue_shopping') }}</a>
-                                        <a class="btn_1 checkout_btn_1"
-                                            href="{{ route('checkout') }}">{{ __('home.proceed_to_checkout') }}</a>
+                                        <button class="btn_1 checkout_btn_1" type="submit">{{ __('home.proceed_to_checkout') }}</a>
                                     </div>
                                 </td>
                             </tr>

@@ -28,5 +28,6 @@ $factory->define(User::class, function (Faker $faker) {
         'password' => Hash::make('password'), // password
         'role' => rand(0, 1),
         'image' => $gender === 1 ? User::IMAGE_MALE : User::IMAGE_FEMALE,
+        'created_at' => $faker->dateTimeBetween($startDate = '-1 years', $endDate = 'now'),
     ];
 });

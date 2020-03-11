@@ -61,7 +61,8 @@
                     <div class="single-comment justify-content-between d-flex">
                         <div class="user justify-content-between d-flex">
                             <div class="thumb">
-                                <img :src="comment.user.image" :alt="comment.user.name ">
+                                <img :src="comment.user !== null ? comment.user.image : '/storage\/uploads\/users\/incognito.png'" 
+                                :alt="comment.user !== null ? comment.user.name : 'Ẩn danh' ">
                             </div>
                             <div class="desc">
                                 <p class="comment">
@@ -70,7 +71,7 @@
                                 <div class="d-flex justify-content-between">
                                     <div class="d-flex align-items-center">
                                     <h5>
-                                        <a href="#">@{{ comment.user.name }}</a>
+                                        <a href="#">@{{ comment.user !== null ?comment.user.name : 'Ẩn danh' }}</a>
                                     </h5>
                                     <p class="date">@{{ comment.created_at }}</p>
                                     </div>

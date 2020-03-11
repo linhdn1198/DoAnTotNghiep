@@ -79,6 +79,7 @@ return [
     'thank_you' => 'Thank you. Your order has been received.',
     'thank_you_purchase' => 'Thank you for making a purchase at our store',
     'order_info' => 'Order info',
+    'customer_info' => 'Customer info',
     'order_number' => 'Order Number',
     'date' => 'Date',
     'total' => 'Total',
@@ -105,4 +106,5 @@ return [
     'title_update_profille' => 'Update personal information',
     'profile' => 'Profile',
     'change_profile' => 'Update',
+    'checkout_error' => 'Checkout error',
 ];
