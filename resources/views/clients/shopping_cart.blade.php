@@ -46,6 +46,9 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @php
+                                $totalCart = 0;
+                            @endphp
                             @foreach (Cart::getContent() as $index => $item)
                             <tr>
                                 <td>
@@ -79,10 +82,16 @@
                                         class="genric-btn danger">{{ __('home.remove') }}</a>
                                 </td>
                             </tr>
+                            @php
+                                $totalCart += $item->price * $item->quantity;
+                            @endphp
                             @endforeach
                             <tr class="bottom_button">
-                                <td colspan="5">
+                                <td colspan="3">
                                     <button class="btn_1" type="submit">{{ __('home.update_cart') }}</button>
+                                </td>
+                                <td colspan="2">
+                                    <h4>{{ __('home.total_cart') }}: {{ formatCurrency($totalCart) }} {{ __('home.vnd') }}</h4>
                                 </td>
                             </tr>
                         </form>
@@ -91,7 +100,7 @@
                             @if (!Auth::check())
                                 <tr>
                                     <td colspan="5">
-                                        <h3>{{ __('home.customer_info') }} {{ Auth::user() }}</h3>
+                                        <h3>{{ __('home.customer_info') }}</h3>
                                     </td>
                                 </tr>
                                 <tr>
@@ -139,7 +148,13 @@
                                             @enderror
                                         </div>
                                     </td>
-                                </tr>                
+                                </tr>
+                            @else
+                                <tr class="bottom_button">
+                                    <td colspan="5">
+                                        <input type="hidden" name="isLogin" value="isLogin">
+                                    </td>
+                                </tr>    
                             @endif
                             <tr class="bottom_button">
                                 <td colspan="5">

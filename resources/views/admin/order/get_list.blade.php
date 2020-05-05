@@ -11,11 +11,11 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">{{ __('admin.management_comment_post') }}</h1>
+                    <h1 class="m-0 text-dark">{{ __('admin.management_order') }}</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item active">{{ __('admin.management_comment_post') }}</li>
+                        <li class="breadcrumb-item active">{{ __('Top purchase') }}</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -30,7 +30,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">{{ __('admin.list_comment_post') }}</h3>
+                            <h3 class="card-title">{{ __('List of the most purchased') }}</h3>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
@@ -41,43 +41,38 @@
                             </div>
                             <div class="row">
                                 <div class="col-sm-12">
-                                    <table id="table-comment" class="table table-bordered table-hover table-striped">
+                                    <table id="table-order" class="table table-bordered table-hover table-striped">
                                         <thead>
                                             <tr role="row">
                                                 <th>{{ __('admin.stt') }}</th>
                                                 <th>{{ __('admin.username') }}</th>
-                                                <th>{{ __('admin.post') }}</th>
-                                                <th>{{ __('admin.content') }}</th>
-                                                <th>{{ __('admin.created_at') }}</th>
-                                                <th>{{ __('admin.action') }}</th>
+                                                <th>{{ __('admin.phone') }}</th>
+                                                <th>{{ __('admin.address') }}</th>
+                                                <th>{{ __('admin.total') }}</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($comments as $index => $comment)
+                                            @foreach ($orders as $index => $order)
                                                 <tr>
                                                     <td>{{ $index + 1 }}</td>
-                                                    <td>{{ $comment->user ? $comment->user->name : 'Ẩn danh'}}</td>
-                                                    <td>{{ $comment->post->title }}</td>
-                                                    <td>{{ $comment->content }}</td>
-                                                    <td>{{ $comment->created_at }}</td>
                                                     <td>
-                                                        <form class="d-inline" action="{{ route('comment-post.destroy', $comment->id) }}" method="post">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <button class="btn btn-sm btn-outline-danger"><i class="fas fa-trash"></i></button>
-                                                        </form>
+                                                        <a href="{{ route('users.edit', $order->id) }}">
+                                                            {{ $order->name }}
+                                                        </a>
                                                     </td>
+                                                    <td>{{ $order->phone }}</td>
+                                                    <td>{{ $order->address }}</td>
+                                                    <td>{{ formatCurrency($order->total) }} {{ __('home.vnd') }}</td>
                                                 </tr>
                                             @endforeach
                                         </tbody>
                                         <tfoot>
                                             <tr role="row">
-                                                <th>{{ __('admin.stt') }}</th>
+                                                <th>{{ __('admin.name') }}</th>
                                                 <th>{{ __('admin.username') }}</th>
-                                                <th>{{ __('admin.post') }}</th>
-                                                <th>{{ __('admin.content') }}</th>
-                                                <th>{{ __('admin.created_at') }}</th>
-                                                <th>{{ __('admin.action') }}</th>
+                                                <th>{{ __('admin.phone') }}</th>
+                                                <th>{{ __('admin.address') }}</th>
+                                                <th>{{ __('admin.total') }}</th>
                                             </tr>
                                         </tfoot>
                                     </table>
@@ -85,6 +80,9 @@
                             </div>
                         </div>
                         <!-- /.card-body -->
+                        <div class="modal-footer justify-content-between">
+                            <a href="{{ route('orders.index') }}" class="btn btn-outline-warning"><i class="fas fa-long-arrow-alt-left"></i>&nbsp;&nbsp; {{ __('admin.back') }}</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -99,7 +97,7 @@
 @section('script')
 <script>
     $(document).ready(function () {
-        $('#table-comment').DataTable({
+        $('#table-order').DataTable({
             language: {
                 search: "Tìm kiếm",
                 lengthMenu: "Hiện _MENU_ bản ghi",

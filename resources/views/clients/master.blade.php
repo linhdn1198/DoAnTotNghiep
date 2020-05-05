@@ -66,6 +66,7 @@
     <script src="/client/js/mail-script.js"></script>
     <!-- custom js -->
     <script src="/client/js/custom.js"></script>
+    <script src="/js/print.js"></script>
     <script src="{{ mix('js/client.js') }}"></script>
     <script>
         @if(Session::has('warning'))

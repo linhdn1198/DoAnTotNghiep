@@ -83,6 +83,7 @@ return [
     'order_number' => 'Order Number',
     'date' => 'Date',
     'total' => 'Total',
+    'total_cart' => 'Total cart',
     'shipping_address' => 'Shipping Address',
     'name' => 'Name',
     'phone' => 'Phone',
@@ -107,4 +108,6 @@ return [
     'profile' => 'Profile',
     'change_profile' => 'Update',
     'checkout_error' => 'Checkout error',
+    'print' => 'Print invoice',
+    'invoice' => 'Invoice',
 ];

@@ -4,7 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use Session;
 use App\Models\Order;
+use App\Models\Product;
+use App\Models\OrderDetail;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 
 class OrderController extends Controller
@@ -49,6 +52,7 @@ class OrderController extends Controller
     {
         try {
             $order = Order::where('id', $id)->firstOrFail();
+            $this->handleUpdateOrder($order->id);
             $order->status = !boolval($order->status);
             $order->save();
 
@@ -59,6 +63,16 @@ class OrderController extends Controller
             Session::flash('error', __('admin.edit_fail_message'));
 
             return redirect()->route('orders.index');
+        }
+    }
+
+    public function handleUpdateOrder($orderId)
+    {
+        $products = OrderDetail::select('product_id', 'quantity')->where('order_id', $orderId)->get();
+        foreach ($products as $product) {
+            $productStore = Product::select('quantity')->where('id', $product->product_id)->firstOrFail();
+            Product::where('id', $product->product_id)
+                ->update(['quantity' => $productStore->quantity - $product->quantity]);
         }
     }
     /**
@@ -75,5 +89,17 @@ class OrderController extends Controller
         Session::flash('success', __('admin.delete_success_message'));
 
         return redirect()->route('orders.index');
+    }
+
+    public function getList()
+    {
+        $orders = DB::table('orders')
+            ->join('users', 'users.id', '=', 'orders.user_id')
+            ->select('users.id', 'users.name', 'users.phone', 'users.address', DB::raw('SUM(orders.total) as "total"'))
+            ->groupBy('users.id', 'users.name', 'users.phone', 'users.address')
+            ->orderBy('total', 'DESC')
+            ->get();
+
+        return view('admin.order.get_list', compact('orders'));
     }
 }

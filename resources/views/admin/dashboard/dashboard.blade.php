@@ -303,7 +303,7 @@
         .then((respone) => {
             lineChartUser.data.labels = respone.data.date;
             lineChartUser.data.datasets[0].data = respone.data.user;
-            lineChart.update();
+            lineChartUser.update();
         })
         .catch((error) => {
 

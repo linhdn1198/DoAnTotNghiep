@@ -6,7 +6,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <link rel="icon" href="/client/img/favicon.png">
 
-    <title>{{ __('admin.admin') }} | {{ __('admin.login') }}</title>
+    <title>{{ __('admin.admin') }}</title>
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="/plugins/fontawesome-free/css/all.min.css">
@@ -77,6 +77,7 @@
     <script src="/dist/js/adminlte.min.js"></script>
     <!-- App -->
     <script src="{{ mix('js/app.js') }}"></script>
+    <script src="/js/print.js"></script>
     <script>
         @if(Session::has('warning'))
             toastr.warning("{{ Session::get('warning') }}")

@@ -75,18 +75,18 @@ class OrdersTableSeeder extends Seeder
             ],
         ];
 
-        foreach ($orders as $order) {
-            Order::updateOrCreate(
-                [
-                    'id' => $order['id'],
-                ],
-                [
-                    'user_id' => $order['user_id'],
-                    'total' => $order['total'],
-                    'status' => $order['status'],
-                ]
-                );
-        }
+        // foreach ($orders as $order) {
+        //     Order::updateOrCreate(
+        //         [
+        //             'id' => $order['id'],
+        //         ],
+        //         [
+        //             'user_id' => $order['user_id'],
+        //             'total' => $order['total'],
+        //             'status' => $order['status'],
+        //         ]
+        //         );
+        // }
 
         factory(App\Models\Order::class, 200)->create();
     }

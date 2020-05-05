@@ -62,6 +62,7 @@
                   </td>
                   <td>
                     <a href="{{ route('purchase_history_detail', $order->id) }}" class="genric-btn info">{{ __('home.details') }}</a>
+                    <a href="{{ route('confirmation', $order->id) }}" class="genric-btn success">{{ __('home.invoice') }}</a>
                   </td>
                 </tr>
               @endforeach

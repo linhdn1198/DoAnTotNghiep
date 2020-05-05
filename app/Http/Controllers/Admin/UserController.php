@@ -101,7 +101,7 @@ class UserController extends Controller
                     'email' => $request->email,
                     'password' => isset($request->password) ? Hash::make($request->password) : $user->password,
                     'role' => $request->role,
-                    'image' => User::IMAGE_DEFAULT,
+                    'image' => $request->gender === 1 ? User::IMAGE_MALE : User::IMAGE_FEMALE,
                 ]
             );
             Session::flash('success', __('admin.edit_success_message'));
