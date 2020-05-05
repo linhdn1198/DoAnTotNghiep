@@ -36,7 +36,9 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-sm-12 col-md-6">
-
+                                    <a class="btn btn-outline-info my-3" href="{{ route('order_purchase') }}">
+                                        <i class="fas fa-cart"></i>&nbsp;&nbsp;{{ __('List of the most purchased') }}
+                                    </a>
                                 </div>
                             </div>
                             <div class="row">

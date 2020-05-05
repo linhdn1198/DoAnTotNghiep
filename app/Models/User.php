@@ -12,6 +12,8 @@ class User extends Authenticatable
     const IMAGE_MALE = '/storage\/uploads\/users\/male.png';
     const IMAGE_FEMALE = '/storage\/uploads\/users\/female.jpg';
     const ROLE_MEMBER = 0;
+    const ROLE_ADMIN = 1;
+    const ROLE_STORE_OWNER = 2;
     /**
      * The attributes that are mass assignable.
      *

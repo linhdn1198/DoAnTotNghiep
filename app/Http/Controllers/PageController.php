@@ -20,13 +20,16 @@ use App\Models\PostCategory;
 use App\Models\CommentProduct;
 use App\Models\ProductCategory;
 use Illuminate\Support\Facades\DB;
+use LaravelDaily\Invoices\Invoice;
 use App\Notifications\InvoicePaid;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Controller;
+use LaravelDaily\Invoices\Classes\Buyer;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Requests\Page\CheckOutRequest;
 use App\Http\Requests\Page\AddToCartRequest;
 use App\Http\Requests\Page\UpdateCartRequest;
+use LaravelDaily\Invoices\Classes\InvoiceItem;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use App\Http\Requests\User\UpdateProfileRequest;
 use App\Http\Requests\User\ChangePasswordRequest;
@@ -254,12 +257,14 @@ class PageController extends Controller
                         'price' => $item->price,
                     ]);
                 }
-                $user->notify(new InvoicePaid($order));
+                $invoice = Order::with('orderDetails', 'orderDetails.product')
+                            ->where('id', $order->id)->firstOrFail();
+                $user->notify(new InvoicePaid($invoice));
                 DB::commit();
                 Cart::clear();
                 Session::flash('success', __('home.checkout_success'));
 
-                return redirect()->back();
+                return redirect()->route('confirmation', $order->id);
             } catch (\Exception $ex) {
                 DB::rollback();
                 \Log::error($ex);
@@ -460,18 +465,60 @@ class PageController extends Controller
         return $this->loggedOut($request) ?: redirect('/');
     }
 
-    public function handleUpdateOrder($orderId)
+    public function printInvoid()
     {
-        $products = OrderDetail::where('order_id', $orderId)->get()->pluck('product_id', 'quantity');
-        foreach ($product as $product) {
-            Product::update(
-                [
-                    'id' => $product->id
-                ],
-                [
-                    'quantity' => $product->quantity,
-                ],
-            );
+        if (!Cart::isEmpty()) {
+            try {
+                DB::beginTransaction();
+                $user = null;
+                if (Auth::check()) {
+                    $user = Auth::user();
+                } else {
+                    $user = User::updateOrCreate(
+                        [
+                            'email' => $request->email,
+                        ],
+                        [
+                            'name' => $request->name,
+                            'dateOfBirth' => date_create('1990-01-01'),
+                            'gender' => 1,
+                            'password' => Hash::make($request->phone),
+                            'email' => $request->email,
+                            'phone' => $request->phone,
+                            'address' => $request->address,
+                            'role' => User::ROLE_MEMBER,
+                            'image' => User::IMAGE_MALE,
+                        ]
+                    );
+                }
+                $order = Order::create([
+                    'user_id' => $user->id,
+                    'total' => Cart::getTotal(),
+                    'status' => 0,
+                ]);
+                foreach (Cart::getContent() as $item) {
+                    OrderDetail::create([
+                        'order_id' => $order->id,
+                        'product_id' => $item->attributes->product_id,
+                        'quantity' => $item->quantity,
+                        'price' => $item->price,
+                    ]);
+                }
+                $invoice = Order::with('orderDetails', 'orderDetails.product')
+                            ->where('id', $order->id)->firstOrFail();
+                $user->notify(new InvoicePaid($invoice));
+                DB::commit();
+                Cart::clear();
+                Session::flash('success', __('home.checkout_success'));
+
+                return redirect()->back();
+            } catch (\Exception $ex) {
+                DB::rollback();
+                \Log::error($ex);
+                Session::flash('error', __('home.checkout_error'));
+
+                return redirect()->back();
+            }
         }
     }
 }

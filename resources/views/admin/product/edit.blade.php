@@ -108,7 +108,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="far fa-edit"></i></span>
                                         </div>
-                                        <input type="number" min="0" name="input_price" value="{{ old('input_price') }}"
+                                        <input type="number" min="0" name="input_price" value="{{ $product->input_price }}"
                                             class="form-control @error('input_price') is-invalid @enderror">
                                         @error('input_price')
                                             <span class="invalid-feedback" role="alert">

@@ -23,6 +23,7 @@
     <!--================ confirmation part start =================-->
     <section class="confirmation_part section_padding">
       <div class="container">
+        <div class="invoice">
         <div class="row">
           <div class="col-lg-12">
             <div class="confirmation_tittle">
@@ -96,9 +97,27 @@
           </div>
         </div>
       </div>
+        <div class="row">
+          <div class="col-lg-12">
+            <div>
+              <button class="btn btn-outline-primary float-right print"><i class="fas fa-print"></i>&nbsp;&nbsp;{{ __('home.print') }}</button>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
     <!--================ confirmation part end =================-->
 @endsection
 @section('script')
-    
+    <script>
+      $(document).ready(function () {
+        $('.print').click(function(){
+          $('.footer_part').hide();
+          $('.print').hide();
+          window.print();
+          $('.footer_part').show();
+          $('.print').show();
+        });
+      });
+    </script>
 @endsection

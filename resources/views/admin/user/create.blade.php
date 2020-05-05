@@ -163,6 +163,7 @@
                                         <select name="role" class="form-control @error('role') is-invalid @enderror">
                                             <option value="0">{{ __('admin.member') }}</option>
                                             <option value="1">{{ __('admin.admin') }}</option>
+                                            <option value="2">{{ __('admin.store_owner') }}</option>
                                         </select>
                                         @error('role')
                                             <span class="invalid-feedback" role="alert">

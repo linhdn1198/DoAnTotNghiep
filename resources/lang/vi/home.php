@@ -77,9 +77,11 @@ return [
     'thank_you' => 'Cảm ơn bạn. Đơn đặt hàng của bạn đã được nhận.',
     'thank_you_purchase' => 'Cảm ơn bạn đã mua hàng tại cửa hàng chúng tôi ',
     'order_info' => 'Thông tin đặt hàng',
+    'customer_info' => 'Thông tin khách hàng',
     'order_number' => 'Số hóa đơn',
     'date' => 'Ngày',
     'total' => 'Tổng tiền',
+    'total_cart' => 'Tổng tiền giỏ hàng',
     'shipping_address' => 'Địa chỉ giao hàng',
     'name' => 'Họ tên',
     'phone' => 'Số điện thoại',
@@ -104,4 +106,6 @@ return [
     'title_update_profille' => 'Cập nhật thông tin cá nhân',
     'profile' => 'Thông tin cá nhân',
     'change_profile' => 'Cập nhật',
+    'print' => 'In hóa đơn',
+    'invoice' => 'Hóa đơn',
 ];

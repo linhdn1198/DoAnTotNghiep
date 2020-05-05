@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Session;
 use App\Models\Product;
+use App\Models\OrderDetail;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\ProductCategory;
@@ -119,37 +120,55 @@ class ProductController extends Controller
     {
         try {
             DB::beginTransaction();
-            $product = Product::where('id', $id)->firstOrFail();
-            foreach (json_decode($product->image, true) as $image) {
-                Storage::delete($image['name']);
-            }
-            $images = [];
-            foreach ($request->images as $image) {
-                $storage = Storage::put('/public/uploads/products', $image);
-                array_push($images, ['name' => $storage]);
-            }
 
-            $product = Product::updateOrCreate(
-                [
-                    'id' => $id,
-                ],
-                [
-                    'product_category_id' => $request->product_category_id,
-                    'name' => $request->name,
-                    'slug' => Str::slug($request->name),
-                    'description' => $request->description,
-                    'quantity' => $request->quantity,
-                    'input_price' => $request->input_price,
-                    'price' => $request->price,
-                    'image' => json_encode($images),
-                ]
-            );
+            if ($request->images) {
+                $product = Product::where('id', $id)->firstOrFail();
+                foreach (json_decode($product->image, true) as $image) {
+                    Storage::delete($image['name']);
+                }
+                $images = [];
+                foreach ($request->images as $image) {
+                    $storage = Storage::put('/public/uploads/products', $image);
+                    array_push($images, ['name' => $storage]);
+                }
+                $product = Product::updateOrCreate(
+                    [
+                        'id' => $id,
+                    ],
+                    [
+                        'product_category_id' => $request->product_category_id,
+                        'name' => $request->name,
+                        'slug' => Str::slug($request->name),
+                        'description' => $request->description,
+                        'quantity' => $request->quantity,
+                        'input_price' => $request->input_price,
+                        'price' => $request->price,
+                        'image' => json_encode($images),
+                    ]
+                );
+            } else {
+                $product = Product::updateOrCreate(
+                    [
+                        'id' => $id,
+                    ],
+                    [
+                        'product_category_id' => $request->product_category_id,
+                        'name' => $request->name,
+                        'slug' => Str::slug($request->name),
+                        'description' => $request->description,
+                        'quantity' => $request->quantity,
+                        'input_price' => $request->input_price,
+                        'price' => $request->price,
+                    ]
+                );
+            }
 
             DB::commit();
-            Session::flash('success', __('admin.update_success_message'));
+            Session::flash('success', __('admin.edit_success_message'));
 
             return redirect()->route('products.index');
         } catch (\Exception $ex) {
+            dump($ex);exit();
             DB::rollback();
             Session::flash('error', __('admin.update_fail_message'));
 
@@ -182,5 +201,17 @@ class ProductController extends Controller
 
             return redirect()->back();
         }
+    }
+
+    public function getList()
+    {
+        $products = DB::table('order_details')
+            ->join('products', 'products.id', '=', 'order_details.product_id')
+            ->select('products.id', 'products.name', 'products.price', DB::raw('SUM(order_details.quantity) as "order"'))
+            ->groupBy('products.id', 'products.name', 'products.price')
+            ->orderBy('products.id', 'ASC')
+            ->get();
+
+        return view('admin.product.get_list', compact('products'));
     }
 }

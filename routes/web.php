@@ -56,8 +56,10 @@ Route::group([
     Route::get('statistic-revenue', 'DashboardController@statisticRevenueAjax')->name('revenue');
     Route::get('statistic-order', 'DashboardController@statisticOrderAjax')->name('revenue-order');
     Route::get('statistic-user', 'DashboardController@statisticUserAjax')->name('revenue-user');
+    Route::get('/products/sales', 'ProductController@getList')->name('products_sales');
     Route::resource('products', 'ProductController');
     Route::resource('product-category', 'ProductCategoryController')->except('show');
+    Route::get('/orders/purchase', 'OrderController@getList')->name('order_purchase');
     Route::resource('orders', 'OrderController')->except('create', 'store', 'edit');
     Route::resource('comment-product', 'CommentProductController')->only('index', 'destroy');
     Route::resource('comment-post', 'CommentPostController')->only('index', 'destroy');

@@ -176,6 +176,10 @@
                                             @if ($user->role === 1)
                                                 selected
                                             @endif>{{ __('admin.admin') }}</option>
+                                            <option value="2"
+                                            @if ($user->role === 2)
+                                                selected
+                                            @endif>{{ __('admin.store_owner') }}</option>
                                         </select>
                                         @error('role')
                                             <span class="invalid-feedback" role="alert">

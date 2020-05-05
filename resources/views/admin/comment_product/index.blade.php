@@ -56,7 +56,7 @@
                                             @foreach ($comments as $index => $comment)
                                                 <tr>
                                                     <td>{{ $index + 1 }}</td>
-                                                    <td>{{ $comment->user->name }}</td>
+                                                    <td>{{ $comment->user ? $comment->user->name : 'Ẩn danh'}}</td>
                                                     <td>{{ $comment->product->name }}</td>
                                                     <td>{{ $comment->content }}</td>
                                                     <td>{{ $comment->created_at }}</td>

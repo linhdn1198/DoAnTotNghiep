@@ -39,6 +39,9 @@
                                     <a class="btn btn-outline-success my-3" href="{{ route('products.create') }}">
                                         <i class="fas fa-plus"></i>&nbsp;&nbsp;{{ __('admin.btn_add') }}
                                     </a>
+                                    <a class="btn btn-outline-info my-3" href="{{ route('products_sales') }}">
+                                        <i class="fas fa-cart"></i>&nbsp;&nbsp;{{ __('List of products sold') }}
+                                    </a>
                                 </div>
                             </div>
                             <div class="row">

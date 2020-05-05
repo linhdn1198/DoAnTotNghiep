@@ -1,6 +1,7 @@
 <?php
     return [
         'name_store' => 'LD Store',
+        'owner' => 'Dương Ngọc Linh',
         'dashboard' => 'Dashboard',
         // 
         'image' => 'Image',
@@ -118,6 +119,7 @@
         'role' => 'Role',
         'admin' => 'Admin',
         'member' => 'Member',
+        'store_owner' => 'Store owner',
         // Banner
         'management_banner' => 'Management banner',
         'show_banner' => 'Show banner',
