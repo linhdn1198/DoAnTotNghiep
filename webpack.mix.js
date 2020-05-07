@@ -20,4 +20,5 @@ mix.js('resources/js/app.js', 'public/js')
    .copyDirectory('resources/client', 'public/client')
    .copyDirectory('node_modules/admin-lte/dist', 'public/dist')
    .copyDirectory('node_modules/admin-lte/plugins', 'public/plugins')
+   .copyDirectory('resources/admin', 'public/admin')
    .version();
